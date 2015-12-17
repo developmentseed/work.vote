@@ -71,6 +71,7 @@
     "watchify": "^3.6.1"
   },
   "dependencies": {
+    "foundation-sites": "^6.0.6",
     "history": "^1.13.1",
     "immutable": "^3.7.6",
     "lodash.defaultsdeep": "^3.10.0",
