@@ -6,6 +6,7 @@ import config from '../config';
 import Header from './header';
 import Footer from './footer';
 import Frontpage from './frontpage';
+import Result from './result'
 
 let App = React.createClass({
 
@@ -23,7 +24,7 @@ let App = React.createClass({
           <div className='small-12 columns'>
             <Header />
             <br />
-            <Frontpage />
+            {this.props.children || <Frontpage />}
           </div>
         </div>
         <Footer />

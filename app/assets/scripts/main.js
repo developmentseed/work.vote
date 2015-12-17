@@ -10,6 +10,7 @@ import store from './store';
 
 // Components
 import App from './components/app';
+import Result from './components/result'
 
 const history = createHashHistory({queryKey: false});
 syncReduxAndRouter(history, store);
@@ -18,6 +19,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path='/' component={App}>
+        <Route path='what' component={Result} />
       </Route>
     </Router>
   </Provider>,
