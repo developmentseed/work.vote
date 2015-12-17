@@ -6,6 +6,7 @@ let Frontpage = React.createClass({
     return (
       <div className="row column">
         <img src='/assets/graphics/layout/main.png' width='100%' />
+        <div id='map'></div>
       </div>
     );
   }

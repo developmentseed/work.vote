@@ -19,7 +19,6 @@ let Header = React.createClass({
       </header>
     );
   },
-
 });
 
 function mapStateToProps (state) {

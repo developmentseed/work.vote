@@ -17,6 +17,12 @@
   }
 }
 
+body { 
+  margin:0; 
+  padding:0; 
+}
+
+
 header {
   background-color: $dblue;
 }
@@ -27,4 +33,15 @@ header {
 
 .white {
   color: #fff;
+}
+
+#map { 
+  width:800px;
+  height: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mapboxgl-canvas{
+  height: 800px;
 }
