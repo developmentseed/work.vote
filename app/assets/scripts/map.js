@@ -69,3 +69,6 @@
         });
     });
 
+  document.querySelector("#Search-container").addEventListener("click", function(){
+    this.style.display = 'none';
+  });;
