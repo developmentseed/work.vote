@@ -5,6 +5,7 @@ var logo = require('./logo');
  */
 module.exports = {
   environment: 'production',
+  apiUrl: 'http://work.vote',
   consoleMessage: logo
 };
 
