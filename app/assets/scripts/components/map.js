@@ -26,6 +26,7 @@ let Map = React.createClass({
         "type": "fill",
         "source": "counties",
         "source-layer": "jursidictions",
+        "interactive": true,
         "layout": {},
         "paint": {
           "fill-color": "rgba(138,255,247,0.4)",
@@ -50,10 +51,24 @@ let Map = React.createClass({
         "source-layer": "jursidictions",
         "layout": {},
         "paint": {
-          "fill-color": "#9fb7bf",
-          "fill-opacity": 1
+        "fill-color": "#fff64d",
+        "fill-opacity": 0.6
         },
         "filter": ["==", "NAME", ""]
+      });
+    });
+
+   map.on("click", function(e) {
+      map.featuresAt(e.point, {
+          radius: 5,
+          layers: ["county-fill"]
+      }, function (err, features) {
+        console.log(features[0].properties.NAME)
+        if (!err && features.length) {
+          map.setFilter("county-hover", ["==", "NAME", features[0].properties.NAME]);
+        } else {
+          map.setFilter("county-hover", ["==", "NAME", ""]);
+        }
       });
     });
 
