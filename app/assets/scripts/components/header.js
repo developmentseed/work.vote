@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 let Header = React.createClass({
   render: function () {
-    console.log(this.props);
     return (
       <header>
         <div className='row header-padding'>
@@ -21,13 +20,7 @@ let Header = React.createClass({
   },
 });
 
-function mapStateToProps (state) {
-  return {
-    name: state.frontpage.name
-  };
-}
 
-export default connect(
-  mapStateToProps
-)(Header);
+
+export default Header;
 
