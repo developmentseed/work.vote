@@ -2,15 +2,17 @@ import _ from 'lodash';
 import geo from 'mapbox-geocoding';
 import React from 'react';
 import config from '../config'
-import Select from 'react-select';
+import store from '../store'
 import nets from 'nets';
 import { pushPath } from 'redux-simple-router'
+import Autosuggest from 'react-autosuggest';
 
-let options = new Set();
+let juris = {}
 
 let Search = React.createClass({
 
-  searching: function (input, callback) {
+  getSuggestions: function (input, callback) {
+    let options = new Set();
     geo.setAccessToken(config.accessToken);
     geo.geocode('mapbox.places', input, function (err, geoData) {
       if (geoData){
@@ -26,33 +28,23 @@ let Search = React.createClass({
           }, function(err, resp, body) {
             let results = JSON.parse(body).results;
             for (let j = 0; j < results.length; j++) {
+              juris[results[j].name] = results[j].id;
               options.add(results[j].name)
             }
+            callback(null, Array.from(options));
           });
 
         }
 
-        let temp = []
-        for (let item of options) {
-          temp.push({value: item , label: item})
-        }
 
-        callback(null, {
-          options: temp,
-        });
-      }
-      else {
-        let emptyOptions=[{}];
-        callback(null, {
-          options: emptyOptions,
-        });
       }
 
     });
   },
 
-  linkToJurisdiction: function (value, event) {
-    pushPath('/');
+  onSuggestionSelected: function (value, event) {
+    console.log('hi')
+    store.dispatch(pushPath(`jurisdictions/${juris[value]}`))
   },
 
   render: function () {
@@ -61,14 +53,7 @@ let Search = React.createClass({
         <div id='Search-container'>
           <div id="Address-Finder">
             <div className="center-text"></div>
-            <Select.Async
-                name="form-field-name"
-                placeholder="Search ..."
-                loadOptions={this.searching}
-                autoload={false}
-                isLoading={false}
-                onOptionLabelClick={this.linkToJurisdiction}
-            />
+            <Autosuggest suggestions={this.getSuggestions} onSuggestionSelected={this.onSuggestionSelected}/>
             <div className="usemap">Locate via map???</div>
           </div>
         </div>
