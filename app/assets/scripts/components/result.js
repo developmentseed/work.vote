@@ -24,7 +24,6 @@ let Result = React.createClass({
 
   render: function () {
     let { jurisdiction } = this.props;
-
     return (
       <div className="large">
         <div className="banner-image">
@@ -35,17 +34,16 @@ let Result = React.createClass({
           <div className="columns medium-centered">
             <div className="results-sub-container columns large medium-centered">
               <div className="results-split-container medium-5 columns">
-                <div className="juris-header">{jurisdiction.name} Dummy Name, ST</div>
+                <div className="juris-header">{jurisdiction.name}</div>
                 <div className="county-image">
                   <img src="/assets/graphics/layout/dummyjurs.svg"></img>
                 </div>
                 <div className="text-header">Contact Information</div>
                 <p>If you have questions about working on Election Day contact your county or jurisdiction.</p>
-                <p>Telephone: {jurisdiction.phone} (928)-fake-phone</p>
-                <p>Example: {jurisdiction.website} www.example.com</p>
-                <p>Address: {jurisdiction.office_address} 332 Example Street</p>
+                <p>Telephone: {jurisdiction.telephone}</p>
+                <p>Address: {jurisdiction.office_address} </p>
                 <p><a href="{jurisdiction.website}">Click here</a> for more information on working Election Day in this jurisdiction.</p>
-                <p><a href="{jurisdiction.signup">Click here</a> to sign up as an election worker.</p>
+                <p><a href="{jurisdiction.application">Click here</a> to sign up as an election worker.</p>
               </div>
               <div className="results-split-container medium-6 columns">
                 <div className="text-header">Work Hours:</div>
