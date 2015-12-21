@@ -6,6 +6,7 @@ var logo = require('./logo');
 module.exports = {
   environment: 'production',
   apiUrl: 'http://work.vote',
-  consoleMessage: logo
+  consoleMessage: logo,
+  accessToken: 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q'
 };
 
