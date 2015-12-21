@@ -24,9 +24,10 @@
           "type": "fill",
           "source": "counties",
           "source-layer": "jursidictions",
+          "interactive": true,
           "layout": {},
           "paint": {
-              "fill-color": "#f7f5a8",
+              "fill-color": "rgba(138,255,247,0.4)",
               "fill-opacity": 1
           }
       });
@@ -37,8 +38,8 @@
           "source-layer": "jursidictions",
           "layout": {},
           "paint": {
-              "line-color": "black",
-              "line-width": 1
+              "line-color": "#9fb7bf",
+              "line-width": 0.4
           }
       });    
       map.addLayer({
@@ -48,27 +49,40 @@
           "source-layer": "jursidictions",
           "layout": {},
           "paint": {
-              "fill-color": "#a8f7e8",
-              "fill-opacity": 1
+              "fill-color": "#fff64d",
+              "fill-opacity": 0.6
           },
           "filter": ["==", "NAME", ""]
       });
   });
+
 
   map.on("click", function(e) {
         map.featuresAt(e.point, {
             radius: 5,
             layers: ["county-fill"]
         }, function (err, features) {
+            console.log(features[0].properties.NAME)
             if (!err && features.length) {
                 map.setFilter("county-hover", ["==", "NAME", features[0].properties.NAME]);
-                console.log(features[0].properties.NAME);
             } else {
                 map.setFilter("county-hover", ["==", "NAME", ""]);
             }
         });
     });
 
-  document.querySelector("#Search-container").addEventListener("click", function(){
-    this.style.display = 'none';
-  });;
+
+  var usemap = document.querySelector('.usemap');
+  var toggle = document.querySelector('.User-Locate-return');
+
+  usemap.addEventListener("click", function(){
+    document.querySelector('#Search-container').style.display = 'none';
+    toggle.style.display = 'block';
+  });
+
+  toggle.addEventListener("click", function(){
+    document.querySelector('#Search-container').style.display = 'block';
+    toggle.style.display = 'none';
+  });
+
+console.log(toggle)

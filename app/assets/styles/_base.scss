@@ -21,12 +21,13 @@ body {
   margin:0;
   padding:0;
   background-color: $lblue;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 header {
   background-color: $dred;
   position: fixed;
+  font-family: Montserrat;
   top: 0px;
   width: 100%;
   z-index: 20;
@@ -123,6 +124,21 @@ header {
   background-color: $lblue;
   img{
     opacity: 0.3;
+  }
+}
+
+.banner-text{
+  position: absolute;
+  top:220px;
+  left:70px;
+  font-weight: 400;
+  font-size:1.4em;
+  max-width:500px;
+  max-height:100%;
+  color: white;
+  text-shadow: 2px 1px 2px rgba(0,0,0,0.6);
+  .text-header{
+    font-size:1.6em;
   }
 }
 
@@ -249,16 +265,50 @@ header {
   margin-right: auto;
 }
 
-.results-sub-container{
-  height:400px;
-  border: 2px dotted black;
+.results-split-container{
+  margin-top: 16px;
+  padding-left:30px;
+  padding-right:30px;
+  p{
+    font-size: 0.9em;
+  }
 }
 
 .text-header{
   font-weight: 700;
-  font-size: 1.2em;
+  font-size: 1.0em;
 }
 
+.juris-header{
+  font-weight:800;
+  font-size: 1.4em;
+}
+
+.results-sub-container{
+  margin-top: 15px;
+  margin-bottom: 10px;
+  padding:10px 0px 10px 20px;
+  background-color: white;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+  height: auto;
+  @media screen and (min-width: 639px){
+    height: 800px;
+  }
+}
+
+.results-below-container{
+  text-align:center;
+  padding-top:70px;
+  .btn{
+    margin-bottom:20px;
+  }
+}
+
+.county-image{
+  img{
+    width:200px;
+  }
+}
 
 /*----------------------------------------------*/
 /* Footer */
@@ -275,4 +325,29 @@ header {
   height: 60px;
   width: 100%;
   background-color: $dgrey;
+}
+
+/*----------------------------------------------*/
+/* Button */
+/*----------------------------------------------*/
+.btn {
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  width: 300px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 14px;
+  background: #e02626;
+  padding: 5px 10px 5px 10px;
+  border: solid #1f628d 0px;
+  text-decoration: none;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #b3178f;
+  text-decoration: none;
 }
