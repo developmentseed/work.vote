@@ -54,7 +54,7 @@ let Search = React.createClass({
           <div id="Address-Finder">
             <div className="center-text"></div>
             <Autosuggest suggestions={this.getSuggestions} onSuggestionSelected={this.onSuggestionSelected}/>
-            <div className="usemap">Locate via map???</div>
+            <div className="usemap">Locate via map</div>
           </div>
         </div>
       </div>
