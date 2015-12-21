@@ -48,20 +48,14 @@ let Result = React.createClass({
               <div className="results-split-container medium-6 columns">
                 <div className="text-header">Work Hours:</div>
                   <p>You can be registered anywhere in the state to work on Election Day in {jurisdiction.name}.</p>
-                  <p>Estimated hours for Election Day: {jurisdiction.starttime} to {jurisdiction.endtime}</p>
+                  <p>Estimated hours for Election Day: {jurisdiction.hours_start} to {jurisdiction.hours_end}</p>
 
                 <div className="text-header">Registration:</div>
-                  <p>You can be registered anywhere in the state to work on Election Day in {jurisdiction.name}.</p>
-                  <p>You must be at least {jurisdiction.age} in order to serve as an election worker.</p>
-
-
-                  <p>Starts at {jurisdiction.hours_start}</p>
-                  <p>Ends at {jurisdiction.hours_end}</p>
-                  <h5>Registration</h5>
-                  <p><a href="{jurisdiction.website}">Register here</a> or call {jurisdiction.telephone}</p>
-                  <p>Age requirement</p>
-                  <p>Rules of the district</p>
-                  <p>Training</p>
+                  <p>You must be at least {jurisdiction.minimum_age} in order to serve as an election worker.</p>
+                  <p>Must have an email: {jurisdiction.must_have_email}</p>                  
+                  <p>Split days allowed: {jurisdiction.split_days_allowed}</p>
+                  <p>Pre-Registration: {jurisdiction.pre_registration}</p> 
+                  <p>Training Exam: {jurisdiction.post_training_exam}</p>
                 </div>
                 <div className="results-below-container medium-12 columns">
                   <div className="btn">Work the election in your jursidiction!</div>
