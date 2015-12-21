@@ -3,6 +3,10 @@ import geo from 'mapbox-geocoding';
 import React from 'react';
 import config from '../config'
 import Select from 'react-select';
+import nets from 'nets';
+import { pushPath } from 'redux-simple-router'
+
+let options = new Set();
 
 let Search = React.createClass({
 
@@ -10,22 +14,45 @@ let Search = React.createClass({
     geo.setAccessToken(config.accessToken);
     geo.geocode('mapbox.places', input, function (err, geoData) {
       if (geoData){
-        let options = [];
         for (let i = 0; i < geoData.features.length; i++) {
-          options.push({value: geoData.features[i].place_name, label: geoData.features[i].place_name})
+          let coords = geoData.features[i].geometry.coordinates
+          nets({
+            method: 'get',
+            encoding: undefined,
+            headers: {
+              "Content-Type": "application/json"
+            },
+            url: `${config.apiUrl}/jurisdictions/?contains=${coords.toString()}`
+          }, function(err, resp, body) {
+            let results = JSON.parse(body).results;
+            for (let j = 0; j < results.length; j++) {
+              options.add(results[j].name)
+            }
+          });
+
         }
-            callback(null, {
-                options: options,
-              });
+
+        let temp = []
+        for (let item of options) {
+          temp.push({value: item , label: item})
+        }
+
+        callback(null, {
+          options: temp,
+        });
       }
       else {
-        let options=[{}];
+        let emptyOptions=[{}];
         callback(null, {
-          options: options,
+          options: emptyOptions,
         });
       }
 
     });
+  },
+
+  linkToJurisdiction: function (value, event) {
+    pushPath('/');
   },
 
   render: function () {
@@ -40,6 +67,7 @@ let Search = React.createClass({
                 loadOptions={this.searching}
                 autoload={false}
                 isLoading={false}
+                onOptionLabelClick={this.linkToJurisdiction}
             />
             <div className="usemap">Locate via map???</div>
           </div>
