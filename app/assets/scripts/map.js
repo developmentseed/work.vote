@@ -26,7 +26,7 @@
           "source-layer": "jursidictions",
           "layout": {},
           "paint": {
-              "fill-color": "#f7f5a8",
+              "fill-color": "rgba(138,255,247,0.4)",
               "fill-opacity": 1
           }
       });
@@ -37,8 +37,8 @@
           "source-layer": "jursidictions",
           "layout": {},
           "paint": {
-              "line-color": "black",
-              "line-width": 1
+              "line-color": "#9fb7bf",
+              "line-width": 0.4
           }
       });    
       map.addLayer({
@@ -48,7 +48,7 @@
           "source-layer": "jursidictions",
           "layout": {},
           "paint": {
-              "fill-color": "#a8f7e8",
+              "fill-color": "#9fb7bf",
               "fill-opacity": 1
           },
           "filter": ["==", "NAME", ""]
@@ -69,6 +69,17 @@
         });
     });
 
-  document.querySelector("#Search-container").addEventListener("click", function(){
-    this.style.display = 'none';
-  });;
+  var usemap = document.querySelector('.usemap');
+  var toggle = document.querySelector('.User-Locate-return');
+
+  usemap.addEventListener("click", function(){
+    document.querySelector('#Search-container').style.display = 'none';
+    toggle.style.display = 'block';
+  });
+
+  toggle.addEventListener("click", function(){
+    document.querySelector('#Search-container').style.display = 'block';
+    toggle.style.display = 'none';
+  });
+
+console.log(toggle)

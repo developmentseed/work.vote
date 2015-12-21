@@ -17,7 +17,7 @@ let Header = React.createClass({
             <a href="" className='white'>Get Involved</a>
             <a href="" className='white'>About</a>
           </div>
-        </div>
+        </div>        
       </header>
     );
   },
