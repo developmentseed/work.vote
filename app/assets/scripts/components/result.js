@@ -36,7 +36,7 @@ let Result = React.createClass({
               <div className="results-split-container medium-5 columns">
                 <div className="juris-header">{jurisdiction.name}</div>
                 <div className="county-image">
-                  <img src="../assets/graphics/layout/dummyjurs.svg"></img>
+                  <img src="assets/graphics/layout/dummyjurs.svg"></img>
                 </div>
                 <div className="text-header">Contact Information</div>
                 <p>If you have questions about working on Election Day contact your county or jurisdiction.</p>
