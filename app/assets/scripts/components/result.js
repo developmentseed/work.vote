@@ -23,13 +23,30 @@ let Result = React.createClass({
   },
 
   render: function () {
+
     let { jurisdiction } = this.props;
+
+    // Set up wordings for the Jursidiction page from the properties 
+    if(this.props.jurisdiction.must_have_email == "N"){
+      var emailcheck = "do not";
+    }else{
+      var emailcheck = "";
+    };
+
+    if(this.props.jurisdiction.post_training_exam == "N"){
+      var trainingcheck = "";
+    }else if(this.props.jurisdiction.post_training_exam == "Y"){
+      var trainingcheck = "Wubalubadubdub"
+    }else{
+      var trainingcheck = this.props.jurisdiction.post_training_exam;
+    }
+
+    // Results HTML
     return (
       <div className="large">
         <div className="banner-image">
-        <img src='/assets/graphics/layout/main.jpg' width='100%' />
+        <img src='/assets/graphics/layout/main_reduced.jpg' width="100%"/>
         </div>
-
         <div id="results-container">
           <div className="columns medium-centered">
             <div className="results-sub-container columns large medium-centered">
@@ -52,10 +69,12 @@ let Result = React.createClass({
 
                 <div className="text-header">Registration:</div>
                   <p>You must be at least {jurisdiction.minimum_age} in order to serve as an election worker.</p>
-                  <p>Must have an email: {jurisdiction.must_have_email}</p>                  
+                  <p>You { emailcheck } need an email to register.
+                  </p>                  
                   <p>Split days allowed: {jurisdiction.split_days_allowed}</p>
                   <p>Pre-Registration: {jurisdiction.pre_registration}</p> 
-                  <p>Training Exam: {jurisdiction.post_training_exam}</p>
+                  <p>Cats and dogs wearing clogs</p>
+                  <p>{trainingcheck}</p>
                 </div>
                 <div className="results-below-container medium-12 columns">
                   <div className="btn">Work the election in your jursidiction!</div>
