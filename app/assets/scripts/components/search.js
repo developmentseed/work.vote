@@ -52,9 +52,8 @@ let Search = React.createClass({
       <div>
         <div id='Search-container'>
           <div id="Address-Finder">
-            <div className="center-text">Locate your Jursidiction</div>
+            <div className="center-text">Enter your county, zipcode, or address</div>
             <Autosuggest suggestions={this.getSuggestions} onSuggestionSelected={this.onSuggestionSelected}/>
-            <div className="usemap">Locate via map</div>
           </div>
         </div>
         <div id="Search-enabler"><img src="/assets/graphics/layout/search.png"></img></div>

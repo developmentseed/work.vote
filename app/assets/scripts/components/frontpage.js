@@ -12,13 +12,11 @@ let Frontpage = React.createClass({
 				<div className="banner-text">
 					<div className="text-header">Be a part of Democracy</div>
 					<p>Find polling stations to work at this upcoming for this and future elections.</p>
-					<div className="cbtn">V</div>
+				</div>
+				<Search />				
+				<div id='User-Locate-container'>
 				</div>
 				<div className="map-break"><a name="map"></a></div>
-				<div id='User-Locate-container'>
-					<Search />
-					<Map />
-				</div>
 			</div>
 		);
 	}
