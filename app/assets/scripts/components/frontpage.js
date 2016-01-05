@@ -14,7 +14,7 @@ let Frontpage = React.createClass({
 					<p>Find polling stations to work at this upcoming for this and future elections.</p>
 					<div className="cbtn">V</div>
 				</div>
-				<div className="map-break"></div>
+				<div className="map-break"><a name="map"></a></div>
 				<div id='User-Locate-container'>
 					<Search />
 					<Map />
