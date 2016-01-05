@@ -6,6 +6,7 @@ let Map = React.createClass({
 
   componentDidMount: function () {
     mapboxgl.accessToken = config.accessToken;
+    var i = 0    
 
     let map = new mapboxgl.Map({
       container: 'map',
@@ -60,28 +61,57 @@ let Map = React.createClass({
 
    map.on("click", function(e) {
       map.featuresAt(e.point, {
-          radius: 5,
+          radius: 1,
           layers: ["county-fill"]
       }, function (err, features) {
-        console.log(features[0].properties.NAME)
-        if (!err && features.length) {
-          map.setFilter("county-hover", ["==", "NAME", features[0].properties.NAME]);
-        } else {
-          map.setFilter("county-hover", ["==", "NAME", ""]);
-        }
+
+
+
+        function filterprop(value){
+         for(i=0; i<features.length; i++){
+          if (features[i].properties.NAME === true){
+            return features[i].properties.NAME;
+            };
+            // return features[i].properties.NAME
+          };
+        };   
+
+        console.log(filterprop(features))
+
+        //  if(features[i].properties.NAME === true){
+        //   return features[i].properties
+        // };
+
+        var filtered = features.filter(filterprop)
+
+
+        // function jurisfilter(value){
+        //   return value == "NAME"
+        // }
+        // var filtered = features.filter(jurisfilter);
+
+        // if (!err && filtered.length) {
+        //   map.setFilter("county-hover", ["==", "NAME", filtered[0].properties.NAME]);
+        // } else {
+        //   map.setFilter("county-hover", ["==", "NAME", ""]);
+        // }
       });
     });
 
+
+
     let usemap = document.querySelector('.usemap');
-    let toggle = document.querySelector('.User-Locate-return');
+    let toggle = document.querySelector('#Search-enabler');
 
     usemap.addEventListener("click", function(){
       document.querySelector('#Search-container').style.display = 'none';
+      document.querySelector('#Search-enabler').style.display = 'block';
       toggle.style.display = 'block';
     });
 
     toggle.addEventListener("click", function(){
       document.querySelector('#Search-container').style.display = 'block';
+      document.querySelector('#Search-enabler').style.display = 'none';
       toggle.style.display = 'none';
     });
 

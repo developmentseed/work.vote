@@ -38,6 +38,9 @@ header {
 
 .white {
   color: #fff;
+  a{
+    color: #fff;
+  }
 }
 
 .center-text{
@@ -80,7 +83,7 @@ header {
   @media screen and (min-width: 920px) {
   position:absolute;
   left: 40px;
-  width: 400px;
+  width: 360px;
   -webkit-transform: skew(45deg);
      -moz-transform: skew(45deg);
        -o-transform: skew(45deg);
@@ -91,7 +94,7 @@ header {
   @media screen and (min-width: 920px) {
   position:absolute;
   top:26px;
-  left:443px;
+  left:403px;
   width: 0;
   height: 0;
   border-left: 20px solid transparent;
@@ -109,7 +112,7 @@ header {
   float: none;
   @media screen and (min-width: 920px) {
     float: right;
-    width: 450px;
+    width: 500px;
    }
   a{
     display: inline-block;
@@ -122,8 +125,9 @@ header {
 
 .banner-image{
   background-color: $lblue;
+  pointer-events: none;
   img{
-    opacity: 0.3;
+    opacity: 0.6;
   }
 }
 
@@ -136,7 +140,8 @@ header {
   max-width:500px;
   max-height:100%;
   color: white;
-  text-shadow: 2px 1px 2px rgba(0,0,0,0.6);
+  padding: 14px;
+  text-shadow: 2px 1px 2px rgba(0,0,0,0.7);
   .text-header{
     font-size:1.6em;
   }
@@ -195,7 +200,7 @@ header {
   background-color: $lblue;
   box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
   max-width: 300px;
-  height: 100px;
+  height: 116px;
   padding-top: 12px;
   margin-left: auto;
   margin-right: auto;
@@ -207,11 +212,16 @@ header {
   padding-right: 25px;
   font-size: 0.8em;
   cursor: pointer;
+  color: $dblue;
+  text-decoration: underline;
+  ::hover{
+    color: $lblue;
+  }
 }
 
-.User-Locate-return{
+#Search-enabler{
   vertical-align: middle;
-  width: 90px;
+  width: 30px;
   height: 30px;
   margin: 10px 10px 10px 20px;
   display: none;
@@ -238,12 +248,10 @@ header {
     font-size: $font-size;
     border: 1px solid $border-color;
     border-radius: $border-radius;
-
     &[aria-expanded="true"] {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
-
     &:focus {
       outline: none;
     }
@@ -251,8 +259,9 @@ header {
 
   &__suggestions {
     position: absolute;
-    top: 51px;
-    width: 280px;
+    top: 34px;
+    width: 241px;
+    left: 29px;
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -261,7 +270,6 @@ header {
     font-size: $font-size;
     border-bottom-left-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
-    z-index: 2;
 
     &-section {
       &:first-child {
@@ -306,7 +314,7 @@ header {
 }
 
 #map {
-  width:100%;
+  width:98%;
   height: 520px;
   margin-left: auto;
   margin-right: auto;
@@ -400,27 +408,61 @@ header {
   background-color: $dgrey;
 }
 
+.footer-items{
+  img{
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 20px;
+  }
+}
+
 /*----------------------------------------------*/
 /* Button */
 /*----------------------------------------------*/
-.btn {
+.btn{
   -webkit-border-radius: 5;
   -moz-border-radius: 5;
-  width: 300px;
   border-radius: 5px;
   color: #ffffff;
   font-size: 14px;
-  background: #e02626;
-  padding: 5px 10px 5px 10px;
-  border: solid #1f628d 0px;
+  background: lighten(#e02626, 0);
+  padding: 5px 14px 5px 14px;
+  border: solid black 0px;
   text-decoration: none;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   cursor: pointer;
+  display:inline-block;
+  transition-property: background;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;  
 }
 
 .btn:hover {
-  background: #b3178f;
+  background: $dred;
+  text-decoration: none;
+}
+
+.cbtn{
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  font-size: 14px;
+  background: rgba(0,0,0,0);
+  padding: 2.4px 0px 0px 8px;
+  border: solid 2px #e02626;
+  text-decoration: none;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  cursor: pointer;
+  display:inline-block;
+  transition-property: background;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;  
+}
+
+.cbtn:hover{
+  background: $dred;
   text-decoration: none;
 }
