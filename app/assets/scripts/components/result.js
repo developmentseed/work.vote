@@ -69,19 +69,11 @@ let Result = React.createClass({
 
                 <div className="text-header">Registration:</div>
                   <p>You must be at least {jurisdiction.minimum_age} in order to serve as an election worker.</p>
-<<<<<<< HEAD
                   <p>You { emailcheck } need an email to register.
                   </p>                  
                   <p>Split days allowed: {jurisdiction.split_days_allowed}</p>
                   <p>Pre-Registration: {jurisdiction.pre_registration}</p> 
-                  <p>Cats and dogs wearing clogs</p>
                   <p>{trainingcheck}</p>
-=======
-                  <p>Must have an email: {jurisdiction.must_have_email}</p>
-                  <p>Split days allowed: {jurisdiction.split_days_allowed}</p>
-                  <p>Pre-Registration: {jurisdiction.pre_registration}</p>
-                  <p>Training Exam: {jurisdiction.post_training_exam}</p>
->>>>>>> a7f18c0d0f213064d8cb6e7c08b812e4f76eb4da
                 </div>
                 <div className="results-below-container medium-12 columns">
                   <div className="btn">Work the election in your jursidiction!</div>
