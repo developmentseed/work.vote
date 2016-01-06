@@ -14,36 +14,25 @@ let Search = React.createClass({
   getSuggestions: function (input, callback) {
     let options = new Set();
     geo.setAccessToken(config.accessToken);
-    geo.geocode('mapbox.places', input, function (err, geoData) {
-      if (geoData){
-        for (let i = 0; i < geoData.features.length; i++) {
-          let coords = geoData.features[i].geometry.coordinates
-          nets({
-            method: 'get',
-            encoding: undefined,
-            headers: {
-              "Content-Type": "application/json"
-            },
-            url: `${config.apiUrl}/jurisdictions/?contains=${coords.toString()}`
-          }, function(err, resp, body) {
-            let results = JSON.parse(body).results;
-            for (let j = 0; j < results.length; j++) {
-              juris[results[j].name] = results[j].id;
-              options.add(results[j].name)
-            }
-            callback(null, Array.from(options));
-          });
-
-        }
-
-
+    nets({
+      method: 'get',
+      encoding: undefined,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      url: `${config.apiUrl}/jurisdictions/?search=${input}`
+    }, function(err, resp, body) {
+      let results = JSON.parse(body).results;
+      for (let j = 0; j < results.length; j++) {
+        let option = results[j].name + ', ' + results[j].state.alpha;
+        juris[option] = results[j].id;
+        options.add(option)
       }
-
+      callback(null, Array.from(options));
     });
   },
 
   onSuggestionSelected: function (value, event) {
-    console.log('hi')
     store.dispatch(pushPath(`jurisdictions/${juris[value]}`))
   },
 
