@@ -27,17 +27,11 @@ let Result = React.createClass({
     let { jurisdiction } = this.props;
 
     // translate(this.props.jurisdiction)
-    
+
     var props = this.props.jurisdiction;
 
-    if(props.must_have_email == "N"){
-      var emailcheck = "do not";
-    }else{
-      var emailcheck = "";
-    };
-
     if(props.office_address !== null){
-        var officeAddress = "Office Address: "+props.office_address;
+        var officeAddress = props.office_address;
     }else{
         var officeAddress = "";
     };
@@ -45,8 +39,10 @@ let Result = React.createClass({
     if(props.mailing_address == props.office_address){
       if(props.mailing_address !== null){
           var mailAddress = "";
+          var mailAddressDesc = "";
       }else{
-        var mailAddress = "Mailing Address: "+props.mailing_address;
+        var mailAddress = props.mailing_address;
+        var mailAddressDesc ="Mailing Address:"
       };
     }else{
       var mailAddress = "";
@@ -55,7 +51,7 @@ let Result = React.createClass({
     if(props.post_training_exam == "N"){
       var trainingcheck = "";
     }else if(props.post_training_exam == "Y"){
-      var trainingcheck = "Wubalubadubdub"
+      var trainingcheck = ""
     }else{
       var trainingcheck = props.post_training_exam;
     };
@@ -83,7 +79,7 @@ let Result = React.createClass({
     };
 
     if(props.high_school_student = "Y"){
-      var highSchool = "High School students are eligible";
+      var highSchool = "High School students are eligible.";
     }else{
       var highSchool = ""
     };
@@ -94,8 +90,14 @@ let Result = React.createClass({
       var fullDay = "You can split the day with another election worker.";
     }
 
+    if(props.minimum_age !== null){
+      var minimum_age_descrip = "You must be at least " +props.minimum_age+ " in order to serve as an election worker.";
+    }else{
+      var minimum_age_descrip = "";
+    }
+
     if(props.compensation !== null){
-      var compensation = "The compensation for election workers is " +props.compensation;
+      var compensation = "The compensation for election workers is " +props.compensation+ ".";
     }else{
       var compensation = "";
     }
@@ -113,7 +115,7 @@ let Result = React.createClass({
     };
 
     if(props.complete_training !== "N"){
-      var complete_training = "You must complete training for each election";
+      var complete_training = "You must complete training for each election.";
     }else{
       var complete_training = "Once you are trained, you do not need to attend training for each election. The local election official will let you know when new training is required.";
     };
@@ -125,11 +127,11 @@ let Result = React.createClass({
     };
 
     if(props.must_have_email = "Y"){
-      var must_have_email = "You are required to have an email address and access to a computer and the Internet."
+      var emailcheck = "You are required to have an email address and access to a computer and the Internet."
     }else if(props.must_have_email = "N"){
-      var must_have_email = "";
+      var emailcheck = "";
     }else{
-      var must_have_email = props.must_have_email;
+      var emailcheck = props.must_have_email;
     };
 
     if(props.candidate_prohibition = "Y"){
@@ -147,7 +149,7 @@ let Result = React.createClass({
     // Results HTML
     return (
       <div className="large">
-        <div className="banner-image">
+        <div className="banner-image banner-juris">
           <img src='/assets/graphics/layout/main_reduced.jpg' width="100%"/>
         </div>
         <div id="results-container">
@@ -158,32 +160,47 @@ let Result = React.createClass({
                 <div className="county-image">
                   <img src="assets/graphics/layout/dummyjurs.svg"></img>
                 </div>
+                  <a href={ jurisdiction.website }><div className="btn">Work the election in your jursidiction!</div></a>
+                  <p><a href="">Return to Jursidiction Selection</a></p>
+
                 <div className="text-header">Contact Information</div>
-                <p>If you have questions about working on Election Day contact your county or jurisdiction.</p>
-                <p>Telephone: {jurisdiction.telephone}</p>
-                <p>{ officeAddress }</p>
-                <p>{ mailAddress } </p>
-                <p><a href="{jurisdiction.website}">Click here</a> for more information on working Election Day in this jurisdiction.</p>
-                <p><a href="{jurisdiction.application">Click here</a> to sign up as an election worker.</p>
+
+                <p><b>Address:</b> { officeAddress }</p>
+                <p><b>{ mailAddressDesc }</b>{ mailAddress } </p>
+                <p><b>Phone:</b> { jurisdiction.telephone }</p>
+                <p><a href={jurisdiction.website}>Click here</a> for more information on working Election Day in this jurisdiction.</p>
+                <p><a href={jurisdiction.application}>Click here</a> to sign up as an election worker.</p>
               </div>
               <div className="results-split-container medium-6 columns">
-                <div className="text-header">Work Hours:</div>
-                  <p>{jurisdiction.hours_start} to {jurisdiction.hours_end}</p>
 
-                <div className="text-header">Registration:</div>
+
+                <div className="text-header">Work Hours</div>
+                  <p>{jurisdiction.hours_start} to {jurisdiction.hours_end}</p>
+                  <p>{ fullDay }</p>
+                  <p>{jurisdiction.split_days_allowed}</p>
+
+                <div className="text-header">Registration</div>
                   <p>{registration}</p>
-                  <p>{preRegistration}</p>
+                  <p>{ preRegistration }</p>
+                  <p>{ trainingcheck }</p>
+
+                <div className="text-header">Requirements</div>  
+                  <p>{ training }</p>
+                  <p>There is { training_exam } exam during the training session.</p>
+                  <p>{ complete_training }</p>
+                  <p>{ interview }</p>
+                  <p>{ emailcheck } </p>                  
+
+               <div className="text-header">Age Restrictions</div>
+                  <p>{ minimum_age_descrip }</p>
                   <p>{highSchool}</p>
-                  <p>You must be at least {jurisdiction.minimum_age} in order to serve as an election worker.</p>
-                  <p>You { emailcheck } need an email to register.
-                  </p>                  
-                  <p>Split days allowed: {jurisdiction.split_days_allowed}</p>
-                  <p>{trainingcheck}</p>
-                  <p>There is {training_exam} exam during the training session.</p>
+
+               <div className="text-header">Other Considerations</div>
+                  <p>{ compensation }</p>
+                  <p>{ candidate_prohibition }</p>
+
                 </div>
                 <div className="results-below-container medium-12 columns">
-                  <div className="btn">Work the election in your jursidiction!</div>
-                  <p><a href="">Return to Jursidiction Selection</a></p>
                 </div>
               </div>
             </div>
