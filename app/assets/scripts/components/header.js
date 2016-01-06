@@ -9,7 +9,7 @@ let Header = React.createClass({
         <div className='header-block'></div>
         <div className='header-tinyblock'></div>
         <div className='header-title white'>
-          <a href=""><img src="/assets/graphics/layout/us.svg"></img> Work Elections</a>
+          <a href=""><img src="./assets/graphics/layout/us.svg"></img> Work Elections</a>
         </div>
         <div className='header-links'>
           <div className='row header-padding'>
