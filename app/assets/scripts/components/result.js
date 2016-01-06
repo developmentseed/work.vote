@@ -64,7 +64,7 @@ let Result = React.createClass({
 
     if(props.registration_status == "S"){
       var registration = "You can be registered anywhere in the state to work on Election Day in " +props.name+ ".";
-    }else if(props.registration_status == "J" ){
+    }else if(props.registration_status == "J"){
       var registration = "You must be registered in props.name to work on Election Day in this " +juris_type+ ".";
     }else{
       var registration = "";
