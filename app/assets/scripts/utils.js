@@ -20,3 +20,13 @@ module.exports.fetchJurisditction = function fetchJurisditction (id, callback) {
     callback(JSON.parse(body))
   })
 };
+
+
+module.exports.checkUrl = function (url) {
+  let myRe = /(http:\/\/|https:\/\/)/;
+  if (!myRe.test(url)) {
+    return 'http://' + url;
+  } else {
+    return url;
+  }
+};
