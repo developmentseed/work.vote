@@ -150,7 +150,7 @@ let Result = React.createClass({
     return (
       <div className="large">
         <div className="banner-image banner-juris">
-          <img src='/assets/graphics/layout/main_reduced.jpg' width="100%"/>
+          <img src='./assets/graphics/layout/main_reduced.jpg' width="100%"/>
         </div>
         <div id="results-container">
           <div className="columns medium-centered">
@@ -158,7 +158,7 @@ let Result = React.createClass({
               <div className="results-split-container medium-5 columns">
                 <div className="juris-header">{jurisdiction.name}, {jurisdiction.state.alpha}</div>
                 <div className="county-image">
-                  <img src="assets/graphics/layout/dummyjurs.svg"></img>
+                  <img src="./assets/graphics/layout/dummyjurs.svg"></img>
                 </div>
                   <a href={ jurisdiction.website }><div className="btn">Work the election in your jursidiction!</div></a>
                   <p><a href="">Return to Jursidiction Selection</a></p>

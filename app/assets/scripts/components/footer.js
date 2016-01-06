@@ -13,9 +13,9 @@ let Footer = React.createClass({
             <div className="large-8 columns large-offset-2 footer-items center-text">
               <h5>Work Elections has been made possible by</h5>
               <br></br>
-              <a href="http://fairelectionsnetwork.com/"><img src="/assets/graphics/meta/feln_space_logo.png" width="200px"></img></a>
-              <a href="http://editions.lib.umn.edu/electionacademy/"><img src="/assets/graphics/meta/ElectionAcademy_logo.svg" width="200px"></img></a>
-              <a href="http://knightfoundation.org/"><img src="/assets/graphics/meta/knight-logo.svg" width="200px"></img></a>
+              <a href="http://fairelectionsnetwork.com/"><img src="./assets/graphics/meta/feln_space_logo.png" width="200px"></img></a>
+              <a href="http://editions.lib.umn.edu/electionacademy/"><img src="./assets/graphics/meta/ElectionAcademy_logo.svg" width="200px"></img></a>
+              <a href="http://knightfoundation.org/"><img src="./assets/graphics/meta/knight-logo.svg" width="200px"></img></a>
             </div>
           </div>
         </div>

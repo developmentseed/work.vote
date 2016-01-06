@@ -7,7 +7,7 @@ let Frontpage = React.createClass({
 		return (
 			<div className="row column">
 				<div className="banner-image">
-					<img src='/assets/graphics/layout/main.jpg' width='100%' />
+					<img src='./assets/graphics/layout/main.jpg' width='100%' />
 					<div className="banner-box">
 						<div className="banner-text">
 							<div className="text-header">Be a part of Democracy</div>
