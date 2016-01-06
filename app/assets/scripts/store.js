@@ -8,7 +8,10 @@ const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 const initialState = {
   jurisdiction: {
-    id: null
+    id: null,
+    state: {
+      id: null
+    }
   },
   stateChange: {
     status: false

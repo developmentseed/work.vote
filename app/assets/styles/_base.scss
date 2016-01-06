@@ -34,6 +34,13 @@ header {
   box-shadow: 2px 1px 10px rgba(0,0,0,0.7);
 }
 
+h1{
+  font-size: 0.9em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  display: inline-block;
+}
+
 /*163, 30, 34*/
 
 .white {
@@ -125,22 +132,35 @@ header {
 
 .banner-image{
   background-color: $lblue;
-  pointer-events: none;
+  position: relative;
+  min-height: 340px;
   img{
     opacity: 0.6;
+    pointer-events: none;
   }
 }
 
-.banner-text{
+.banner-juris{
+  min-height: 0px;
+}
+
+.banner-box{
   position: absolute;
-  top:220px;
-  left:70px;
+  top:22%;
+  margin-left: 50px;
+  max-width:500px;
+}
+
+.banner-text{
   font-weight: 400;
   font-size:1.4em;
-  max-width:500px;
   max-height:100%;
   color: white;
   padding: 14px;
+/*  background-color: rgba(255,255,255,0.25);
+  border: 2px solid rgba(0,84,166,0.4);
+  border-radius: 25px;
+  height: 350px;*/
   text-shadow: 2px 1px 2px rgba(0,0,0,0.7);
   .text-header{
     font-size:1.6em;
@@ -180,31 +200,32 @@ header {
 #Search-container{
   position: absolute;
   z-index: 10;
-  background-color: rgba(255,255,255,0.6);
   width:100%;
-  height:100%;
+  color: white;
   input[type="text"]{
     border-radius: 10px;
     margin: 10px auto 8px auto;
     height: 35px;
-    background: url(assets/graphics/layout/search.png) no-repeat scroll 8px 10px;
+    background: url(/assets/graphics/layout/search.png) no-repeat scroll 8px 10px;
     padding-left: 30px;
-    width: 260px;
+    width: 290px;
     background-color: white;
+    color: black;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
   }
 }
 
 #Address-Finder{
   position: relative;
   border-radius: 10px;
-  background-color: $lblue;
-  box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+/*  box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+  background-color: $lblue;*/  
   max-width: 300px;
   height: 116px;
-  padding-top: 12px;
+  padding-top: 16px;
   margin-left: auto;
   margin-right: auto;
-  top: 160px;
+  right: 40px;
 }
 
 .usemap{
@@ -352,11 +373,15 @@ header {
   p{
     font-size: 0.9em;
   }
+  b{
+    font-size: 0.95em;
+  }
 }
 
 .text-header{
   font-weight: 700;
   font-size: 1.0em;
+  margin-bottom: 10px;
 }
 
 .juris-header{
@@ -373,7 +398,10 @@ header {
   height: auto;
   word-wrap: break-word;
   @media screen and (min-width: 639px){
-    height: 760px;
+    height: 880px;
+  }
+  p{
+    margin-bottom: 8px;
   }
 }
 
@@ -434,7 +462,8 @@ header {
   display:inline-block;
   transition-property: background;
   transition-duration: 0.2s;
-  transition-timing-function: linear;  
+  transition-timing-function: linear;
+  margin: 10px 0px 12px 0px;  
 }
 
 .btn:hover {
