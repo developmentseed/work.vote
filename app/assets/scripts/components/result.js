@@ -53,12 +53,10 @@ let Result = React.createClass({
                   <MoreInfo url={jurisdiction.website} value={jurisdiction.name} />
 
                 <div className='text-header'>Contact Information</div>
-
                 <Conditional title='Phone' value={jurisdiction.telephone} />
                 <Conditional title='Email' value={jurisdiction.email} />
                 <Conditional title='Office Address' value={jurisdiction.office_address} else='N/A' />
                 <Conditional title='Mailing Address' value={jurisdiction.mailing_address} />
-
               </div>
               <div className='results-split-container medium-6 columns'>
 
