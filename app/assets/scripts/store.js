@@ -1,8 +1,8 @@
-/* global localStorage */
+'use strict';
+
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { routeReducer, UPDATE_PATH } from 'redux-simple-router';
 import thunk from 'redux-thunk';
-import Immutable from 'immutable';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
@@ -18,27 +18,25 @@ const initialState = {
   }
 };
 
-
 const jurisdiction = function (state = {}, action) {
   switch (action.type) {
-    case 'FETCH_JURISDICTION':
-      return Object.assign({}, state, action.data);
-    default:
-      return state;
+  case 'FETCH_JURISDICTION':
+    return Object.assign({}, state, action.data);
+  default:
+    return state;
   }
 };
 
 const stateChange = function (state = {}, action) {
   switch (action.type) {
-    case UPDATE_PATH:
-      return Object.assign({}, state, {status: true});
-    case 'CANCEL':
-      return Object.assign({}, state, {status: action.data})
-    default:
-      return state;
+  case UPDATE_PATH:
+    return Object.assign({}, state, {status: true});
+  case 'CANCEL':
+    return Object.assign({}, state, {status: action.data});
+  default:
+    return state;
   }
-}
-
+};
 
 const rootReducer = combineReducers({
   jurisdiction,

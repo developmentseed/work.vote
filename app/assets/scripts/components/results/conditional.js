@@ -20,7 +20,7 @@ let Conditional = React.createClass({
 
   render: function () {
     if (this.props.value || this.props.else) {
-      let value = this.props.value || this.props.else
+      let value = this.props.value || this.props.else;
 
       let title;
       if (this.props.title) {
