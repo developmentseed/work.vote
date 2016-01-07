@@ -56,7 +56,7 @@ let Result = React.createClass({
       var trainingcheck = props.post_training_exam;
     };
 
-    if(props.city = "false"){
+    if(props.city == "true"){
       var juris_type = "city";
     }else{
       var juris_type = "county";
@@ -70,21 +70,21 @@ let Result = React.createClass({
       var registration = "";
     };
 
-    if(props.pre_registration = "N"){
+    if(props.pre_registration == "N"){
       var preRegistration = "Pre-Registration is available and is not required for 16-17 year olds to vote.";
-    }else if(props.pre_registration = "Y"){
+    }else if(props.pre_registration == "Y"){
       var preRegistration = "Pre-Registration is available and is required for 16-17 year olds to vote.";
     }else{
       var preRegistration = "";
     };
 
-    if(props.high_school_student = "Y"){
+    if(props.high_school_student == "Y"){
       var highSchool = "High School students are eligible.";
     }else{
       var highSchool = ""
     };
 
-    if(props.full_day_req = "Y"){
+    if(props.full_day_req == "Y"){
       var fullDay = "You must work the full day.";
     }else{
       var fullDay = "You can split the day with another election worker.";
@@ -120,28 +120,33 @@ let Result = React.createClass({
       var complete_training = "Once you are trained, you do not need to attend training for each election. The local election official will let you know when new training is required.";
     };
 
-    if(props.post_training_exam = "Y"){
+    if(props.post_training_exam == "Y"){
       var training_exam = "an";
     }else{
       var training_exam = "no";
     };
 
-    if(props.must_have_email = "Y"){
+    if(props.must_have_email == "Y"){
       var emailcheck = "You are required to have an email address and access to a computer and the Internet."
-    }else if(props.must_have_email = "N"){
+    }else if(props.must_have_email == "N"){
       var emailcheck = "";
     }else{
       var emailcheck = props.must_have_email;
     };
 
-    if(props.candidate_prohibition = "Y"){
+    if(props.candidate_prohibition == "Y"){
       var candidate_prohibition = "If you are a candidate on the ballot, related to or working for a candidate on the ballot for the election, tell the local election official (county clerk / municipal clerk / county election commission) when you sign up, since there are often restrictions for these individuals serving as election workers.";
-    }else if(props.canidate_prohibition = "N"){
+    }else if(props.canidate_prohibition == "N"){
       var candidate_prohibition = ""
     }else{
       var candidate_prohibition = props.candidate_prohibition;
     };
 
+    if(props.email !== null){
+      var email = props.email
+    }else{
+      var email = ""
+    };
 
 
     // Set up wordings for the Jursidiction page from the properties 
@@ -167,7 +172,8 @@ let Result = React.createClass({
 
                 <p><b>Address:</b> { officeAddress }</p>
                 <p><b>{ mailAddressDesc }</b>{ mailAddress } </p>
-                <p><b>Phone:</b> { jurisdiction.telephone }</p>
+                <p><b>Phone:</b> { jurisdiction.telephone } </p>
+                <p><b>Email:</b> { email} </p>
                 <p><a href={jurisdiction.website}>Click here</a> for more information on working Election Day in this jurisdiction.</p>
                 <p><a href={jurisdiction.application}>Click here</a> to sign up as an election worker.</p>
               </div>
