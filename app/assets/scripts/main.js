@@ -10,7 +10,7 @@ import store from './store';
 
 // Components
 import App from './components/app';
-import Result from './components/result'
+import Result from './components/result';
 
 const history = createHashHistory({queryKey: false});
 syncReduxAndRouter(history, store);

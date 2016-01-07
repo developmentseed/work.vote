@@ -1,14 +1,17 @@
+'use strict';
+
 import React from 'react';
-import ReactDOM from 'react-dom';
-import config from '../config';
 
 // components
 import Header from './header';
 import Footer from './footer';
 import Frontpage from './frontpage';
-import Result from './result'
 
 let App = React.createClass({
+
+  propTypes: {
+    children: React.PropTypes.object
+  },
 
   getInitialState: function () {
     return {

@@ -1,3 +1,4 @@
+'use strict';
 
 module.exports.fetchJurisdiction = function fetchJurisdiction (jurisdiction) {
   return { type: 'FETCH_JURISDICTION', data: jurisdiction };
