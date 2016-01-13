@@ -2,16 +2,19 @@
 
 import geo from 'mapbox-geocoding';
 import React from 'react';
-import config from '../config';
-import store from '../store';
-import nets from 'nets';
+import { connect } from 'react-redux';
 import { pushPath } from 'redux-simple-router';
 import Autosuggest from 'react-autosuggest';
+import nets from 'nets';
+import config from '../config';
 
 let juris = {};
 
 let Search = React.createClass({
   displayName: 'Search',
+  propTypes: {
+    dispatch: React.PropTypes.func
+  },
   getSuggestions: function (input, callback) {
     let options = new Set();
     geo.setAccessToken(config.accessToken);
@@ -35,7 +38,7 @@ let Search = React.createClass({
   },
 
   onSuggestionSelected: function (value, event) {
-    store.dispatch(pushPath(`j/${juris[value]}`));
+    this.props.dispatch(pushPath(`j/${juris[value]}`));
   },
 
   render: function () {
@@ -43,10 +46,10 @@ let Search = React.createClass({
       <div>
         <div id='Search-container'>
           <div id='Address-Finder'>
-            <div className='center-text'>Enter your county, zipcode, or address</div>
+            <div className='center-text'>Enter your county, zip code, or address</div>
             <Autosuggest suggestions={this.getSuggestions} onSuggestionSelected={this.onSuggestionSelected}/>
             <p>Work Elections currently covers:</p>
-            <p>AZ, CA, NE, FL, NV, NM, NC, OH, VA</p>
+            <p>AZ, CA, FL, NV, NM, OH, VA</p>
           </div>
         </div>
         <div id='Search-enabler'><img src='/assets/graphics/layout/search.png'></img></div>
@@ -55,4 +58,4 @@ let Search = React.createClass({
   }
 });
 
-module.exports = Search;
+export default connect()(Search);
