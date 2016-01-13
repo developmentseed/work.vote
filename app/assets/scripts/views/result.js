@@ -18,12 +18,12 @@ let Result = React.createClass({
   },
 
   componentDidMount: function () {
-    this.props.dispatch(getJurisdiction(this.props.params.name));
+    this.props.dispatch(getJurisdiction(this.props.params.jurisdiction_id));
   },
 
   componentDidUpdate: function (prevProps) {
-    if (prevProps.params.name !== this.props.params.name) {
-      this.props.dispatch(getJurisdiction(this.props.params.name));
+    if (prevProps.params.jurisdiction_id !== this.props.params.jurisdiction_id) {
+      this.props.dispatch(getJurisdiction(this.props.params.jurisdiction_id));
     }
   },
 
