@@ -35,6 +35,8 @@ let Result = React.createClass({
   render: function () {
     let { jurisdiction } = this.props;
 
+    let image = 'https://voteworker.s3.amazonaws.com/jurisdictions/' + jurisdiction.id + '.png';
+
     // Results HTML
     return (
       <div className='large'>
@@ -47,7 +49,7 @@ let Result = React.createClass({
               <div className='results-split-container medium-5 columns'>
                 <div className='juris-header'>{jurisdiction.name}, {jurisdiction.state.alpha}</div>
                 <div className='county-image'>
-                  <img src='assets/graphics/layout/dummyjurs.svg'></img>
+                  <img src={image}></img>
                 </div>
                   <Apply url={jurisdiction.application} />
                   <MoreInfo url={jurisdiction.website} value={jurisdiction.name} />
