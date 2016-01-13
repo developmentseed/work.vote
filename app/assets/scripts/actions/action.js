@@ -3,11 +3,11 @@
 import nets from 'nets';
 import config from '../config.js';
 
-export function fetchJurisdiction (jurisdiction) {
-  return { type: 'FETCH_JURISDICTION', data: jurisdiction };
+export function receiveJurisdiction (jurisdiction) {
+  return { type: 'RECEIVE_JURISDICTION', data: jurisdiction };
 };
 
-export function getJurisdiction (id) {
+export function fetchJurisdiction (id) {
   return dispatch => {
     nets({
       method: 'get',
@@ -21,7 +21,7 @@ export function getJurisdiction (id) {
         console.log(err);
       }
       if (resp.statusCode === 200) {
-        dispatch(fetchJurisdiction(JSON.parse(body)));
+        dispatch(receiveJurisdiction(JSON.parse(body)));
       } else {
         dispatch(resetJurisdiction());
       }

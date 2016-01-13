@@ -26,7 +26,9 @@ let Search = React.createClass({
       },
       url: `${config.apiUrl}/jurisdictions/?search=${input}`
     }, function (err, resp, body) {
-      console.log(err);
+      if (err) {
+        console.log(err);
+      }
       let results = JSON.parse(body).results;
       for (let j = 0; j < results.length; j++) {
         let option = results[j].name + ', ' + results[j].state.alpha;

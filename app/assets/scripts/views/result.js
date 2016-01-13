@@ -8,7 +8,7 @@ import Conditional from '../components/results/conditional';
 import { Cond, Clause, eq, Default } from 'react-cond';
 import { connect } from 'react-redux';
 
-import { getJurisdiction } from '../actions/action';
+import { fetchJurisdiction } from '../actions/action';
 
 let Result = React.createClass({
   propTypes: {
@@ -18,12 +18,12 @@ let Result = React.createClass({
   },
 
   componentDidMount: function () {
-    this.props.dispatch(getJurisdiction(this.props.params.jurisdiction_id));
+    this.props.dispatch(fetchJurisdiction(this.props.params.jurisdiction_id));
   },
 
   componentDidUpdate: function (prevProps) {
     if (prevProps.params.jurisdiction_id !== this.props.params.jurisdiction_id) {
-      this.props.dispatch(getJurisdiction(this.props.params.jurisdiction_id));
+      this.props.dispatch(fetchJurisdiction(this.props.params.jurisdiction_id));
     }
   },
 
