@@ -3,12 +3,13 @@
 import React from 'react';
 import Apply from './results/apply';
 import MoreInfo from './results/info';
+import Empty from './results/404';
 import Conditional from './results/conditional';
 import { Cond, Clause, eq, Default } from 'react-cond';
 import utils from '../utils';
 import { connect } from 'react-redux';
 
-import { fetchJurisdiction, stateChangeToFalse } from '../actions';
+import { fetchJurisdiction, resetJurisdiction, stateChangeToFalse } from '../actions';
 
 let Result = React.createClass({
   propTypes: {
@@ -34,6 +35,23 @@ let Result = React.createClass({
 
   render: function () {
     let { jurisdiction } = this.props;
+
+    if (!jurisdiction.id) {
+      return (
+        <div className='large'>
+          <div className='banner-image banner-juris'>
+            <img src='./assets/graphics/layout/main_reduced.jpg' width='100%'/>
+          </div>
+          <div id='results-container'>
+            <div className='columns medium-centered'>
+              <div className='results-sub-container columns large medium-centered'>
+                <Empty />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     let image = 'https://voteworker.s3.amazonaws.com/jurisdictions/' + jurisdiction.id + '.png';
 
@@ -149,9 +167,15 @@ let Result = React.createClass({
   },
 
   _getJurisdictions: function (v) {
-    let id = v.params.name;
-    let { boundFetchJurisdiction } = v;
-    utils.fetchJurisditction(id, boundFetchJurisdiction.bind(null));
+    let _id = v.params.name;
+    let { boundFetchJurisdiction, resetJurisdiction } = v;
+    utils.fetchJurisditction(_id, function (data) {
+      if (data) {
+        boundFetchJurisdiction(data);
+      } else {
+        resetJurisdiction();
+      }
+    });
   }
 });
 
@@ -173,6 +197,9 @@ function mapDispatchToProps (dispatch) {
   return {
     boundFetchJurisdiction: function (data) {
       dispatch(fetchJurisdiction(data));
+    },
+    resetJurisdiction: function () {
+      dispatch(resetJurisdiction());
     },
     boundStateChangeToFalse: function () {
       dispatch(stateChangeToFalse());
