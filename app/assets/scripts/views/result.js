@@ -1,36 +1,30 @@
 'use strict';
 
 import React from 'react';
-import Apply from './results/apply';
-import MoreInfo from './results/info';
-import Empty from './results/404';
-import Conditional from './results/conditional';
+import Apply from '../components/results/apply';
+import MoreInfo from '../components/results/info';
+import Empty from '../components/results/404';
+import Conditional from '../components/results/conditional';
 import { Cond, Clause, eq, Default } from 'react-cond';
-import utils from '../utils';
 import { connect } from 'react-redux';
 
-import { fetchJurisdiction, resetJurisdiction, stateChangeToFalse } from '../actions';
+import { getJurisdiction } from '../actions/action';
 
 let Result = React.createClass({
   propTypes: {
     jurisdiction: React.PropTypes.object,
-    stateChange: React.PropTypes.object,
-    boundStateChangeToFalse: React.PropTypes.func
+    dispatch: React.PropTypes.func,
+    params: React.PropTypes.object
   },
 
   componentDidMount: function () {
-    this._getJurisdictions(this.props);
+    this.props.dispatch(getJurisdiction(this.props.params.name));
   },
 
-  componentWillUpdate: function () {
-    if (this.props.stateChange.status) {
-      this.props.boundStateChangeToFalse();
-      this._getJurisdictions(this.props);
+  componentDidUpdate: function (prevProps) {
+    if (prevProps.params.name !== this.props.params.name) {
+      this.props.dispatch(getJurisdiction(this.props.params.name));
     }
-  },
-
-  shouldComponentUpdate: function (nextProps, nextState) {
-    return nextProps.stateChange.status === this.props.stateChange.status;
   },
 
   render: function () {
@@ -39,9 +33,6 @@ let Result = React.createClass({
     if (!jurisdiction.id) {
       return (
         <div className='large'>
-          <div className='banner-image banner-juris'>
-            <img src='./assets/graphics/layout/main_reduced.jpg' width='100%'/>
-          </div>
           <div id='results-container'>
             <div className='columns medium-centered'>
               <div className='results-sub-container columns large medium-centered'>
@@ -58,9 +49,6 @@ let Result = React.createClass({
     // Results HTML
     return (
       <div className='large'>
-        <div className='banner-image banner-juris'>
-          <img src='./assets/graphics/layout/main_reduced.jpg' width='100%'/>
-        </div>
         <div id='results-container'>
           <div className='columns medium-centered'>
             <div className='results-sub-container columns large medium-centered'>
@@ -165,50 +153,18 @@ let Result = React.createClass({
           </div>
       </div>
     );
-  },
-
-  _getJurisdictions: function (v) {
-    let _id = v.params.name;
-    let { boundFetchJurisdiction, resetJurisdiction } = v;
-    utils.fetchJurisditction(_id, function (data) {
-      if (data) {
-        boundFetchJurisdiction(data);
-      } else {
-        resetJurisdiction();
-      }
-    });
   }
+
 });
 
 function mapStateToProps (state) {
   // Check if it is state or county
-  if (state.jurisdiction.city) {
-    state.jurisdiction.name = state.jurisdiction.name + ' City';
-  } else {
-    state.jurisdiction.name = state.jurisdiction.name + ' County';
-  }
 
   return {
-    jurisdiction: state.jurisdiction,
-    stateChange: state.stateChange
-  };
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    boundFetchJurisdiction: function (data) {
-      dispatch(fetchJurisdiction(data));
-    },
-    resetJurisdiction: function () {
-      dispatch(resetJurisdiction());
-    },
-    boundStateChangeToFalse: function () {
-      dispatch(stateChangeToFalse());
-    }
+    jurisdiction: state.jurisdiction
   };
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Result);
