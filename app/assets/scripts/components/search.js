@@ -35,7 +35,7 @@ let Search = React.createClass({
   },
 
   onSuggestionSelected: function (value, event) {
-    store.dispatch(pushPath(`jurisdictions/${juris[value]}`));
+    store.dispatch(pushPath(`j/${juris[value]}`));
   },
 
   render: function () {
