@@ -130,13 +130,23 @@ h1{
   }
 }
 
-.banner-image{
+.welcome-mat{
   background-color: $lblue;
   position: relative;
   min-height: 340px;
-  img{
-    opacity: 0.6;
-    pointer-events: none;
+}
+
+.banner-image{
+  background-image: url(/assets/graphics/layout/main.jpg);
+  background-size: cover;
+  opacity: 0.6;
+  pointer-events: none;
+  min-height: 600px;
+  transition-property: background-position;
+  transition-duration: 0.4s;
+  transition-timing-function: linear;
+  @media screen and (max-width: 600px){
+    background-position: -420px; 
   }
 }
 
@@ -226,6 +236,10 @@ h1{
   margin-left: auto;
   margin-right: auto;
   right: 40px;
+  p{
+  padding-left: 7px;
+  margin:0;
+  }
 }
 
 .usemap{
