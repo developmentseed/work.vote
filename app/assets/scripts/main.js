@@ -15,6 +15,7 @@ import App from './views/app';
 import Result from './views/result';
 import States from './views/states';
 import Frontpage from './views/frontpage';
+import About from './views/about';
 
 const createStoreWithMiddleware = applyMiddleware(
   thunkMiddleware // lets us dispatch() functions
@@ -29,7 +30,8 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path='/' component={App}>
-        <Route path='j(/:jurisdiction_id)' component={Result} />
+        <Route path='j(/:name)' component={Result} />
+        <Route path='about' component={About} />
         <Route path='states(/:state_id)' component={States} />
         <IndexRoute component={Frontpage} />
       </Route>
