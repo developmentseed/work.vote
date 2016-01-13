@@ -19,7 +19,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path='/' component={App}>
-        <Route path='jurisdictions(/:name)' component={Result} />
+        <Route path='j(/:name)' component={Result} />
       </Route>
     </Router>
   </Provider>,
