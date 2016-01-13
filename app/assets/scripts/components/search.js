@@ -46,7 +46,7 @@ let Search = React.createClass({
             <div className='center-text'>Enter your county, zipcode, or address</div>
             <Autosuggest suggestions={this.getSuggestions} onSuggestionSelected={this.onSuggestionSelected}/>
             <p>Work Elections currently covers:</p>
-            <p>AZ, CA, NE, TX, VA, FL, DC, NH.</p>
+            <p>AZ, CA, NE, FL, NV, NM, NC, OH, VA</p>
           </div>
         </div>
         <div id='Search-enabler'><img src='/assets/graphics/layout/search.png'></img></div>
