@@ -3,15 +3,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
+import thunkMiddleware from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
+import { Router, Route, IndexRoute } from 'react-router';
 import { createHashHistory } from 'history';
 import { syncReduxAndRouter } from 'redux-simple-router';
-import store from './store';
+import reducer from './reducers/reducer';
 
 // Components
-import App from './components/app';
-import Result from './components/result';
-import About from './components/about';
+import App from './views/app';
+import Result from './views/result';
+import States from './views/states';
+import Frontpage from './views/frontpage';
+import About from './views/about';
+
+const createStoreWithMiddleware = applyMiddleware(
+  thunkMiddleware // lets us dispatch() functions
+)(createStore);
+
+const store = createStoreWithMiddleware(reducer);
 
 const history = createHashHistory({queryKey: false});
 syncReduxAndRouter(history, store);
@@ -22,6 +32,8 @@ ReactDOM.render(
       <Route path='/' component={App}>
         <Route path='j(/:name)' component={Result} />
         <Route path='about' component={About} />
+        <Route path='states(/:state_id)' component={States} />
+        <IndexRoute component={Frontpage} />
       </Route>
     </Router>
   </Provider>,

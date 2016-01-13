@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Search from './search';
+import Search from '../components/search';
 
 let Frontpage = React.createClass({
   render: function () {

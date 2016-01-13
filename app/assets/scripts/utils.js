@@ -3,14 +3,14 @@
 import nets from 'nets';
 import config from './config.js';
 
-module.exports.fetchJurisditction = function fetchJurisditction (id, callback) {
+let fetch = function (url, callback) {
   nets({
     method: 'get',
     encoding: undefined,
     headers: {
       'Content-Type': 'application/json'
     },
-    url: `${config.apiUrl}/jurisdictions/${id}/`
+    url: url
   }, function (err, resp, body) {
     if (err) {
       console.log(err);
@@ -21,6 +21,14 @@ module.exports.fetchJurisditction = function fetchJurisditction (id, callback) {
       callback(null);
     }
   });
+};
+
+module.exports.fetchJurisditction = function (id, callback) {
+  return fetch(`${config.apiUrl}/jurisdictions/${id}/`, callback);
+};
+
+module.exports.fetchStates = function (callback) {
+
 };
 
 module.exports.checkUrl = function (url) {
