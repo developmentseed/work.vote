@@ -1,6 +1,7 @@
 'use stict';
 
 import React from 'react';
+import { Link } from 'react-router';
 
 let Header = React.createClass({
   render: function () {
@@ -9,14 +10,15 @@ let Header = React.createClass({
         <div className='header-block'></div>
         <div className='header-tinyblock'></div>
         <div className='header-title white'>
-          <a href='/#'><img src='./assets/graphics/layout/us.svg'></img> Work Elections</a>
+          <Link to='/'><img src='./assets/graphics/layout/us.svg'></img> Work Elections</Link>
         </div>
         <div className='header-links'>
           <div className='row header-padding'>
-            <a href='' className='white'>How to Apply</a>
-            <a href='' className='white'>What is a Poll Worker?</a>
-            <a href='' className='white'>About</a>
-            <a href='' className='white'>Contact</a>
+            <Link to='/' className='white'>How to Apply</Link>
+            <Link to='/pollworker' className='white'>What is a Poll Worker?</Link>
+            <Link to='/states' className='white'>States</Link>
+            <Link to='/about' className='white'>About</Link>
+            <Link to='/contact' className='white'>Contact</Link>
           </div>
         </div>
       </header>
