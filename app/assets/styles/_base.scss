@@ -483,6 +483,10 @@ h1{
   margin: 10px 0px 12px 0px;
 }
 
+.btn.info {
+  background: lighten(#008CBA, 0);
+}
+
 .btn:hover {
   background: $dred;
   text-decoration: none;
