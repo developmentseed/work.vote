@@ -1,7 +1,7 @@
 'use strict';
 
-import nets from 'nets';
 import config from '../config.js';
+import { fetch } from '../utils';
 
 export function receiveJurisdiction (jurisdiction) {
   return { type: 'RECEIVE_JURISDICTION', data: jurisdiction };
@@ -13,14 +13,7 @@ export function resetJurisdiction () {
 
 export function fetchJurisdiction (id) {
   return dispatch => {
-    nets({
-      method: 'get',
-      encoding: undefined,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      url: `${config.apiUrl}/jurisdictions/${id}/`
-    }, function (err, resp, body) {
+    fetch(`${config.apiUrl}/jurisdictions/${id}/`, function (err, resp, body) {
       if (err) {
         console.log(err);
       }
@@ -39,14 +32,7 @@ export function receiveStates (states) {
 
 export function fetchStates () {
   return dispatch => {
-    nets({
-      method: 'get',
-      encoding: undefined,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      url: `${config.apiUrl}/states/`
-    }, function (err, resp, body) {
+    fetch(`${config.apiUrl}/states/`, function (err, resp, body) {
       if (err) {
         console.log(err);
       }
@@ -69,14 +55,7 @@ export function resetStateJurisdictions () {
 
 export function fetchStateJurisdictions (state_id) {
   return dispatch => {
-    nets({
-      method: 'get',
-      encoding: undefined,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      url: `${config.apiUrl}/jurisdictions/?state_id=${state_id}`
-    }, function (err, resp, body) {
+    fetch(`${config.apiUrl}/jurisdictions/?state_id=${state_id}`, function (err, resp, body) {
       if (err) {
         console.log(err);
       }

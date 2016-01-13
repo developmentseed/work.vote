@@ -5,7 +5,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { pushPath } from 'redux-simple-router';
 import Autosuggest from 'react-autosuggest';
-import nets from 'nets';
+import { fetch } from '../utils';
 import config from '../config';
 
 let juris = {};
@@ -18,14 +18,7 @@ let Search = React.createClass({
   getSuggestions: function (input, callback) {
     let options = new Set();
     geo.setAccessToken(config.accessToken);
-    nets({
-      method: 'get',
-      encoding: undefined,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      url: `${config.apiUrl}/jurisdictions/?search=${input}`
-    }, function (err, resp, body) {
+    fetch(`${config.apiUrl}/jurisdictions/?search=${input}`, function (err, resp, body) {
       if (err) {
         console.log(err);
       }
