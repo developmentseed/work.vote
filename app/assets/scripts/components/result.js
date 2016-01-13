@@ -69,8 +69,9 @@ let Result = React.createClass({
                 <div className='county-image'>
                   <img src={image}></img>
                 </div>
-                  <Apply url={jurisdiction.application} />
                   <MoreInfo url={jurisdiction.website} value={jurisdiction.name} />
+                  <br />
+                  <Apply url={jurisdiction.application} />
 
                 <div className='text-header'>Contact Information</div>
                 <Conditional title='Phone' value={jurisdiction.telephone} />
@@ -94,10 +95,6 @@ let Result = React.createClass({
                     <Clause test={eq('N')}><li><p>You do not need to be pre-registered to vote.</p></li></Clause>
                     <Default><span></span></Default>
                   </Cond>
-
-                  <li>
-                    <Conditional title='Minimum Age' value={jurisdiction.minimum_age} else='N/A' />
-                  </li>
 
                 </ul>
 
@@ -123,6 +120,10 @@ let Result = React.createClass({
                 <div className='text-header'>Work Requirments</div>
 
                   <ul>
+                    <li>
+                      <Conditional title='Minimum Age' value={jurisdiction.minimum_age} else='N/A' />
+                    </li>
+
                     <Cond value={jurisdiction.interview}>
                       <Clause test={eq('Y')}><li><p>People who sign up to work on Election Day are interviewed.</p></li></Clause>
                       <Clause test={eq('N')}><li><p>There is no interview.</p></li></Clause>
