@@ -8,7 +8,7 @@ let Frontpage = React.createClass({
     return (
 			<div className='row column'>
 				<div className='welcome-mat'>
-					<div className = "banner-image"></div>
+					<div className = 'banner-image'></div>
 					<div className='banner-box'>
 						<div className='banner-text'>
 							<div className='text-header'>Be a part of Democracy</div>
