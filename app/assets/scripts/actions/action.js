@@ -7,6 +7,10 @@ export function receiveJurisdiction (jurisdiction) {
   return { type: 'RECEIVE_JURISDICTION', data: jurisdiction };
 };
 
+export function resetJurisdiction () {
+  return { type: 'RESET_JURISDICTION' };
+};
+
 export function fetchJurisdiction (id) {
   return dispatch => {
     nets({
@@ -54,10 +58,38 @@ export function fetchStates () {
   };
 };
 
-export function resetJurisdiction () {
-  return { type: 'RESET_JURISDICTION' };
+export function receiveStateJurisdictions (data) {
+  return { type: 'RECEIVE_STATE_JURISDICTIONS',
+           data: data };
 };
 
-export function stateChangeToFalse () {
-  return { type: 'CANCEL', data: false };
+export function resetStateJurisdictions () {
+  return { type: 'RESET_STATE_JURISDICTIONS' };
+};
+
+export function fetchStateJurisdictions (state_id) {
+  return dispatch => {
+    nets({
+      method: 'get',
+      encoding: undefined,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      url: `${config.apiUrl}/jurisdictions/?state_id=${state_id}`
+    }, function (err, resp, body) {
+      if (err) {
+        console.log(err);
+      }
+      if (resp.statusCode === 200) {
+        let b = JSON.parse(body);
+        if (b.count > 0) {
+          dispatch(receiveStateJurisdictions(b.results));
+        } else {
+          dispatch(resetStateJurisdictions());
+        }
+      } else {
+        dispatch(resetStateJurisdictions());
+      }
+    });
+  };
 };
