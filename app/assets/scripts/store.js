@@ -22,6 +22,8 @@ const jurisdiction = function (state = {}, action) {
   switch (action.type) {
   case 'FETCH_JURISDICTION':
     return Object.assign({}, state, action.data);
+  case 'RESET_JURISDICTION':
+    return initialState.jurisdiction;
   default:
     return state;
   }

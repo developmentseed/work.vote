@@ -20,7 +20,7 @@ let Info = React.createClass({
   render: function () {
     if (this.props.url) {
       return (
-        <p><a href={ checkUrl(this.props.url) }>How to be a poll worker in {this.props.value}</a></p>
+        <a href={ checkUrl(this.props.url) }><div className='btn info'>More Information</div></a>
       );
     } else {
       return false;

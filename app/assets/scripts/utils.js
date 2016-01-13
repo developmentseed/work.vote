@@ -12,9 +12,14 @@ module.exports.fetchJurisditction = function fetchJurisditction (id, callback) {
     },
     url: `${config.apiUrl}/jurisdictions/${id}/`
   }, function (err, resp, body) {
-    console.log(err);
-    if (resp) 1 === 2;
-    callback(JSON.parse(body));
+    if (err) {
+      console.log(err);
+    }
+    if (resp.statusCode === 200) {
+      callback(JSON.parse(body));
+    } else {
+      callback(null);
+    }
   });
 };
 
