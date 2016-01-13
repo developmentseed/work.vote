@@ -8,7 +8,7 @@ const jurisdiction = function (state = {id: null}, action) {
   state = _.cloneDeep(state);
 
   switch (action.type) {
-  case 'FETCH_JURISDICTION':
+  case 'RECEIVE_JURISDICTION':
     state = action.data;
     break;
   case 'RESET_JURISDICTION':
@@ -30,8 +30,23 @@ const states = function (state = [], action) {
   return state;
 };
 
+const state_jurisdictions = function (state = [], action) {
+  state = _.cloneDeep(state);
+
+  switch (action.type) {
+  case 'RECEIVE_STATE_JURISDICTIONS':
+    state = action.data;
+    break;
+  case 'RESET_STATE_JURISDICTIONS':
+    state = [];
+  }
+
+  return state;
+};
+
 export default combineReducers({
   jurisdiction,
   states,
+  state_jurisdictions,
   routing: routeReducer
 });

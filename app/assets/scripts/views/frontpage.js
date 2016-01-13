@@ -11,8 +11,8 @@ let Frontpage = React.createClass({
 					<div className = 'banner-image'></div>
 					<div className='banner-box'>
 						<div className='banner-text'>
-							<div className='text-header'>Be a part of Democracy</div>
-							<p>Find polling stations to work at this upcoming for this and future elections.</p>
+							<div className='text-header'>Be a Part of Democracy</div>
+							<p>Look up information on how to work at the polls on Election Day.</p>
 						</div>
 						<Search />
 					</div>

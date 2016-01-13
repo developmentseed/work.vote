@@ -119,14 +119,14 @@ h1{
   float: none;
   @media screen and (min-width: 920px) {
     float: right;
-    width: 500px;
+    width: 550px;
    }
   a{
     display: inline-block;
     padding-top: 0px;
     height: auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -412,9 +412,6 @@ h1{
   box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
   height: auto;
   word-wrap: break-word;
-  @media screen and (min-width: 639px){
-    height: 880px;
-  }
   p{
     margin-bottom: 8px;
   }

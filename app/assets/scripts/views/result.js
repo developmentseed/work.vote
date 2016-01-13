@@ -8,7 +8,7 @@ import Conditional from '../components/results/conditional';
 import { Cond, Clause, eq, Default } from 'react-cond';
 import { connect } from 'react-redux';
 
-import { getJurisdiction } from '../actions/action';
+import { fetchJurisdiction } from '../actions/action';
 
 let Result = React.createClass({
   propTypes: {
@@ -18,12 +18,12 @@ let Result = React.createClass({
   },
 
   componentDidMount: function () {
-    this.props.dispatch(getJurisdiction(this.props.params.name));
+    this.props.dispatch(fetchJurisdiction(this.props.params.jurisdiction_id));
   },
 
   componentDidUpdate: function (prevProps) {
-    if (prevProps.params.name !== this.props.params.name) {
-      this.props.dispatch(getJurisdiction(this.props.params.name));
+    if (prevProps.params.jurisdiction_id !== this.props.params.jurisdiction_id) {
+      this.props.dispatch(fetchJurisdiction(this.props.params.jurisdiction_id));
     }
   },
 
@@ -51,7 +51,8 @@ let Result = React.createClass({
       <div className='large'>
         <div id='results-container'>
           <div className='columns medium-centered'>
-            <div className='results-sub-container columns large medium-centered'>
+            <br />
+            <div className='results-sub-container columns large medium-centered row'>
               <div className='results-split-container medium-5 columns'>
                 <div className='juris-header'>{jurisdiction.name}, {jurisdiction.state.alpha}</div>
                 <div className='county-image'>

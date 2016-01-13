@@ -1,27 +1,24 @@
 'use strict';
 
-import nets from 'nets';
 import config from '../config.js';
+import { fetch } from '../utils';
 
-export function fetchJurisdiction (jurisdiction) {
-  return { type: 'FETCH_JURISDICTION', data: jurisdiction };
+export function receiveJurisdiction (jurisdiction) {
+  return { type: 'RECEIVE_JURISDICTION', data: jurisdiction };
 };
 
-export function getJurisdiction (id) {
+export function resetJurisdiction () {
+  return { type: 'RESET_JURISDICTION' };
+};
+
+export function fetchJurisdiction (id) {
   return dispatch => {
-    nets({
-      method: 'get',
-      encoding: undefined,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      url: `${config.apiUrl}/jurisdictions/${id}/`
-    }, function (err, resp, body) {
+    fetch(`${config.apiUrl}/jurisdictions/${id}/`, function (err, resp, body) {
       if (err) {
         console.log(err);
       }
       if (resp.statusCode === 200) {
-        dispatch(fetchJurisdiction(JSON.parse(body)));
+        dispatch(receiveJurisdiction(JSON.parse(body)));
       } else {
         dispatch(resetJurisdiction());
       }
@@ -35,14 +32,7 @@ export function receiveStates (states) {
 
 export function fetchStates () {
   return dispatch => {
-    nets({
-      method: 'get',
-      encoding: undefined,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      url: `${config.apiUrl}/states/`
-    }, function (err, resp, body) {
+    fetch(`${config.apiUrl}/states/`, function (err, resp, body) {
       if (err) {
         console.log(err);
       }
@@ -54,10 +44,31 @@ export function fetchStates () {
   };
 };
 
-export function resetJurisdiction () {
-  return { type: 'RESET_JURISDICTION' };
+export function receiveStateJurisdictions (data) {
+  return { type: 'RECEIVE_STATE_JURISDICTIONS',
+           data: data };
 };
 
-export function stateChangeToFalse () {
-  return { type: 'CANCEL', data: false };
+export function resetStateJurisdictions () {
+  return { type: 'RESET_STATE_JURISDICTIONS' };
+};
+
+export function fetchStateJurisdictions (state_id) {
+  return dispatch => {
+    fetch(`${config.apiUrl}/jurisdictions/?state_id=${state_id}`, function (err, resp, body) {
+      if (err) {
+        console.log(err);
+      }
+      if (resp.statusCode === 200) {
+        let b = JSON.parse(body);
+        if (b.count > 0) {
+          dispatch(receiveStateJurisdictions(b.results));
+        } else {
+          dispatch(resetStateJurisdictions());
+        }
+      } else {
+        dispatch(resetStateJurisdictions());
+      }
+    });
+  };
 };
