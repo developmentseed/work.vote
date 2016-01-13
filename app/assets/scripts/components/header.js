@@ -13,8 +13,8 @@ let Header = React.createClass({
         </div>
         <div className='header-links'>
           <div className='row header-padding'>
-            <a href='' className='white'>Jurisdiction Finder</a>
-            <a href='' className='white'>Get Involved</a>
+            <a href='' className='white'>How to Apply</a>
+            <a href='' className='white'>What is a Poll Worker?</a>
             <a href='' className='white'>About</a>
             <a href='' className='white'>Contact</a>
           </div>
