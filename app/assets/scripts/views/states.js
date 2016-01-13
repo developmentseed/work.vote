@@ -4,7 +4,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-
 import { fetchStates } from '../actions/action';
 
 let States = React.createClass({
@@ -30,12 +29,10 @@ let States = React.createClass({
     // Results HTML
     return (
       <div className='large'>
-        <div className='banner-image banner-juris'>
-          <img src='./assets/graphics/layout/main_reduced.jpg' width='100%'/>
-        </div>
         <div id='results-container'>
+          <br />
           <div className='columns medium-centered'>
-            <div className='results-sub-container columns large medium-centered'>
+            <div className='results-sub-container columns large medium-centered row'>
               <div className='results-split-container medium-5 columns'>
               {list}
               </div>

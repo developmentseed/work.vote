@@ -51,7 +51,8 @@ let Result = React.createClass({
       <div className='large'>
         <div id='results-container'>
           <div className='columns medium-centered'>
-            <div className='results-sub-container columns large medium-centered'>
+            <br />
+            <div className='results-sub-container columns large medium-centered row'>
               <div className='results-split-container medium-5 columns'>
                 <div className='juris-header'>{jurisdiction.name}, {jurisdiction.state.alpha}</div>
                 <div className='county-image'>

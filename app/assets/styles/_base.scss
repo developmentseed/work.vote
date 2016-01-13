@@ -412,9 +412,6 @@ h1{
   box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
   height: auto;
   word-wrap: break-word;
-  @media screen and (min-width: 639px){
-    height: 880px;
-  }
   p{
     margin-bottom: 8px;
   }
