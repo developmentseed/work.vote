@@ -30,7 +30,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path='/' component={App}>
-        <Route path='j(/:name)' component={Result} />
+        <Route path='j(/:jurisdiction_id)' component={Result} />
         <Route path='about' component={About} />
         <Route path='states(/:state_id)' component={States} />
         <IndexRoute component={Frontpage} />
