@@ -4,7 +4,7 @@ import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-
+import Loader from 'react-loader';
 import { fetchStates, fetchStateJurisdictions } from '../actions/action';
 
 let States = React.createClass({
@@ -43,6 +43,7 @@ let States = React.createClass({
   render: function () {
     let { states, state_jurisdictions } = this.props;
     let list = [];
+    let loaded = false;
 
     if (this.props.params.state_id) {
       if (state_jurisdictions.length > 0) {
@@ -53,8 +54,13 @@ let States = React.createClass({
       }
     } else {
       for (let i in states) {
-        list.push(<p key={states[i].id}><Link to={`/states/${states[i].id}`}>{states[i].name}</Link></p>);
+        let obj = states[i];
+        list.push(<p key={obj.id}><Link to={`/states/${obj.id}`}>{obj.name}</Link></p>);
       }
+    }
+
+    if (list.length > 0) {
+      loaded = true;
     }
 
     // Results HTML
@@ -62,15 +68,18 @@ let States = React.createClass({
       <div className='large'>
         <div id='results-container'>
           <br />
-          <div className='columns medium-centered'>
-            <div className='results-sub-container columns large medium-centered row'>
-              <div className='results-split-container medium-5 columns'>
-              {list}
+            <div className='columns medium-centered'>
+              <div className='results-sub-container columns large medium-centered row'>
+                <div className='results-split-container medium-5 columns'>
+                <Loader loaded={loaded}>
+                  {list}
+                </Loader>
+                </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
+
     );
   }
 
