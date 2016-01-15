@@ -10,7 +10,7 @@ import { fetchStates, fetchStateJurisdictions } from '../actions/action';
 let States = React.createClass({
   propTypes: {
     states: React.PropTypes.array,
-    state_jurisdictions: React.PropTypes.array,
+    state_jurisdictions: React.PropTypes.object,
     dispatch: React.PropTypes.func,
     params: React.PropTypes.object
   },
@@ -25,18 +25,26 @@ let States = React.createClass({
     }
   },
 
+  getStateJurisdictions: function () {
+    if (!_.isUndefined(this.props.params.state_id)) {
+      if (!(this.props.params.state_id in this.props.state_jurisdictions)) {
+        this.props.dispatch(fetchStateJurisdictions(this.getId(this.props.params.state_id)));
+      }
+    }
+  },
+
   componentDidMount: function () {
     if (this.props.states.length === 0) {
       this.props.dispatch(fetchStates());
     }
     if (this.props.params.state_id) {
-      this.props.dispatch(fetchStateJurisdictions(this.getId(this.props.params.state_id)));
+      this.getStateJurisdictions();
     }
   },
 
   componentDidUpdate: function (prevProps) {
     if (prevProps.params.state_id !== this.props.params.state_id) {
-      this.props.dispatch(fetchStateJurisdictions(this.getId(this.props.params.state_id)));
+      this.getStateJurisdictions();
     }
   },
 
@@ -46,9 +54,10 @@ let States = React.createClass({
     let loaded = false;
 
     if (this.props.params.state_id) {
-      if (state_jurisdictions.length > 0) {
-        for (let i in state_jurisdictions) {
-          let obj = state_jurisdictions[i];
+      if (this.props.params.state_id in state_jurisdictions) {
+        let jurs = state_jurisdictions[this.props.params.state_id];
+        for (let i in jurs) {
+          let obj = jurs[i];
           list.push(<p key={obj.id}><Link to={`/j/${obj.id}`}>{obj.name}</Link></p>);
         }
       }

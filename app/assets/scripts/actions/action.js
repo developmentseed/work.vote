@@ -63,11 +63,7 @@ export function fetchStateJurisdictions (state_id) {
         let b = JSON.parse(body);
         if (b.count > 0) {
           dispatch(receiveStateJurisdictions(b.results));
-        } else {
-          dispatch(resetStateJurisdictions());
         }
-      } else {
-        dispatch(resetStateJurisdictions());
       }
     });
   };

@@ -30,15 +30,13 @@ const states = function (state = [], action) {
   return state;
 };
 
-const state_jurisdictions = function (state = [], action) {
+const state_jurisdictions = function (state = {}, action) {
   state = _.cloneDeep(state);
 
   switch (action.type) {
   case 'RECEIVE_STATE_JURISDICTIONS':
-    state = action.data;
+    state[action.data[0].state.id] = action.data;
     break;
-  case 'RESET_STATE_JURISDICTIONS':
-    state = [];
   }
 
   return state;
