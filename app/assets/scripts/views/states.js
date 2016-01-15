@@ -5,6 +5,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Loader from 'react-loader';
+import Box from '../components/box';
 import { fetchStates, fetchStateJurisdictions } from '../actions/action';
 
 let States = React.createClass({
@@ -74,20 +75,13 @@ let States = React.createClass({
 
     // Results HTML
     return (
-      <div className='large'>
-        <div id='results-container'>
-          <br />
-            <div className='columns medium-centered'>
-              <div className='results-sub-container columns large medium-centered row'>
-                <div className='results-split-container medium-5 columns'>
-                <Loader loaded={loaded}>
-                  {list}
-                </Loader>
-                </div>
-              </div>
-            </div>
+      <Box>
+        <div className='results-split-container medium-5 columns'>
+        <Loader loaded={loaded}>
+          {list}
+        </Loader>
         </div>
-      </div>
+      </Box>
 
     );
   }

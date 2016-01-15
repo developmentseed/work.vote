@@ -379,6 +379,13 @@ h1{
 /*----------------------------------------------*/
 /* Results */
 /*----------------------------------------------*/
+
+.error-text {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5em;
+}
+
 #results-container{
   max-width: 860px;
   margin-left: auto;
