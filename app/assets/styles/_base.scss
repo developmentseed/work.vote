@@ -447,20 +447,45 @@ h1{
 .callout.secondary{
   background-color: $dred;
   margin-bottom: 0px;
+  padding: 20px 30px 30px 30px;
 }
 
 .footer-bottom{
-  height: 60px;
   width: 100%;
+  color: white;
   background-color: $dgrey;
+  padding: 14px;
+  padding-top: 20px;
+  padding-bottom: 4px;
+}
+
+.footer-bottom-content{
+  padding-left: 24px;
+  padding-right: 24px;
+  font-size: 0.8em;
+  color: #BBB;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .footer-items{
   img{
-    margin-left: 10px;
-    margin-right: 10px;
-    padding-bottom: 20px;
+    margin:10px;
   }
+  p{
+    font-weight: 300;
+    margin-bottom:30px;
+  }
+}
+
+h5{
+  font-weight: 500;
+  font-size: 1em;
+  color: darken(white, 15%);
+  margin-bottom:10px;
+}
+
+.footer-box{
 }
 
 /*----------------------------------------------*/
