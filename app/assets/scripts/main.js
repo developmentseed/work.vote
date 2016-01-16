@@ -16,6 +16,7 @@ import Result from './views/result';
 import States from './views/states';
 import Frontpage from './views/frontpage';
 import About from './views/about';
+import Contact from './views/contact';
 import Empty from './views/404';
 
 const createStoreWithMiddleware = applyMiddleware(
@@ -33,6 +34,7 @@ ReactDOM.render(
       <Route path='/' component={App}>
         <Route path='j(/:jurisdiction_id)' component={Result} />
         <Route path='about' component={About} />
+        <Route path='contact' component={Contact} />
         <Route path='states(/:state_id)' component={States} />
         <Route path='*' component={Empty}/>
         <IndexRoute component={Frontpage} />
