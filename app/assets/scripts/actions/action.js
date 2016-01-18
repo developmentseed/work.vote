@@ -11,8 +11,13 @@ export function resetJurisdiction () {
   return { type: 'RESET_JURISDICTION' };
 };
 
+export function notFoundJurisdiction () {
+  return { type: 'NOTFOUND_JURISDICTION' };
+};
+
 export function fetchJurisdiction (id) {
   return dispatch => {
+    dispatch(resetJurisdiction());
     fetch(`${config.apiUrl}/jurisdictions/${id}/`, function (err, resp, body) {
       if (err) {
         console.log(err);
@@ -20,7 +25,7 @@ export function fetchJurisdiction (id) {
       if (resp.statusCode === 200) {
         dispatch(receiveJurisdiction(JSON.parse(body)));
       } else {
-        dispatch(resetJurisdiction());
+        dispatch(notFoundJurisdiction());
       }
     });
   };
@@ -63,11 +68,7 @@ export function fetchStateJurisdictions (state_id) {
         let b = JSON.parse(body);
         if (b.count > 0) {
           dispatch(receiveStateJurisdictions(b.results));
-        } else {
-          dispatch(resetStateJurisdictions());
         }
-      } else {
-        dispatch(resetStateJurisdictions());
       }
     });
   };
