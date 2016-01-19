@@ -10,7 +10,7 @@ let Howto = React.createClass({
           <div className='columns medium-centered'>
             <br />
             <div className='results-sub-container columns large medium-centered row'>
-            <div className='results-split-container'>
+            <div className='results-split-container remove-list'>
             <div className="text-header">What it Means to be a Pollworker</div>
             <hr></hr>
             <p>Next to casting a ballot yourself, serving as a poll worker is the most important thing you 
@@ -28,9 +28,9 @@ let Howto = React.createClass({
             As part of this process, you will:</p>
             <ul>
             <li>Serve inside a polling place by checking in voters, answering voters’ 
-            questions, setting up and testing voting machines, issuing ballots and other tasks;</li>
+            questions, setting up and testing voting machines, issuing ballots and other tasks.</li>
             <li>Be a resource for fellow voters who encounter problems from registration problems to 
-            voter ID questions to language barriers;</li>
+            voter ID questions to language barriers.</li>
             <li>Attend training by local election officials to learn the mechanics of the voting process 
             and what the rules are.</li>
             </ul>
