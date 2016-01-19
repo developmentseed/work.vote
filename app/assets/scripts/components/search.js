@@ -23,7 +23,7 @@ let Search = React.createClass({
         console.log(err);
       }
       let results = JSON.parse(body).results;
-      for (let j = 0; j < results.length; j++) {
+      for (let j = 0; j < 6; j++) {
         let option = results[j].name + ', ' + results[j].state.alpha;
         juris[option] = results[j].id;
         options.add(option);
