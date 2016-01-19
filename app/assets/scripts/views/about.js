@@ -8,7 +8,7 @@ let About = React.createClass({
     return (
       <Box>
         <div className='results-split-container medium-3 columns'>
-          <div className='juris-header text-right'>About</div>
+          <div className='juris-header'>About</div>
         </div>
         <div className='results-split-container medium-8 columns'>
         <p>Many local election officials struggle to recruit the hundreds of thousands of poll workers needed nationwide on Election Day. Though county and municipal clerks and boards of election want poll workers with the skills to match voting in 21st Century America, they struggle to recruit sufficient numbers of volunteers with the necessary technological and language skills because they lack a streamlined way to share information on what serving as a poll worker entails, what specific needs they have and how to sign up.</p>
