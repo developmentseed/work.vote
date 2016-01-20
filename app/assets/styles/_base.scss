@@ -34,6 +34,14 @@ header {
   box-shadow: 2px 1px 10px rgba(0,0,0,0.7);
 }
 
+::-moz-selection { /* Code for Firefox */
+    background: rgba(57,68,113,0.4);
+}
+
+::selection {
+    background: rgba(57,68,113,0.4);
+}
+
 h1{
   font-size: 0.9em;
   font-family: 'Montserrat', sans-serif;
@@ -125,6 +133,12 @@ h1{
     float: right;
     width: 550px;
    }
+  @media screen and (max-width: 500px){
+    height: 50px;
+    a{
+      padding: 2px 0px;
+    }
+  }
   a{
     display: inline-block;
     padding-top: 0px;
@@ -283,7 +297,7 @@ h1{
   input {
     width: 240px;
     height: 30px;
-    padding: 10px 20px;
+    padding: 0px;
     font-size: $font-size;
     border: 1px solid $border-color;
     border-radius: $border-radius;
@@ -300,6 +314,8 @@ h1{
     position: absolute;
     top: 34px;
     width: 241px;
+    max-height: 300px;
+    overflow: auto;
     left: 29px;
     margin: 0;
     padding: 0;
@@ -424,8 +440,13 @@ h1{
   height: auto;
   word-wrap: break-word;
   position: relative;
-  p{
-    margin-bottom: 8px;
+  min-height: 250px;
+  margin-top: 44px;
+  @media screen and (min-width: 920px) {
+    margin-top: 6px;
+   }
+  @media screen and (max-width: 500px){
+    margin-top: 68px
   }
 }
 
@@ -521,6 +542,11 @@ h5{
   background: lighten(#008CBA, 0);
 }
 
+.btn.info:hover{
+  background: $dblue;
+  text-decoration: none;
+}
+
 .btn:hover {
   background: $dred;
   text-decoration: none;
@@ -549,4 +575,48 @@ h5{
 .cbtn:hover{
   background: $dred;
   text-decoration: none;
+}
+
+.contact-input{
+  display: inline-block;
+  border-bottom: 2px solid blue;
+  p{
+    margin-bottom: 0;
+  }
+}
+
+.remove-list{
+  ul{
+    margin:20px 20px;
+  }
+  li{
+    font-size: 0.9em;
+    margin: 1em 0em;
+  }
+}
+
+.select-link{
+  width: 160px;
+  display: inline-block;
+  margin: 2px;
+  padding: 4px;
+  padding-left: 10px;
+  border-radius: 5px;
+  text-align: left;
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  p{
+    margin-bottom: 0;
+  }
+}
+
+.select-link:hover{
+  background-color: #f7e4e4;
+}
+
+.state-select{
+  max-width: 675px;
+  margin-left: auto;
+  margin-right: auto;
 }
