@@ -32,12 +32,11 @@ let Search = React.createClass({
 
       let response = Array.from(options);
       if (_.isEmpty(response)) {
-        callback(null, ['Keep typing...']);
+        callback(null, ['nothing found!']);
       } else {
         callback(null, response);
       }
     });
-    return ['Searching ...'];
   },
 
   componentDidMount: function () {
