@@ -32,6 +32,12 @@ let Search = React.createClass({
     });
   },
 
+  componentDidMount: function () {
+    // document.getElementById("mytext").focus();
+    console.log(this.refs);
+    this.refs.searchbox.refs.input.focus();
+  },
+
   onSuggestionSelected: function (value, event) {
     this.props.dispatch(pushPath(`j/${juris[value]}`));
   },
@@ -42,7 +48,7 @@ let Search = React.createClass({
         <div id='Search-container'>
           <div id='Address-Finder'>
             <div className='center-text'>Enter your county, zip code, or address</div>
-            <Autosuggest suggestions={this.getSuggestions} onSuggestionSelected={this.onSuggestionSelected}/>
+            <Autosuggest suggestions={this.getSuggestions} onSuggestionSelected={this.onSuggestionSelected} ref='searchbox'/>
             <p>Work Elections currently covers:</p>
             <p>AZ, CA, FL, NV, NM, OH, VA</p>
           </div>
