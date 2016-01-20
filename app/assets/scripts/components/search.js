@@ -1,5 +1,6 @@
 'use strict';
 
+import _ from 'lodash';
 import geo from 'mapbox-geocoding';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -28,13 +29,18 @@ let Search = React.createClass({
         juris[option] = results[j].id;
         options.add(option);
       }
-      callback(null, Array.from(options));
+
+      let response = Array.from(options);
+      if (_.isEmpty(response)) {
+        callback(null, ['Keep typing...']);
+      } else {
+        callback(null, response);
+      }
     });
+    return ['Searching ...'];
   },
 
   componentDidMount: function () {
-    // document.getElementById("mytext").focus();
-    console.log(this.refs);
     this.refs.searchbox.refs.input.focus();
   },
 
