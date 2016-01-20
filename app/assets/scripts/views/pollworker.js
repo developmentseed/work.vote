@@ -3,13 +3,12 @@
 import React from 'react';
 import Box from '../components/box';
 
-
 let Howto = React.createClass({
   render: function () {
     return (
       <Box>
         <div className='results-split-container medium-12 columns'>
-            <div className="text-header">What it Means to be a Pollworker</div>
+            <div className='text-header'>What is a Poll Worker?</div>
             <hr />
             <p>Next to casting a ballot yourself, serving as a poll worker is the most important thing you
             can do to help our democracy thrive. No one who is eligible to vote should be turned away from the polls,
