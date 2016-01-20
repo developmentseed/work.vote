@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import Box from '../components/box';
 
 let Contact = React.createClass({
   render: function () {
