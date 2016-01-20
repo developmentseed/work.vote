@@ -14,6 +14,12 @@ let Footer = React.createClass({
             <div className='large-6 columns footer-items'>
                 <h5>Work Elections Compiles Poll Worker Requirements and Applications</h5>
                 <h5><p>This nonpartisan project has collected poll worker information and applications for hundreds of counties and jurisdictions, making it easy for local election officials and potential workers to connect.</p></h5>
+                  <h5>Connect with us:</h5>
+                  <div>
+                    <a href={ 'https://twitter.com/fairerelections' }><div className='btn info'>Twitter</div></a>
+                    <div className= 'divider'></div>
+                    <a href={ 'https://www.facebook.com/FairElectionsLegalNetwork' }><div className='btn info'>Facebook</div></a>
+                  </div>
               </div>
             <div className='large-6 columns footer-items center-text'>
               <h5>This project is led by the following partners:</h5>
@@ -33,5 +39,6 @@ let Footer = React.createClass({
     );
   }
 });
+
 
 module.exports = Footer;

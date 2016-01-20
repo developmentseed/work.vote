@@ -521,8 +521,14 @@ h5{
   background: lighten(#008CBA, 0);
 }
 
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
 .btn:hover {
-  background: $dred;
+  background: $dblue;
   text-decoration: none;
 }
 
