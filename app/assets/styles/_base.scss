@@ -577,9 +577,16 @@ h5{
 
 .contact-input{
   display: inline-block;
-  border-bottom: 2px solid blue;
+  margin-bottom: 24px;
+  border-bottom: 2px solid red;
+  transition-property: border-bottom;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
   p{
     margin-bottom: 0;
+  }
+  :hover{
+  border-bottom: 2px solid blue;
   }
 }
 
@@ -617,4 +624,9 @@ h5{
   max-width: 675px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.contact-questions{
+  font-weight: 700;
+  font-size: 1.0em;
 }
