@@ -7,10 +7,9 @@ let About = React.createClass({
   render: function () {
     return (
       <Box>
-        <div className='results-split-container medium-3 columns'>
-          <div className='juris-header'>About</div>
-        </div>
-        <div className='results-split-container medium-8 columns'>
+        <div className='results-split-container medium-12 columns'>
+        <div className="text-header">About</div>
+        <hr />
         <p>Many local election officials struggle to recruit the hundreds of thousands of poll workers needed nationwide on Election Day. Though county and municipal clerks and boards of election want poll workers with the skills to match voting in 21st Century America, they struggle to recruit sufficient numbers of volunteers with the necessary technological and language skills because they lack a streamlined way to share information on what serving as a poll worker entails, what specific needs they have and how to sign up.</p>
 
         <p>Work Elections offers a solution to one of the main obstacles to poll worker recruitment: a lack of information and access for a representative and qualified population. Typically, local election officials rely on their limited online presence, the media and community events, and often end up relying on their existing volunteer pool rather than recruiting younger, more multilingual and computer-proficient candidates.</p>
@@ -23,7 +22,6 @@ let About = React.createClass({
 
         <p>Work Elections was developed with funding from the Knight Foundation’s Knight Prototype Fund.</p>
         </div>
-        <div className='results-split-container medium-1 columns'></div>
       </Box>
 		);
   }
