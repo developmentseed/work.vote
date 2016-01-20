@@ -59,13 +59,13 @@ let States = React.createClass({
         let jurs = state_jurisdictions[this.props.params.state_id];
         for (let i in jurs) {
           let obj = jurs[i];
-          list.push(<div className = 'select-link'><p key={obj.id}><Link to={`/j/${obj.id}`}>{obj.name}</Link></p></div>);
+          list.push(<div className = 'select-link' key={obj.id}><p key={obj.id}><Link to={`/j/${obj.id}`}>{obj.name}</Link></p></div>);
         }
       }
     } else {
       for (let i in states) {
         let obj = states[i];
-        list.push(<Link to={`/states/${obj.id}`}><div className = 'select-link'><p key={obj.id}>{obj.name}</p></div></Link>);
+        list.push(<Link to={`/states/${obj.id}`}><div className = 'select-link' key={obj.id}><p key={obj.id}>{obj.name}</p></div></Link>);
       }
     }
 

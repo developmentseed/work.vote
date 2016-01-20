@@ -14,7 +14,6 @@ let Header = React.createClass({
         </div>
         <div className='header-links'>
           <div className='row header-padding'>
-            <Link to='/' className='white'>How to Apply</Link>
             <Link to='/pollworker' className='white'>What is a Poll Worker?</Link>
             <Link to='/states' className='white'>States</Link>
             <Link to='/about' className='white'>About</Link>

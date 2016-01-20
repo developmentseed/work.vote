@@ -19,8 +19,6 @@ let Footer = React.createClass({
               <h5>This project is led by the following partners:</h5>
               <a href='http://fairelectionsnetwork.com/'><img src='./assets/graphics/meta/feln_space_logo.png' width='200px'></img></a>
               <a href='http://editions.lib.umn.edu/electionacademy/'><img src='./assets/graphics/meta/ElectionAcademy_logo.svg' width='200px'></img></a>
-              <a href='http://knightfoundation.org/'><img src='./assets/graphics/meta/knight-logo.svg' width='200px'></img></a>
-              <a href='https://developmentseed.org/'><img src='./assets/graphics/meta/logo_horizontal_white.png' width='200px'></img></a>
             </div>
           </div>
         </div>
