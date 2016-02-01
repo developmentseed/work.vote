@@ -8,13 +8,12 @@ let Contact = React.createClass({
     return (
       <Box>
         <div className='results-split-container'>
-          <div className = 'text-header'>Contact Us *</div>
-          <p>First and last name please</p>
-          <div className = 'text-header'>Email Addresss *</div>
-          <p>Your Answer</p>
-          <div className = 'text-header'>Comment or Questions *</div>
-          <p>Please leave your comment or question here</p>
-          <div className = 'btn'>Submit</div>
+          <div className = 'contact-questions'>Contact Us *</div>
+          <input class="form__control" type="text" placeholder="Placeholder" id="control-1">
+          <div className = 'contact-input'><p>Your Answer</p></div>
+          <div className = 'contact-questions'>Comment or Questions *</div>
+          <div className = 'contact-input'><p>Please leave your comment or question here</p></div>
+          <p><div className = 'btn'>Submit</div></p>
         </div>
       </Box>
 		);
