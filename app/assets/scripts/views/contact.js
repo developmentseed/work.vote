@@ -5,13 +5,25 @@ import React from 'react';
 let Contact = React.createClass({
   render: function () {
     return (
-      <div className='large'>
-        <div id='results-container'>
-          <div className='columns medium-centered'>
-            <br />
-              <iframe src='https://docs.google.com/forms/d/1Q5uB-Tsue4ArwEqxDYDISN6tgldhB-D_2QljGIQgfhs/viewform?embedded=true#start=embed' width='860' height='900' frameBorder='0' marginHeight='0' marginWidth='0'>Loading...</iframe>
-
-          </div>
+      <Box>
+        <div className='results-split-container'>
+            <div className = 'large-12 columns text-header'>Contact Us </div>
+            <hr />
+            <div className = 'contact-questions'>Name </div>
+            <div className= 'large-6 medium-6 columns'>
+              <input class="form__control" type="text" placeholder="First and Last Name" id="control-1" />
+            </div>
+            <div className = 'large-12 columns contact-questions'>Email </div>
+            <div className= 'large-6 medium-6 columns'>
+              <input class="form__control" type="text" placeholder="Email" id="control-1" />
+            </div>
+            <div className = 'large-12 columns contact-questions'>Comment or Questions</div>
+            <div className= 'large-6 medium-6 columns'>
+             <textarea class="form__control" type="text" placeholder="Type Here" id="control-1" />
+            </div>
+            <div className = 'large-12 columns'>
+              <div className = 'btn'>Submit</div>
+            </div>
         </div>
       </div>
     );
