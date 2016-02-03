@@ -5,9 +5,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
-import { Router, Route, IndexRoute } from 'react-router';
+import { Router, Route, IndexRoute, useRouterHistory} from 'react-router';
 import { createHashHistory } from 'history';
-import { syncReduxAndRouter } from 'redux-simple-router';
+import { syncHistory } from 'react-router-redux';
 import reducer from './reducers/reducer';
 
 // Views
@@ -21,14 +21,14 @@ import PollWorker from './views/pollworker';
 import Map from './views/map';
 import Empty from './views/404';
 
+const history = useRouterHistory(createHashHistory)({ queryKey: false });
+const reduxRouterMiddleware = syncHistory(history);
 const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware // lets us dispatch() functions
+  thunkMiddleware, // lets us dispatch() functions
+  reduxRouterMiddleware
 )(createStore);
 
 const store = createStoreWithMiddleware(reducer);
-
-const history = createHashHistory({queryKey: false});
-syncReduxAndRouter(history, store);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -39,7 +39,6 @@ ReactDOM.render(
         <Route path='contact' component={Contact} />
         <Route path='states(/:state_id)' component={States} />
         <Route path='pollworker' component={PollWorker} />
-        <Route path='map' component={Map} />
         <Route path='*' component={Empty}/>
         <IndexRoute component={Frontpage} />
       </Route>
