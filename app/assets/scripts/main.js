@@ -18,6 +18,7 @@ import Frontpage from './views/frontpage';
 import About from './views/about';
 import Contact from './views/contact';
 import PollWorker from './views/pollworker';
+import Map from './views/map';
 import Empty from './views/404';
 
 const createStoreWithMiddleware = applyMiddleware(
@@ -38,6 +39,7 @@ ReactDOM.render(
         <Route path='contact' component={Contact} />
         <Route path='states(/:state_id)' component={States} />
         <Route path='pollworker' component={PollWorker} />
+        <Route path='map' component={Map} />
         <Route path='*' component={Empty}/>
         <IndexRoute component={Frontpage} />
       </Route>
