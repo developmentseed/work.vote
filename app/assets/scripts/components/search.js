@@ -4,7 +4,7 @@ import _ from 'lodash';
 import geo from 'mapbox-geocoding';
 import React from 'react';
 import { connect } from 'react-redux';
-import { pushPath } from 'redux-simple-router';
+import { routeActions } from 'react-router-redux';
 import Autosuggest from 'react-autosuggest';
 import { fetch } from '../utils';
 import config from '../config';
@@ -44,7 +44,7 @@ let Search = React.createClass({
   },
 
   onSuggestionSelected: function (value, event) {
-    this.props.dispatch(pushPath(`j/${juris[value]}`));
+    this.props.dispatch(routeActions.push(`j/${juris[value]}`));
   },
 
   render: function () {
