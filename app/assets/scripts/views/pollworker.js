@@ -7,7 +7,7 @@ let Howto = React.createClass({
   render: function () {
     return (
       <Box>
-        <div className='results-split-container medium-12 columns'>
+        <div className='results-split-container medium-12 columns pollworker-block'>
             <div className='text-header'>What is a Poll Worker?</div>
             <hr />
             <p>Next to casting a ballot yourself, serving as a poll worker is the most important thing you
@@ -24,12 +24,12 @@ let Howto = React.createClass({
             That is why we are calling on you to voice your support for your community by becoming a poll worker.
             As part of this process, you will:</p>
             <ul>
-            <li>Serve inside a polling place by checking in voters, answering voters’
-            questions, setting up and testing voting machines, issuing ballots and other tasks.</li>
-            <li>Be a resource for fellow voters who encounter problems from registration problems to
-            voter ID questions to language barriers.</li>
-            <li>Attend training by local election officials to learn the mechanics of the voting process
-            and what the rules are.</li>
+                <li>Serve inside a polling place by checking in voters, answering voters’
+                questions, setting up and testing voting machines, issuing ballots and other tasks.</li>
+                <li>Be a resource for fellow voters who encounter problems from registration problems to
+                voter ID questions to language barriers.</li>
+                <li>Attend training by local election officials to learn the mechanics of the voting process
+                and what the rules are.</li>
             </ul>
             <p>When working in a polling location on Election Day, there are different positions that you could fill.
             While your responsibilities will vary by county or position, there are certain aspects of working at the
