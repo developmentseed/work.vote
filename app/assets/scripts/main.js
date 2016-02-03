@@ -18,7 +18,6 @@ import Frontpage from './views/frontpage';
 import About from './views/about';
 import Contact from './views/contact';
 import PollWorker from './views/pollworker';
-import Map from './views/map';
 import Empty from './views/404';
 
 const history = useRouterHistory(createHashHistory)({ queryKey: false });
