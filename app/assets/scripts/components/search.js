@@ -1,5 +1,6 @@
 'use strict';
 
+import _ from 'lodash';
 import geo from 'mapbox-geocoding';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -23,13 +24,23 @@ let Search = React.createClass({
         console.log(err);
       }
       let results = JSON.parse(body).results;
-      for (let j = 0; j < 6; j++) {
+      for (let j = 0; j < results.length; j++) {
         let option = results[j].name + ', ' + results[j].state.alpha;
         juris[option] = results[j].id;
         options.add(option);
       }
-      callback(null, Array.from(options));
+
+      let response = Array.from(options);
+      if (_.isEmpty(response)) {
+        callback(null, ['nothing found!']);
+      } else {
+        callback(null, response);
+      }
     });
+  },
+
+  componentDidMount: function () {
+    this.refs.searchbox.refs.input.focus();
   },
 
   onSuggestionSelected: function (value, event) {
@@ -42,7 +53,7 @@ let Search = React.createClass({
         <div id='Search-container'>
           <div id='Address-Finder'>
             <div className='center-text'>Enter your county, zip code, or address</div>
-            <Autosuggest suggestions={this.getSuggestions} onSuggestionSelected={this.onSuggestionSelected}/>
+            <Autosuggest suggestions={this.getSuggestions} onSuggestionSelected={this.onSuggestionSelected} ref='searchbox'/>
             <p>Work Elections currently covers:</p>
             <p>AZ, CA, FL, NV, NM, OH, VA</p>
           </div>

@@ -314,6 +314,8 @@ h1{
     position: absolute;
     top: 34px;
     width: 241px;
+    max-height: 300px;
+    overflow: auto;
     left: 29px;
     margin: 0;
     padding: 0;

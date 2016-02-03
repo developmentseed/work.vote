@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import Box from '../components/box';
 
 let Contact = React.createClass({
   render: function () {
@@ -26,8 +25,8 @@ let Contact = React.createClass({
               <div className = 'btn'>Submit</div>
             </div>
         </div>
-      </Box>
-		);
+      </div>
+    );
   }
 });
 
