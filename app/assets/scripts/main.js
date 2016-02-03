@@ -39,7 +39,6 @@ ReactDOM.render(
         <Route path='contact' component={Contact} />
         <Route path='states(/:state_id)' component={States} />
         <Route path='pollworker' component={PollWorker} />
-        <Route path='map' component={Map} />
         <Route path='*' component={Empty}/>
         <IndexRoute component={Frontpage} />
       </Route>

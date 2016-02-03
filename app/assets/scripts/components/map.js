@@ -1,84 +1,92 @@
 'use strict';
 
 import React from 'react';
-import config from '../config';
-import mapboxgl from 'mapbox-gl';
+import d3 from 'd3';
+import topojson from 'topojson';
+
+let MapClass = function (el) {
+  this.$el = d3.select(el);
+  let self = this;
+
+  self.states = [4, 6, 12, 32, 35, 39, 51];
+
+  self.width = parseInt(this.$el.style('width'), 10);
+  self.height = (self.width * 5) / 9;
+
+  self._init = function () {
+    let projection = d3.geo.albersUsa()
+                       .scale(self.width + self.width * 0.1)
+                       .translate([self.width / 2, self.height / 2]);
+
+    let path = d3.geo.path()
+                 .projection(projection);
+
+    let svg = this.$el.append('svg')
+                .attr('width', self.width)
+                .attr('height', self.height);
+
+    svg.append('rect')
+        .attr('class', 'background')
+        .attr('width', this.width)
+        .attr('height', this.height);
+
+    let g = svg.append('g');
+
+    d3.json('/assets/us.json', function (error, us) {
+      if (error) throw error;
+
+      g.append('g')
+        .attr('id', 'states')
+        .selectAll('path')
+          .data(topojson.feature(us, us.objects.states).features)
+        .enter().append('path')
+          .attr('d', path)
+          .style('fill', function (d) {
+            if (self.states.indexOf(d.id) !== -1) {
+              return '#a31e22';
+            }
+          })
+          .on('mouseover', self.hover)
+          .on('mouseout', self.hoverEnds)
+          .on('click', self.click);
+
+      g.append('path')
+        .datum(topojson.mesh(us, us.objects.states, function (a, b) { return a !== b; }))
+        .attr('id', 'state-borders')
+        .attr('d', path);
+    });
+  };
+
+  self.hover = function (d, i) {
+    if (self.states.indexOf(d.id) !== -1) {
+      d3.select(this).style('fill', '#394471');
+    }
+  };
+
+  self.hoverEnds = function (d) {
+    if (self.states.indexOf(d.id) !== -1) {
+      d3.select(this).style('fill', '#a31e22');
+    } else {
+      d3.select(this).style('fill', '#aaa');
+    }
+  };
+
+  self.click = function (d) {
+    window.location.href = `#/states/${d.id}`;
+  };
+
+  self._init();
+};
 
 let Map = React.createClass({
 
   componentDidMount: function () {
-    mapboxgl.accessToken = config.accessToken;
-
-    let map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/devseed/cife4hfep6f88smlxfhgdmdkk',
-      zoom: 4,
-      minZoom: 2,
-      doubleClickZoom: false,
-      center: [-97.43, 38.54]
-    });
-
-    map.on('style.load', function () {
-      map.addSource('counties', {
-        type: 'vector',
-        url: 'mapbox://devseed.66m20amp'
-      });
-      map.addLayer({
-        'id': 'county-fill',
-        'type': 'fill',
-        'source': 'counties',
-        'source-layer': 'jursidictions',
-        'interactive': true,
-        'layout': {},
-        'paint': {
-          'fill-color': 'rgba(138,255,247,0.4)',
-          'fill-opacity': 1
-        }
-      });
-      map.addLayer({
-        'id': 'county-line',
-        'type': 'line',
-        'source': 'counties',
-        'source-layer': 'jursidictions',
-        'layout': {},
-        'paint': {
-          'line-color': '#9fb7bf',
-          'line-width': 0.4
-        }
-      });
-      map.addLayer({
-        'id': 'county-hover',
-        'type': 'fill',
-        'source': 'counties',
-        'source-layer': 'jursidictions',
-        'layout': {},
-        'paint': {
-          'fill-color': '#fff64d',
-          'fill-opacity': 0.6
-        },
-        'filter': ['==', 'NAME', '']
-      });
-    });
-
-    let usemap = document.querySelector('.usemap');
-    let toggle = document.querySelector('#Search-enabler');
-
-    usemap.addEventListener('click', function () {
-      document.querySelector('#Search-container').style.display = 'none';
-      document.querySelector('#Search-enabler').style.display = 'block';
-      toggle.style.display = 'block';
-    });
-
-    toggle.addEventListener('click', function () {
-      document.querySelector('#Search-container').style.display = 'block';
-      document.querySelector('#Search-enabler').style.display = 'none';
-      toggle.style.display = 'none';
-    });
+    this.map = new MapClass(this.refs.mymap);
   },
 
   render: function () {
     return (
-      <div id='map'></div>
+      <div id='map' ref='mymap'></div>
     );
   }
 });

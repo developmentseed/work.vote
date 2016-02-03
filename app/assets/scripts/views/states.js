@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Loader from 'react-loader';
 import Box from '../components/box';
+import Map from '../components/map';
 import { fetchStates, fetchStateJurisdictions } from '../actions/action';
 
 let States = React.createClass({
@@ -52,11 +53,15 @@ let States = React.createClass({
   render: function () {
     let { states, state_jurisdictions } = this.props;
     let list = [];
+    let map = '';
+    let title = 'States';
     let loaded = false;
 
     if (this.props.params.state_id) {
       if (this.props.params.state_id in state_jurisdictions) {
         let jurs = state_jurisdictions[this.props.params.state_id];
+        title = jurs[0].state.name + ' Jurisdictions';
+        console.log(title);
         for (let i in jurs) {
           let obj = jurs[i];
           list.push(<div className = 'select-link' key={obj.id}><p key={obj.id}><Link to={`/j/${obj.id}`}>{obj.name}</Link></p></div>);
@@ -67,6 +72,7 @@ let States = React.createClass({
         let obj = states[i];
         list.push(<Link to={`/states/${obj.id}`}><div className = 'select-link' key={obj.id}><p key={obj.id}>{obj.name}</p></div></Link>);
       }
+      map = <Map />;
     }
 
     if (list.length > 0) {
@@ -76,13 +82,16 @@ let States = React.createClass({
     // Results HTML
     return (
       <Box>
-        <div className='results-split-container columns'>
-          <div className = 'state-select'>
-            <Loader loaded={loaded}>
-              {list}
-            </Loader>
+        <Loader loaded={loaded}>
+          <div className='results-split-container columns'>
+            <div className = 'large-12 columns text-header'>{title}</div>
+            <hr />
+            {map}
+            <div className = 'state-select'>
+                {list}
+            </div>
           </div>
-        </div>
+        </Loader>
       </Box>
     );
   }
