@@ -5,6 +5,7 @@ import nets from 'nets';
 export function fetch (url, callback) {
   nets({
     method: 'get',
+    timeout: 2000,
     encoding: undefined,
     headers: {
       'Content-Type': 'application/json',

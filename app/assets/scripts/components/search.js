@@ -21,7 +21,7 @@ let Search = React.createClass({
     geo.setAccessToken(config.accessToken);
     fetch(`${config.apiUrl}/jurisdictions/?search=${input}`, function (err, resp, body) {
       if (err) {
-        console.log(err);
+        callback(null, ['nothing found!']);
       }
       let results = JSON.parse(body).results;
       for (let j = 0; j < results.length; j++) {
