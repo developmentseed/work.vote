@@ -72,7 +72,9 @@ let MapClass = function (el) {
   };
 
   self.click = function (d) {
-    window.location.href = `#/states/${d.id}`;
+    if (self.states.indexOf(d.id) !== -1) {
+      window.location.href = `#/states/${d.id}`;
+    }
   };
 
   self._init();
