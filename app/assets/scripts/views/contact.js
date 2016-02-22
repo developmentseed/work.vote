@@ -31,7 +31,7 @@ let Contact = React.createClass({
     return (
       <Box>
         <div className='results-split-container'>
-          <div className = 'large-12 columns text-header'>Contact Us </div>
+          <div className = 'large-12 columns text-header'>Contact Form</div>
           <hr />
 
           <div className='large-6 medium-6 columns'>
