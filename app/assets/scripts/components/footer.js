@@ -10,16 +10,17 @@ let Footer = React.createClass({
         <div className='map-break'></div>
         <div className='map-break-below-2'></div>
         <div className='callout large secondary'>
-          <div className='row'>
-            <div className='large-6 columns footer-items'>
-                <h5>Work Elections Compiles Poll Worker Requirements and Applications</h5>
-                <h5><p>This nonpartisan project has collected poll worker information and applications for hundreds of counties and jurisdictions, making it easy for local election officials and potential workers to connect.</p></h5>
-              </div>
-            <div className='large-6 columns footer-items center-text'>
+          <div className = "footer-items">
+            <h5>Work Elections Compiles Poll Worker Requirements and Applications</h5>
+            <h5><p>This nonpartisan project has collected poll worker information and applications for hundreds of counties and jurisdictions, making it easy for local election officials and potential workers to connect.</p></h5>
+            <h5><p>The code behind this website can be viewed on <a href="https://github.com/developmentseed/work.vote">Github</a>, and the API supporting it can be viewed <a href="api.workelections.com">here</a>.</p></h5>
+          </div>
+
+          <div className = "footer-partners center-text">
               <h5>This project is led by the following partners:</h5>
               <a href='http://fairelectionsnetwork.com/'><img src='./assets/graphics/meta/feln_space_logo.png' width='200px'></img></a>
               <a href='http://editions.lib.umn.edu/electionacademy/'><img src='./assets/graphics/meta/ElectionAcademy_logo.svg' width='200px'></img></a>
-            </div>
+              <a href="http://developmentseed.com/"><img src="./assets/graphics/meta/logo_horizontal_white.png" width='200px'></img></a>
           </div>
         </div>
         <div className='footer-bottom'>

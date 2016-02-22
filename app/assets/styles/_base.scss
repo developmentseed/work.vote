@@ -499,12 +499,26 @@ h1{
 }
 
 .footer-items{
+  max-width: 740px;
+  margin: 0 auto 40px auto;
+  padding-top: 10px;
+  text-align: center;
   img{
     margin:10px;
   }
   p{
     font-weight: 300;
-    margin-bottom:30px;
+    margin-top:30px;
+    text-align: left;
+  }
+  a{
+    color: #CCC;
+    border-bottom: 1px solid #CCC;
+    transition: all 0.2s;
+    &:hover{
+      color: white;
+      border-bottom-color: white;
+    }
   }
 }
 
@@ -515,7 +529,11 @@ h5{
   margin-bottom:10px;
 }
 
-.footer-box{
+.footer-partners{
+  padding-bottom: 20px;
+  img{
+    margin: 25px 10px 10px 10px;
+  }
 }
 
 /*----------------------------------------------*/
