@@ -19,6 +19,7 @@ let Search = React.createClass({
   getSuggestions: function (input, callback) {
     let options = new Set();
     geo.setAccessToken(config.accessToken);
+    callback(null, ['Searching...']);
     fetch(`${config.apiUrl}/jurisdictions/?search=${input}`, function (err, resp, body) {
       if (err) {
         callback(null, ['nothing found!']);
