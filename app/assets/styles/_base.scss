@@ -611,6 +611,10 @@ h5{
   }
 }
 
+.hide {
+  display: none;
+}
+
 .remove-list{
   ul{
     margin:20px 20px;
@@ -688,6 +692,10 @@ h5{
   font-size: 6em;
   font-family: 'Montserrat';
   color: lighten($dred, 45);
+}
+
+.red {
+  color: #FF0000;
 }
 
 .pollworker-block{
