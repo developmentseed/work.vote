@@ -1,7 +1,6 @@
 'use strict';
 
 import _ from 'lodash';
-import geo from 'mapbox-geocoding';
 import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
