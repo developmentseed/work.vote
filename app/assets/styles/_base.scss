@@ -498,6 +498,10 @@ h1{
   margin-right: auto;
 }
 
+.footer-msg {
+  max-width: 750px;
+}
+
 .footer-items{
   img{
     margin:10px;
@@ -505,6 +509,14 @@ h1{
   p{
     font-weight: 300;
     margin-bottom:30px;
+  }
+  a{
+    color: #CCC;
+    transition: all 0.2s;
+    &:hover{
+      color: white;
+      border-bottom-color: white;
+    }
   }
 }
 
@@ -515,7 +527,12 @@ h5{
   margin-bottom:10px;
 }
 
-.footer-box{
+.footer-partners{
+  padding-bottom: 20px;
+  text-align: center;
+  img{
+    margin: 25px 10px 10px 10px;
+  }
 }
 
 /*----------------------------------------------*/
@@ -594,6 +611,10 @@ h5{
   }
 }
 
+.hide {
+  display: none;
+}
+
 .remove-list{
   ul{
     margin:20px 20px;
@@ -654,6 +675,10 @@ h5{
   fill: #aaa;
 }
 
+.state-shape {
+  height: 200px;
+}
+
 #states .active {
   fill: orange;
 }
@@ -671,6 +696,10 @@ h5{
   font-size: 6em;
   font-family: 'Montserrat';
   color: lighten($dred, 45);
+}
+
+.red {
+  color: #FF0000;
 }
 
 .pollworker-block{

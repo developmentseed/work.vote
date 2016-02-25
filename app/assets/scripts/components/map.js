@@ -1,14 +1,24 @@
 'use strict';
 
+import _ from 'lodash';
 import React from 'react';
 import d3 from 'd3';
 import topojson from 'topojson';
+import { shape } from '../utils';
 
-let MapClass = function (el) {
+let MapClass = function (el, states) {
   this.$el = d3.select(el);
   let self = this;
 
-  self.states = [4, 6, 12, 32, 35, 39, 51];
+  self.states = [];
+  self.states_incomplete = [];
+  for (let i in states) {
+    if (states[i].is_active) {
+      self.states.push(states[i].state_id);
+    } else if (states[i].pollworker_website !== '') {
+      self.states_incomplete.push(states[i].state_id);
+    }
+  }
 
   self.width = parseInt(this.$el.style('width'), 10);
   self.height = (self.width * 5) / 9;
@@ -34,7 +44,6 @@ let MapClass = function (el) {
 
     d3.json('/assets/us.json', function (error, us) {
       if (error) throw error;
-
       g.append('g')
         .attr('id', 'states')
         .selectAll('path')
@@ -44,6 +53,8 @@ let MapClass = function (el) {
           .style('fill', function (d) {
             if (self.states.indexOf(d.id) !== -1) {
               return '#a31e22';
+            } else if (self.states_incomplete.indexOf(d.id) !== -1) {
+              return '#BA6A6D';
             }
           })
           .on('mouseover', self.hover)
@@ -60,19 +71,25 @@ let MapClass = function (el) {
   self.hover = function (d, i) {
     if (self.states.indexOf(d.id) !== -1) {
       d3.select(this).style('fill', '#394471');
+    } else if (self.states_incomplete.indexOf(d.id) !== -1) {
+      d3.select(this).style('fill', '#394471');
     }
   };
 
   self.hoverEnds = function (d) {
     if (self.states.indexOf(d.id) !== -1) {
       d3.select(this).style('fill', '#a31e22');
+    } else if (self.states_incomplete.indexOf(d.id) !== -1) {
+      d3.select(this).style('fill', '#BA6A6D');
     } else {
       d3.select(this).style('fill', '#aaa');
     }
   };
 
   self.click = function (d) {
-    window.location.href = `#/states/${d.id}`;
+    if (self.states.indexOf(d.id) !== -1 || self.states_incomplete.indexOf(d.id) !== -1) {
+      window.location.href = `#/states/${d.id}`;
+    }
   };
 
   self._init();
@@ -80,8 +97,12 @@ let MapClass = function (el) {
 
 let Map = React.createClass({
 
+  propTypes: {
+    data: React.PropTypes.array
+  },
+
   componentDidMount: function () {
-    this.map = new MapClass(this.refs.mymap);
+    this.map = new MapClass(this.refs.mymap, this.props.data);
   },
 
   render: function () {

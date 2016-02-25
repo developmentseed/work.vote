@@ -66,9 +66,8 @@ export function fetchStateJurisdictions (state_id) {
       }
       if (resp.statusCode === 200) {
         let b = JSON.parse(body);
-        if (b.count > 0) {
-          dispatch(receiveStateJurisdictions(b.results));
-        }
+        b.state_id = state_id;
+        dispatch(receiveStateJurisdictions(b));
       }
     });
   };
