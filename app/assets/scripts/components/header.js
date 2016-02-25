@@ -18,8 +18,6 @@ let Header = React.createClass({
             <Link to='/states' className='white'>States</Link>
             <Link to='/about' className='white'>About</Link>
             <Link to='/contact' className='white'>Contact</Link>
-            <a href='https://api.workelections.com' className='white'>API</a>
-            <a href='https://github.com/developmentseed/work.vote' className='white'>Github</a>
           </div>
         </div>
       </header>
