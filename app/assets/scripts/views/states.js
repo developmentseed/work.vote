@@ -7,7 +7,9 @@ import { Link } from 'react-router';
 import Loader from 'react-loader';
 import Box from '../components/box';
 import Map from '../components/map';
-import { fetchStates, fetchStateJurisdictions } from '../actions/action';
+import State from '../components/state';
+import NotFound from './404';
+import { fetchStates } from '../actions/action';
 
 let States = React.createClass({
   propTypes: {
@@ -27,81 +29,63 @@ let States = React.createClass({
     }
   },
 
-  getStateJurisdictions: function () {
-    if (!_.isUndefined(this.props.params.state_id)) {
-      if (!(this.props.params.state_id in this.props.state_jurisdictions)) {
-        this.props.dispatch(fetchStateJurisdictions(this.getId(this.props.params.state_id)));
-      }
-    }
-  },
-
-  componentDidMount: function () {
+  componentWillMount: function () {
     if (this.props.states.length === 0) {
       this.props.dispatch(fetchStates());
-    }
-    if (this.props.params.state_id) {
-      this.getStateJurisdictions();
-    }
-  },
-
-  componentDidUpdate: function (prevProps) {
-    if (prevProps.params.state_id !== this.props.params.state_id) {
-      this.getStateJurisdictions();
     }
   },
 
   render: function () {
-    let { states, state_jurisdictions } = this.props;
+    let { states } = this.props;
     let list = [];
     let map = '';
+    let header = '';
     let title = 'States';
     let loaded = false;
 
     if (this.props.params.state_id) {
-      if (this.props.params.state_id in state_jurisdictions) {
-        let jurs = state_jurisdictions[this.props.params.state_id];
-        title = jurs[0].state.name + ' Jurisdictions';
-        console.log(title);
-        for (let i in jurs) {
-          let obj = jurs[i];
-          list.push(<div className = 'select-link' key={obj.id}><p key={obj.id}><Link to={`/j/${obj.id}`}>{obj.name}</Link></p></div>);
-        }
+      let id = this.getId(this.props.params.state_id);
+      if (id) {
+        let state = _.find(states, {id: id});
+        return (<State state={state} />);
+      } else {
+        return (<NotFound />);
       }
     } else {
       for (let i in states) {
         let obj = states[i];
         list.push(<Link to={`/states/${obj.id}`}><div className = 'select-link' key={obj.id}><p key={obj.id}>{obj.name}</p></div></Link>);
       }
-      map = <Map />;
-    }
+      map = <Map data={states} />;
 
-    if (list.length > 0) {
-      loaded = true;
-    }
+      if (list.length > 0) {
+        loaded = true;
+      }
 
-    // Results HTML
-    return (
-      <Box>
-        <Loader loaded={loaded}>
-          <div className='results-split-container columns'>
-            <div className = 'large-12 columns text-header'>{title}</div>
-            <hr />
-            {map}
-            <div className = 'state-select'>
-                {list}
+      // Results HTML
+      return (
+        <Box>
+          <Loader loaded={loaded}>
+            <div className='results-split-container columns'>
+              <div className = 'large-12 columns text-header'>{title}</div>
+              {header}
+              <hr />
+              {map}
+              <div className = 'state-select'>
+                  {list}
+              </div>
             </div>
-          </div>
-        </Loader>
-      </Box>
-    );
+          </Loader>
+        </Box>
+      );
+    }
   }
 
 });
 
 function mapStateToProps (state) {
   return {
-    states: state.states,
-    state_jurisdictions: state.state_jurisdictions
+    states: state.states
   };
 }
 
