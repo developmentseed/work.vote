@@ -71,10 +71,9 @@ let Contact = React.createClass({
           <div className='large-6 medium-6 columns'>
             <div className='contact-address'>
               <p>1825 K St. NW Suite 450</p>
-              <p>Washington DC 20006</p>
+              <p>Washington DC, 20006</p>
               <p>(202) 331-1550</p>
               <p>info@fairelectionsnetwork.com</p>
-              <p>www.FairElectionsNetwork.com</p>
             </div>
           </div>
 
