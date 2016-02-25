@@ -48,8 +48,8 @@ let State = React.createClass({
     let loaded = false;
 
     if (!_.isUndefined(state_jurisdictions[state.id])) {
-      if ('count' in state_jurisdictions[state.id]) {
-        let jurs = state_jurisdictions[state.id].results;
+      if (state_jurisdictions[state.id].length > 0) {
+        let jurs = state_jurisdictions[state.id];
         for (let i in jurs) {
           let obj = jurs[i];
           list.push(<div className = 'select-link' key={obj.id}><p key={obj.id}><Link to={`/j/${obj.id}`}>{obj.name}</Link></p></div>);
