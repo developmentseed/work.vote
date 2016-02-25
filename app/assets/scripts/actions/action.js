@@ -60,7 +60,7 @@ export function resetStateJurisdictions () {
 
 export function fetchStateJurisdictions (state_id) {
   return dispatch => {
-    fetchWithPagination(`${config.apiUrl}/jurisdictions/?state_id=${state_id}`, null, function (err, resp, body) {
+    fetchWithPagination(`${config.apiUrl}/jurisdictions/?summary=true&state_id=${state_id}`, null, function (err, resp, body) {
       if (err) {
         console.log(err);
       }
