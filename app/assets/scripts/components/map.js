@@ -1,6 +1,5 @@
 'use strict';
 
-import _ from 'lodash';
 import React from 'react';
 import d3 from 'd3';
 import topojson from 'topojson';
@@ -42,8 +41,10 @@ let MapClass = function (el, states) {
         };
         if (states[i].is_active) {
           self.states[_id].fill = '#a55873' ;
+          self.states[_id].hover = '#d85a7a' ;
         } else if (states[i].pollworker_website !== '') {
           self.states[_id].fill = '#d6a6b7';
+          self.states[_id].hover = '#efacc4' ;
         }
       }
     }
@@ -61,6 +62,12 @@ let MapClass = function (el, states) {
               return self.states[d.id].fill;
             }
           })
+          .style('cursor', function (d) {
+            if (d.id in self.states) {
+              return 'pointer';
+            }
+          })
+          .style('transition', 'fill 0.2s')
           .on('mouseover', self.hover)
           .on('mouseout', self.hoverEnds)
           .on('click', self.click);
@@ -70,12 +77,11 @@ let MapClass = function (el, states) {
         .attr('id', 'state-borders')
         .attr('d', path);
     });
-
   };
 
   self.hover = function (d, i) {
     if (d.id in self.states) {
-      d3.select(this).style('fill', '#394471');
+      d3.select(this).style('fill', self.states[d.id].hover);
     }
   };
 
@@ -83,7 +89,7 @@ let MapClass = function (el, states) {
     if (d.id in self.states) {
       d3.select(this).style('fill', self.states[d.id].fill);
     } else {
-      d3.select(this).style('fill', '#aaa');
+      d3.select(this).style('fill', '#cccccc');
     }
   };
 
