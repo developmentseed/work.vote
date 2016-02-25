@@ -45,7 +45,7 @@ const state_jurisdictions = function (state = {}, action) {
 
   switch (action.type) {
   case 'RECEIVE_STATE_JURISDICTIONS':
-    state[action.data[0].state.id] = action.data;
+    state[action.data.state_id] = action.data;
     break;
   }
 
