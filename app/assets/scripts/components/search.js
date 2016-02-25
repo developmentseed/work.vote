@@ -17,16 +17,27 @@ let Search = React.createClass({
   },
   getSuggestions: function (input, callback) {
     let options = new Set();
-    geo.setAccessToken(config.accessToken);
     callback(null, ['Searching...']);
-    fetch(`${config.apiUrl}/jurisdictions/?search=${input}`, function (err, resp, body) {
+    fetch(`${config.apiUrl}/search/?q=${input}`, function (err, resp, body) {
       if (err) {
         callback(null, ['nothing found!']);
       }
-      let results = JSON.parse(body).results;
+      let results = JSON.parse(body);
       for (let j = 0; j < results.length; j++) {
-        let option = results[j].name + ', ' + results[j].state.alpha;
-        juris[option] = results[j].id;
+        let option = '';
+        let segment = '';
+        if (results[j].type === 'jurisdiction') {
+          option = results[j].name + ', ' + results[j].state_alpha;
+          segment = 'j';
+        } else if (results[j].type === 'state') {
+          option = results[j].name;
+          segment = 'states';
+        }
+
+        juris[option] = {
+          'id': results[j].id,
+          'segment': segment
+        };
         options.add(option);
       }
 
@@ -44,7 +55,7 @@ let Search = React.createClass({
   },
 
   onSuggestionSelected: function (value, event) {
-    this.props.dispatch(routeActions.push(`j/${juris[value]}`));
+    this.props.dispatch(routeActions.push(`${juris[value].segment}/${juris[value].id}`));
   },
 
   render: function () {
@@ -52,7 +63,7 @@ let Search = React.createClass({
       <div>
         <div id='Search-container'>
           <div id='Address-Finder'>
-            <div className='center-text'>Enter your county, zip code, or address</div>
+            <div className='center-text'>Enter your state, county, zip code, or address</div>
             <Autosuggest suggestions={this.getSuggestions} onSuggestionSelected={this.onSuggestionSelected} ref='searchbox'/>
             <p>Work Elections currently covers:</p>
             <p>AZ, CA, FL, NV, NM, OH, VA</p>
