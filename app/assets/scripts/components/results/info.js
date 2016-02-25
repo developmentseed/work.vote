@@ -12,7 +12,7 @@ let Info = React.createClass({
 
   getDefaultProps: function () {
     return {
-      value: null,
+      value: 'More Information',
       url: null
     };
   },
@@ -20,7 +20,7 @@ let Info = React.createClass({
   render: function () {
     if (this.props.url) {
       return (
-        <a href={ checkUrl(this.props.url) }><div className='btn info'>More Information</div></a>
+        <a href={ checkUrl(this.props.url) }><div className='btn info'>{this.props.value}</div></a>
       );
     } else {
       return false;
