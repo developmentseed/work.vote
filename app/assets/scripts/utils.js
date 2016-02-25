@@ -33,7 +33,7 @@ export function fetchWithPagination (url, response = null, callback) {
 
       // if the output is an array, then no pagination is needed
       if (Array.isArray(body)) {
-        callback(err, resp, body.results);
+        callback(err, resp, body);
       } else {
         response = response.concat(body.results);
         if (typeof body.next === 'string') {
