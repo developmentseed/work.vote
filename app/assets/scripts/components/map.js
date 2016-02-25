@@ -4,21 +4,10 @@ import _ from 'lodash';
 import React from 'react';
 import d3 from 'd3';
 import topojson from 'topojson';
-import { shape } from '../utils';
 
 let MapClass = function (el, states) {
   this.$el = d3.select(el);
   let self = this;
-
-  self.states = [];
-  self.states_incomplete = [];
-  for (let i in states) {
-    if (states[i].is_active) {
-      self.states.push(states[i].state_id);
-    } else if (states[i].pollworker_website !== '') {
-      self.states_incomplete.push(states[i].state_id);
-    }
-  }
 
   self.width = parseInt(this.$el.style('width'), 10);
   self.height = (self.width * 5) / 9;
@@ -42,6 +31,23 @@ let MapClass = function (el, states) {
 
     let g = svg.append('g');
 
+    self.states = {};
+    self.states_incomplete = [];
+    for (let i in states) {
+      let _id = states[i].topojson_id;
+
+      if (_id) {
+        self.states[_id] = {
+          'id': states[i].id
+        };
+        if (states[i].is_active) {
+          self.states[_id].fill = '#a55873' ;
+        } else if (states[i].pollworker_website !== '') {
+          self.states[_id].fill = '#d6a6b7';
+        }
+      }
+    }
+
     d3.json('/assets/us.json', function (error, us) {
       if (error) throw error;
       g.append('g')
@@ -51,10 +57,8 @@ let MapClass = function (el, states) {
         .enter().append('path')
           .attr('d', path)
           .style('fill', function (d) {
-            if (self.states.indexOf(d.id) !== -1) {
-              return '#a31e22';
-            } else if (self.states_incomplete.indexOf(d.id) !== -1) {
-              return '#BA6A6D';
+            if (d.id in self.states) {
+              return self.states[d.id].fill;
             }
           })
           .on('mouseover', self.hover)
@@ -66,29 +70,26 @@ let MapClass = function (el, states) {
         .attr('id', 'state-borders')
         .attr('d', path);
     });
+
   };
 
   self.hover = function (d, i) {
-    if (self.states.indexOf(d.id) !== -1) {
-      d3.select(this).style('fill', '#394471');
-    } else if (self.states_incomplete.indexOf(d.id) !== -1) {
+    if (d.id in self.states) {
       d3.select(this).style('fill', '#394471');
     }
   };
 
   self.hoverEnds = function (d) {
-    if (self.states.indexOf(d.id) !== -1) {
-      d3.select(this).style('fill', '#a31e22');
-    } else if (self.states_incomplete.indexOf(d.id) !== -1) {
-      d3.select(this).style('fill', '#BA6A6D');
+    if (d.id in self.states) {
+      d3.select(this).style('fill', self.states[d.id].fill);
     } else {
       d3.select(this).style('fill', '#aaa');
     }
   };
 
   self.click = function (d) {
-    if (self.states.indexOf(d.id) !== -1 || self.states_incomplete.indexOf(d.id) !== -1) {
-      window.location.href = `#/states/${d.id}`;
+    if (d.id in self.states) {
+      window.location.href = `#/states/${self.states[d.id].id}`;
     }
   };
 
