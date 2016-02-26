@@ -150,7 +150,7 @@ let Application = React.createClass({
 
     return (
       <application>
-        <div className='text-header'>Applicaiton</div>
+        <div className='text-header'>Application</div>
 
         <div className={calloutClassError} name='error'>
           <p>{this.state.errorMessage}</p>
