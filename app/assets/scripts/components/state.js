@@ -48,8 +48,8 @@ let State = React.createClass({
     let loaded = false;
 
     if (!_.isUndefined(state_jurisdictions[state.id])) {
-      if ('count' in state_jurisdictions[state.id]) {
-        let jurs = state_jurisdictions[state.id].results;
+      if (state_jurisdictions[state.id].length > 0) {
+        let jurs = state_jurisdictions[state.id];
         for (let i in jurs) {
           let obj = jurs[i];
           list.push(<div className = 'select-link' key={obj.id}><p key={obj.id}><Link to={`/j/${obj.id}`}>{obj.name}</Link></p></div>);
@@ -59,7 +59,7 @@ let State = React.createClass({
       }
     } else if (!state.is_active && state.pollworker_website) {
       list.push(
-        <div className='error-text'>We don't have information about this state!</div>
+        <div className='error-text'>While workelections.com does not have information for each jurisdiction in {state.name}, you may refer to the state’s <a href={state.pollworker_website}>online resources.</a> </div>
       );
     }
 
@@ -71,7 +71,7 @@ let State = React.createClass({
     return (
       <Box>
         <Loader loaded={loaded}>
-          <div className='results-split-container medium-4 columns'>
+          <div className='results-split-container medium-4 columns text-center'>
             <div className='juris-header'>{state.name}</div>
              <div className='county-image'>
               <Shape state_id={state.id} />

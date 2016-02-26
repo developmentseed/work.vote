@@ -45,5 +45,6 @@
 /* Main
    ========================================================================== */
 @import "../../../node_modules/foundation-sites/scss/foundation";
+@import "../../../node_modules/react-select/scss/default";
 @include foundation-everything;
 @import "base";

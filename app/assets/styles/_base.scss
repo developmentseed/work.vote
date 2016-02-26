@@ -672,7 +672,7 @@ h5{
 }
 
 #states {
-  fill: #aaa;
+  fill: #ccc;
 }
 
 .state-shape {
@@ -709,4 +709,10 @@ h5{
     margin-top: 1em;
     margin-bottom: 1em;
   }
+}
+
+.Select-control {
+  border-radius: 0px;
+  border: 1px solid #cacaca;
+  margin: 0px auto 16px auto;
 }

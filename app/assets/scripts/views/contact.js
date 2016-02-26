@@ -1,12 +1,20 @@
 'use strict';
 
-import d3 from 'd3';
 import nets from 'nets';
 import React from 'react';
 import config from '../config';
 import Box from '../components/box';
+import classNames from 'classnames';
 
 let Contact = React.createClass({
+
+  getInitialState: function () {
+    return {
+      formSubmittedSuccess: false,
+      formError: false,
+      submittingForm: false
+    };
+  },
 
   submitForm: function (event) {
     let contact = {
@@ -15,15 +23,16 @@ let Contact = React.createClass({
       comment: this.refs.comment.value
     };
 
-    // Make sure error message is hidden first
-    d3.select(this.refs.error).classed('hide', true);
+    this.setState({submittingForm: true});
 
     if (contact.email === '') {
-      d3.select(this.refs.error).classed('hide', false);
+      this.setState({
+        submittingForm: false,
+        formSubmittedSuccess: false,
+        formError: true
+      });
       return;
     }
-
-    d3.select(this.refs.label).classed('hide', false);
 
     let self = this;
 
@@ -36,23 +45,45 @@ let Contact = React.createClass({
       },
       url: `${config.apiUrl}/contacts/us/`
     }, function (err, resp, body) {
-      d3.select(self.refs.label).classed('hide', true);
-      d3.select(self.refs.messageSent).classed('hide', false);
+      if (err) console.log(err);
+      self.setState({
+        submittingForm: false,
+        formSubmittedSuccess: true,
+        formError: false
+      });
     });
   },
 
   render: function () {
+    let calloutClassSuccess = classNames({
+      'callout': true,
+      'success': true,
+      'hide': !this.state.formSubmittedSuccess
+    });
+
+    let calloutClassError = classNames({
+      'callout': true,
+      'alert': true,
+      'hide': !this.state.formError
+    });
+
+    let submitLabel = classNames({
+      'warning': true,
+      'label': true,
+      'hide': !this.state.submittingForm
+    });
+
     return (
       <Box>
         <div className='results-split-container'>
           <div className='large-12 columns text-header'>Contact Form</div>
           <hr />
 
-          <div className='callout success hide' ref='messageSent'>
+          <div className={calloutClassSuccess} >
             <p>Your message was sent. Thank you!</p>
           </div>
 
-          <div className='callout alert hide' ref='error'>
+          <div className={calloutClassError} ref='error'>
             <p>You must provide either your email address!</p>
           </div>
 
@@ -64,17 +95,16 @@ let Contact = React.createClass({
               <input className='form__control' type='text' placeholder='Email' ref='email' />
               <div className='large-12 columns contact-questions'>Comment or Questions</div>
               <textarea className='form__control' type='text' placeholder='Type Here' ref='comment' />
-              <div className='btn' onClick={this.submitForm}>Submit</div>   <span className='warning label hide' ref='label'>Sending... Please wait!</span>
+              <div className='btn' onClick={this.submitForm}>Submit</div>   <span className={submitLabel} ref='label'>Sending... Please wait!</span>
             </div>
           </div>
 
           <div className='large-6 medium-6 columns'>
             <div className='contact-address'>
               <p>1825 K St. NW Suite 450</p>
-              <p>Washington DC 20006</p>
+              <p>Washington DC, 20006</p>
               <p>(202) 331-1550</p>
               <p>info@fairelectionsnetwork.com</p>
-              <p>www.FairElectionsNetwork.com</p>
             </div>
           </div>
 

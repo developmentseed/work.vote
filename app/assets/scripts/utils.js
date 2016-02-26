@@ -1,5 +1,6 @@
 'use strict';
 
+import _ from 'lodash';
 import d3 from 'd3';
 import nets from 'nets';
 
@@ -17,6 +18,35 @@ export function fetch (url, callback) {
     callback(err, resp, body);
   });
 };
+
+export function fetchWithPagination (url, response = null, callback) {
+  if (_.isNull(response)) {
+    response = [];
+  }
+
+  fetch(url, function (err, resp, body) {
+    if (err) {
+      throw err;
+    }
+    if (resp.statusCode === 200) {
+      body = JSON.parse(body);
+
+      // if the output is an array, then no pagination is needed
+      if (Array.isArray(body)) {
+        callback(err, resp, body);
+      } else {
+        response = response.concat(body.results);
+        if (typeof body.next === 'string') {
+          fetchWithPagination(body.next, response, callback);
+        } else {
+          callback(err, resp, response);
+        }
+      }
+    } else {
+      throw 'Received a status code other than 200';
+    }
+  });
+}
 
 export function checkUrl (url) {
   let myRe = /(http:\/\/|https:\/\/)/;
@@ -66,6 +96,6 @@ export function shape (el, geojson) {
 
   vis.selectAll('path').data([geojson]).enter().append('path')
     .attr('d', path)
-    .style('fill', '#a5a5a5')
+    .style('fill', '#ccc')
     .style('stroke-width', '1');
 };

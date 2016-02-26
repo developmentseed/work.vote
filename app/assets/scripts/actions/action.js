@@ -1,7 +1,7 @@
 'use strict';
 
 import config from '../config.js';
-import { fetch } from '../utils';
+import { fetch, fetchWithPagination } from '../utils';
 
 export function receiveJurisdiction (jurisdiction) {
   return { type: 'RECEIVE_JURISDICTION', data: jurisdiction };
@@ -60,14 +60,13 @@ export function resetStateJurisdictions () {
 
 export function fetchStateJurisdictions (state_id) {
   return dispatch => {
-    fetch(`${config.apiUrl}/jurisdictions/?state_id=${state_id}`, function (err, resp, body) {
+    fetchWithPagination(`${config.apiUrl}/jurisdictions/?summary=true&state_id=${state_id}`, null, function (err, resp, body) {
       if (err) {
         console.log(err);
       }
       if (resp.statusCode === 200) {
-        let b = JSON.parse(body);
-        b.state_id = state_id;
-        dispatch(receiveStateJurisdictions(b));
+        body.state_id = state_id;
+        dispatch(receiveStateJurisdictions(body));
       }
     });
   };
