@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import nets from 'nets';
 import React from 'react';
+import validator from 'email-validator';
 import config from '../config';
 import classNames from 'classnames';
 var Select = require('react-select');
@@ -24,7 +25,7 @@ let Application = React.createClass({
     return {
       formError: false,
       submittingForm: false,
-      missingFields: null
+      errorMessage: null
     };
   },
 
@@ -60,7 +61,16 @@ let Application = React.createClass({
       this.setState({
         submittingForm: false,
         formError: true,
-        missingFields: missingFields.join(', ')
+        errorMessage: 'These required fields are missing: ' + missingFields.join(', ')
+      });
+      return;
+    }
+
+    if (!validator.validate(values['email'])) {
+      this.setState({
+        submittingForm: false,
+        formError: true,
+        errorMessage: 'Inavlid email provided. Please provided a valid email address.'
       });
       return;
     }
@@ -143,7 +153,7 @@ let Application = React.createClass({
         <div className='text-header'>Applicaiton</div>
 
         <div className={calloutClassError} name='error'>
-          <p>These required fields are missing: {this.state.missingFields}</p>
+          <p>{this.state.errorMessage}</p>
         </div>
 
         <p><em>This application generates an email that is sent to the local election official for your city or county. Workelections.com does not retain your personal information. Only the answers to the last three questions on this form are retained for internal use only.</em></p>

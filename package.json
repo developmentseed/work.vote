@@ -73,6 +73,7 @@
   "dependencies": {
     "classnames": "^2.2.3",
     "d3": "^3.5.14",
+    "email-validator": "^1.0.4",
     "foundation-sites": "^6.0.6",
     "history": "^1.13.1",
     "immutable": "^3.7.6",
