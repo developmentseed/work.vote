@@ -188,9 +188,6 @@ let Application = React.createClass({
           <input type='text' name='phone' placeholder='Phone' />
         </label>
 
-        <hr />
-        <p><em>Your answers below will be retained by workelections.com for internal use only.</em></p>
-
         <label>What is your age?
           <Select
               name='age'
