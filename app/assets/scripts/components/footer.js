@@ -13,7 +13,7 @@ let Footer = React.createClass({
           <div className='row'>
             <div className='large-6 columns footer-items footer-msg'>
               <h5>Work Elections Compiles Poll Worker Requirements and Applications</h5>
-              <h5><p>This nonpartisan project has collected poll worker information and applications for hundreds of counties and jurisdictions, making it easy for local election officials and potential workers to connect.</p></h5>
+              <h5><p>This nonpartisan project has collected poll worker information and applications for hundreds of counties and other jurisdictions, making it easy for local election officials and potential workers to connect.</p></h5>
             </div>
             <div className='large-6 columns footer-items footer-partners'>
               <h5>This project is led by the following partners:</h5>
