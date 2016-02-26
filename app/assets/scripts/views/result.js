@@ -24,7 +24,7 @@ let Result = React.createClass({
 
   getInitialState: function () {
     return {
-      applicationIsShown: true,
+      applicationIsShown: false,
       applicaitonIsSubmitted: false
     };
   },
