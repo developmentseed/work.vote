@@ -23,12 +23,22 @@ let Result = React.createClass({
   },
 
   getInitialState: function () {
-    return {applicationIsShown: true};
+    return {
+      applicationIsShown: true,
+      applicaitonIsSubmitted: false
+    };
   },
 
   showApplication: function (event) {
     event.preventDefault();
     this.setState({applicationIsShown: true});
+  },
+
+  onSubmit: function () {
+    this.setState({
+      applicaitonIsSubmitted: true,
+      applicationIsShown: false
+    });
   },
 
   componentDidMount: function () {
@@ -63,11 +73,21 @@ let Result = React.createClass({
 
     if (this.state.applicationIsShown) {
       secondColumn = (
-          <Application jurisdiction_id={jurisdiction.id} />
+          <Application jurisdiction_id={jurisdiction.id} onSubmit={this.onSubmit} />
       );
     } else {
+      let message;
+      if (this.state.applicaitonIsSubmitted) {
+        message = (
+          <div className='callout success' >
+            <p>Your application was submitted. Thank you!</p>
+          </div>
+        );
+      }
+
       secondColumn = (
         <div>
+          {message}
           <div className='text-header'>Registration Requirements</div>
           <ul>
             <Cond value={jurisdiction.registration_status}>

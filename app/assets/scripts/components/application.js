@@ -10,7 +10,8 @@ var Select = require('react-select');
 let Application = React.createClass({
 
   propTypes: {
-    jurisdiction_id: React.PropTypes.number
+    jurisdiction_id: React.PropTypes.number,
+    onSubmit: React.PropTypes.func
   },
 
   getDefaultProps: function () {
@@ -21,7 +22,6 @@ let Application = React.createClass({
 
   getInitialState: function () {
     return {
-      formSubmittedSuccess: false,
       formError: false,
       submittingForm: false,
       missingFields: null
@@ -57,7 +57,6 @@ let Application = React.createClass({
     if (missingFields.length > 0) {
       this.setState({
         submittingForm: false,
-        formSubmittedSuccess: false,
         formError: true,
         missingFields: missingFields.join(', ')
       });
@@ -80,19 +79,14 @@ let Application = React.createClass({
       if (err) console.log(err);
       self.setState({
         submittingForm: false,
-        formSubmittedSuccess: true,
         formError: false
       });
+
+      self.props.onSubmit();
     });
   },
 
   render: function () {
-    let calloutClassSuccess = classNames({
-      'callout': true,
-      'success': true,
-      'hide': !this.state.formSubmittedSuccess
-    });
-
     let calloutClassError = classNames({
       'callout': true,
       'alert': true,
@@ -146,10 +140,6 @@ let Application = React.createClass({
       <application>
         <div className='text-header'>Applicaiton</div>
 
-        <div className={calloutClassSuccess} >
-          <p>Your message was sent. Thank you!</p>
-        </div>
-
         <div className={calloutClassError} name='error'>
           <p>These required fields are missing: {this.state.missingFields}</p>
         </div>
@@ -186,9 +176,8 @@ let Application = React.createClass({
           <input type='text' name='phone' placeholder='Phone' />
         </label>
 
-        <div className='callout success'>
-          <p>Your answers below will be retained by workelections.com for internal use only.</p>
-        </div>
+        <hr />
+        <p><em>Your answers below will be retained by workelections.com for internal use only.</em></p>
 
         <label>What is your age?
           <Select
