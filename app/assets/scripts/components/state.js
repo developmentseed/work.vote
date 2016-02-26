@@ -74,7 +74,7 @@ let State = React.createClass({
           <div className='results-split-container medium-4 columns text-center'>
             <div className='juris-header'>{state.name}</div>
              <div className='county-image'>
-              <Shape state_id={state.id} />
+              <Shape state_id={state.topojson_id} />
             </div>
             <MoreInfo url={state.pollworker_website} value='State Poll Workers website' />
           </div>
