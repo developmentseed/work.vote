@@ -29,6 +29,8 @@ let Application = React.createClass({
   },
 
   submitForm: function (event) {
+    window.scrollTo(0, 0);
+
     let missingFields = [];
 
     let values = {
