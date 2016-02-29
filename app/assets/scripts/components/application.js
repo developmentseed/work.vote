@@ -79,7 +79,7 @@ let Application = React.createClass({
 
     let self = this;
 
-    nets({
+    var request = nets({
       method: 'post',
       body: JSON.stringify(values),
       headers: {
@@ -89,12 +89,22 @@ let Application = React.createClass({
       url: `${config.apiUrl}/contacts/survey/`
     }, function (err, resp, body) {
       if (err) console.log(err);
-      self.setState({
-        submittingForm: false,
-        formError: false
-      });
 
-      self.props.onSubmit();
+      if (resp.statusCode === 200) {
+        self.setState({
+          submittingForm: false,
+          formError: false
+        });
+
+        self.props.onSubmit();
+      } else {
+        self.setState({
+          submittingForm: false,
+          formError: true,
+          errorMessage: 'An unexpected error occurred while submitting the form. Please try again!'
+        });
+        return;
+      }
     });
   },
 
