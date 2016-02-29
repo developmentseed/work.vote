@@ -172,7 +172,7 @@ let Result = React.createClass({
             <div className='county-image'>
               <img src={image}></img>
             </div>
-              <MoreInfo url={jurisdiction.website} value={jurisdiction.name} />
+              <MoreInfo url={jurisdiction.website} />
               <br />
               <Apply url={jurisdiction.application} email={jurisdiction.email} click={this.showApplication} />
 

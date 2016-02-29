@@ -12,7 +12,7 @@ let Info = React.createClass({
 
   getDefaultProps: function () {
     return {
-      value: 'More Information',
+      value: 'Poll Worker Information',
       url: null
     };
   },
