@@ -156,7 +156,7 @@ let Application = React.createClass({
           <p>{this.state.errorMessage}</p>
         </div>
 
-        <p><em>This application generates an email that is sent to the local election official for your city or county. Workelections.com does not retain your personal information. Only the answers to the last three questions on this form are retained for internal use only.</em></p>
+        <p><em>This application generates an email that is sent to the local election official for your city or county. Workelections.com does not retain your personal information.</em></p>
 
         <label>
           First Name:<span className='red'>*</span>
