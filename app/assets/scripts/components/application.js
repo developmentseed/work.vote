@@ -79,14 +79,14 @@ let Application = React.createClass({
 
     let self = this;
 
-    var request = nets({
+    nets({
       method: 'post',
       body: JSON.stringify(values),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      url: `${config.apiUrl}/contacts/survey/`
+      url: `${config.apiUrl}/contacts/application/`
     }, function (err, resp, body) {
       if (err) console.log(err);
 
