@@ -50,6 +50,23 @@ h1{
   display: inline-block;
 }
 
+a{
+  transition: color 0.2s;
+  color: $dred;
+}
+
+a:hover{
+  color: $hlred;
+}
+
+a:active{
+  color: $hlred;
+}
+
+a:focus{
+  color: $hlred;
+}
+
 /*163, 30, 34*/
 
 .white {
@@ -135,7 +152,7 @@ h1{
     width: 550px;
    }
   @media screen and (max-width: 500px){
-    height: 50px;
+    height: 26px;
     a{
       padding: 2px 0px;
     }
@@ -249,7 +266,7 @@ h1{
   border-radius: 10px;
 /*  box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
   background-color: $lblue;*/
-  max-width: 300px;
+  max-width: 340px;
   height: 116px;
   padding-top: 16px;
   margin-left: auto;
@@ -258,6 +275,7 @@ h1{
   p{
   padding-left: 7px;
   margin:0;
+  clear: both;
   }
 }
 
@@ -299,6 +317,7 @@ h1{
     width: 240px;
     height: 30px;
     padding: 0px;
+    float:left;
     font-size: $font-size;
     border: 1px solid $border-color;
     border-radius: $border-radius;
@@ -313,11 +332,11 @@ h1{
 
   &__suggestions {
     position: absolute;
-    top: 34px;
-    width: 241px;
+    top: 44px;
+    width: 250px;
     max-height: 300px;
     overflow: auto;
-    left: 29px;
+    left: 10px;
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -436,7 +455,7 @@ h1{
 .results-sub-container{
   margin-top: 15px;
   margin-bottom: 10px;
-  padding:10px 0px 10px 20px;
+  padding:10px 0px 2em 20px;
   background-color: white;
   box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
   height: auto;
