@@ -121,43 +121,6 @@ let Application = React.createClass({
       'hide': !this.state.submittingForm
     });
 
-    let ageOptions = [
-        { value: 0, label: '16 to 18' },
-        { value: 1, label: '19 to 25' },
-        { value: 2, label: '26 to 35' },
-        { value: 3, label: '36 to 50' },
-        { value: 4, label: '51 to 50' },
-        { value: 5, label: '65 and older' }
-    ];
-
-    let languageOptions = [
-      { value: 'Arabic', label: 'Arabic' },
-      { value: 'Bengali', label: 'Bengali' },
-      { value: 'Cantonese', label: 'Cantonese' },
-      { value: 'Hopi', label: 'Hopi' },
-      { value: 'Hindi', label: 'Hindi' },
-      { value: 'Japanese', label: 'Japanese' },
-      { value: 'Korean', label: 'Korean' },
-      { value: 'Navajo', label: 'Navajo' },
-      { value: 'O\'odham', label: 'O\'odham' },
-      { value: 'Persian', label: 'Persian' },
-      { value: 'Quechan/Yumac', label: 'Quechan/Yuma' },
-      { value: 'Spanish', label: 'Spanish' },
-      { value: 'Tagalog', label: 'Tagalog' },
-      { value: 'Vietnamese', label: 'Vietnamese' },
-      { value: 'Yaqui', label: 'Yaqui' },
-      { value: 'Zuni', label: 'Zuni' }
-    ];
-
-    let i = 1;
-    let technologyOptions = [];
-    while (i < 11) {
-      technologyOptions.push({
-        value: i, label: i.toString()
-      });
-      i++;
-    }
-
     return (
       <application>
         <div className='text-header'>Application</div>
@@ -201,14 +164,14 @@ let Application = React.createClass({
         <label>What is your age?
           <Select
               name='age'
-              options={ageOptions}
+              options={config.ageOptions}
           />
         </label>
 
         <label>What languages do you speak other than English?
           <Select
               name='languages'
-              options={languageOptions}
+              options={config.languageOptions}
               multi
           />
         </label>
@@ -217,7 +180,7 @@ let Application = React.createClass({
           How familiar are you with working with computer technology on a scale of 1 to 10?
           <Select
               name='technology'
-              options={technologyOptions}
+              options={config.technologyOptions}
           />
         </label>
 
