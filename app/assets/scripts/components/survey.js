@@ -120,7 +120,7 @@ let Survey = React.createClass({
     return (<survey>
       <div className='hide' ref='surveyButton' onClick={this.startSurvey}>
         <div className='close' onClick={this.close.bind(null, 'surveyButton')}>x</div>
-        Help us build a better website by responding to a quick survey >
+        Help us build a better website by responding to a quick survey &rarr;
       </div>
 
       <div id='myModal' className='modal' ref='surveyModal'>
@@ -133,14 +133,20 @@ let Survey = React.createClass({
               <p>{this.state.errorMessage}</p>
             </div>
 
-            <label>What is your age?<span className='red'>*</span>
+            <label>
+              <div className = 'Survey-Q'>
+                What is your age?<span className='red'>*</span>
+              </div>
               <Select
                   name='survey-age'
                   options={config.ageOptions}
               />
             </label>
 
-            <label>What languages do you speak other than English?<span className='red'>*</span>
+            <label>
+              <div className = 'Survey-Q'>
+                What languages do you speak other than English?<span className='red'>*</span>
+              </div>
               <Select
                   name='survey-languages'
                   options={config.languageOptions}
@@ -149,7 +155,9 @@ let Survey = React.createClass({
             </label>
 
             <label>
-              How familiar are you with working with computer technology on a scale of 1 to 10?<span className='red'>*</span>
+              <div className = 'Survey-Q'>
+                How familiar are you with working with computer technology on a scale of 1 to 10?<span className='red'>*</span>
+              </div>
               <Select
                   name='survey-technology'
                   options={config.technologyOptions}
