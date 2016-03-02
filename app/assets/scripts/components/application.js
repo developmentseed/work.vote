@@ -177,7 +177,7 @@ let Application = React.createClass({
         </label>
 
         <label>
-          How familiar are you with working with computer technology on a scale of 1 to 10?
+          How familiar are you with working with computer technology on a scale of 1 to 5?
           <Select
               name='technology'
               options={config.technologyOptions}

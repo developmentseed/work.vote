@@ -206,7 +206,7 @@ let Survey = React.createClass({
 
             <label>
               <div className='Survey-Q'>
-                How familiar are you with working with computer technology on a scale of 1 to 10?<span className='red'>*</span>
+                How familiar are you with working with computer technology on a scale of 1 to 5?<span className='red'>*</span>
               </div>
               <Select
                   name='survey-technology'
