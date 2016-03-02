@@ -10,3 +10,6 @@
 
 
 /* Team */
+Alireza J
+Lauren Jacobson
+Dylan Moriarty

@@ -1,8 +1,10 @@
 'use strict';
 
 import React from 'react';
+import Survey from './survey';
 
 let Footer = React.createClass({
+
   render: function () {
     return (
 
@@ -28,6 +30,7 @@ let Footer = React.createClass({
             <p>Disclaimer:  The site compiles the most up-to-date and accurate information directly from local elections officials and/or their public information sites. This information is being provided as a public service and the sponsoring organizations should not be held responsible for any inaccuracies in the information. Work Elections is a non-profit and is not affiliated in any way with any governmental office or agency.</p>
           </div>
         </div>
+        <Survey />
       </footer>
     );
   }

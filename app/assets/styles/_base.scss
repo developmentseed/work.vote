@@ -50,6 +50,23 @@ h1{
   display: inline-block;
 }
 
+a{
+  transition: color 0.2s;
+  color: $dred;
+}
+
+a:hover{
+  color: $hlred;
+}
+
+a:active{
+  color: $hlred;
+}
+
+a:focus{
+  color: $hlred;
+}
+
 /*163, 30, 34*/
 
 .white {
@@ -135,7 +152,7 @@ h1{
     width: 550px;
    }
   @media screen and (max-width: 500px){
-    height: 50px;
+    height: 26px;
     a{
       padding: 2px 0px;
     }
@@ -249,7 +266,7 @@ h1{
   border-radius: 10px;
 /*  box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
   background-color: $lblue;*/
-  max-width: 300px;
+  max-width: 340px;
   height: 116px;
   padding-top: 16px;
   margin-left: auto;
@@ -258,6 +275,7 @@ h1{
   p{
   padding-left: 7px;
   margin:0;
+  clear: both;
   }
 }
 
@@ -299,6 +317,7 @@ h1{
     width: 240px;
     height: 30px;
     padding: 0px;
+    float:left;
     font-size: $font-size;
     border: 1px solid $border-color;
     border-radius: $border-radius;
@@ -313,11 +332,11 @@ h1{
 
   &__suggestions {
     position: absolute;
-    top: 34px;
-    width: 241px;
+    top: 44px;
+    width: 250px;
     max-height: 300px;
     overflow: auto;
-    left: 29px;
+    left: 10px;
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -436,7 +455,7 @@ h1{
 .results-sub-container{
   margin-top: 15px;
   margin-bottom: 10px;
-  padding:10px 0px 10px 20px;
+  padding:10px 0px 2em 20px;
   background-color: white;
   box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
   height: auto;
@@ -700,6 +719,7 @@ h5{
 
 .red {
   color: #FF0000;
+  font-size: 0.8em;
 }
 
 .pollworker-block{
@@ -715,4 +735,119 @@ h5{
   border-radius: 0px;
   border: 1px solid #cacaca;
   margin: 0px auto 16px auto;
+}
+
+.survey-button {
+  bottom: 50px;
+  right: 35px;
+  position: fixed;
+  background-color: rgba( 255,255,255,0.9);
+  background-clip: border-box;
+  background-origin: padding-box;
+  background-size: auto;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: #686868;
+  display: block;
+  transition-duration: 0.2s;
+  padding: 12px 25px 15px 15px;
+  z-index: 99;
+  width: 200px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.survey-button:hover {
+  background-color: rgba( 255,255,255,1);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInRight {
+  animation-name: slideInRight;
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(150%, 0, 0);
+  }
+}
+
+.slideOutRight {
+  animation-name: slideOutRight;
+}
+
+.modal {
+    // display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 20; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 100px auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px; /* Could be more or less, depending on screen size */
+    position: relative;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media only screen and (max-width: 800px) {
+  .modal-content {
+    width: 80%;
+  }
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    float: right;
+    z-index: 2;
+    color: #aaa;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.Survey-Q{
+  margin-bottom: 0.75em;
+  line-height: 1.5em;
 }
