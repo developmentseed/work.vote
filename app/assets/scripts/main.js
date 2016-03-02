@@ -16,9 +16,7 @@ import Page from './views/page';
 import Result from './views/result';
 import States from './views/states';
 import Frontpage from './views/frontpage';
-import About from './views/about';
 import Contact from './views/contact';
-import PollWorker from './views/pollworker';
 import Empty from './views/404';
 
 const history = useRouterHistory(createHashHistory)({ queryKey: false });
