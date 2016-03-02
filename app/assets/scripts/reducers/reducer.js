@@ -32,9 +32,18 @@ const jurisdiction = function (state = initJurisdiction, action) {
 const pages = function (page = {}, action) {
   page = _.cloneDeep(page);
 
+  if (_.isUndefined(page[action.slug])) {
+    page[action.slug] = {};
+  }
+
   switch (action.type) {
   case 'RECEIVE_PAGES':
-    page[action.data.slug] = action.data;
+    page[action.slug] = _.merge(page[action.slug], action.data);
+    page[action.slug].notFound = false;
+    break;
+  case 'NOTFOUND_PAGE':
+    page[action.slug].notFound = true;
+    break;
   }
 
   return page;

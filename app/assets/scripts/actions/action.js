@@ -58,19 +58,26 @@ export function resetStateJurisdictions () {
   return { type: 'RESET_STATE_JURISDICTIONS' };
 };
 
-export function receivePages (page) {
-  return { type: 'RECEIVE_PAGES', data: page};
+export function receivePages (slug, page) {
+  return { type: 'RECEIVE_PAGES', data: page, slug: slug};
+};
+
+export function notFoundPage (slug) {
+  return { type: 'NOTFOUND_PAGE', slug: slug};
 };
 
 export function fetchPage (slug) {
   return dispatch => {
-    fetch(`${config.apiUrl}/pages/${slug}`, function (err, resp, body) {
+    fetch(`${config.apiUrl}/pages/${slug}/`, function (err, resp, body) {
       if (err) {
         console.log(err);
+        return dispatch(notFoundPage(slug));
       }
       if (resp.statusCode === 200) {
         let b = JSON.parse(body);
-        dispatch(receivePages(b));
+        dispatch(receivePages(slug, b));
+      } else {
+        dispatch(notFoundPage(slug));
       }
     });
   };

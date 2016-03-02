@@ -12,6 +12,7 @@ import reducer from './reducers/reducer';
 
 // Views
 import App from './views/app';
+import Page from './views/page';
 import Result from './views/result';
 import States from './views/states';
 import Frontpage from './views/frontpage';
@@ -34,10 +35,9 @@ ReactDOM.render(
     <Router history={history}>
       <Route path='/' component={App}>
         <Route path='j(/:jurisdiction_id)' component={Result} />
-        <Route path='about' component={About} />
+        <Route path='p(/:slug)' component={Page} />
         <Route path='contact' component={Contact} />
         <Route path='states(/:state_id)' component={States} />
-        <Route path='pollworker' component={PollWorker} />
         <Route path='*' component={Empty}/>
         <IndexRoute component={Frontpage} />
       </Route>
