@@ -60,7 +60,7 @@ let Survey = React.createClass({
     let self = this;
 
     // shortcut for forcing the survey popup to show
-    keymaster('ctrl+r', function () {
+    keymaster('alt+r', function () {
       self.loadSurveyButton();
     });
 
