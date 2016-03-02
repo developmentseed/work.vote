@@ -29,7 +29,7 @@ defaultsDeep(config, configurations.production);
 
 let i = 1;
 let technologyOptions = [];
-while (i < 11) {
+while (i < 6) {
   technologyOptions.push({
     value: i, label: i.toString()
   });
