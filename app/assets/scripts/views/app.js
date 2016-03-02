@@ -1,14 +1,16 @@
+'use strict';
+
 import React from 'react';
-import ReactDOM from 'react-dom';
-import config from '../config';
 
 // components
-import Header from './header';
-import Footer from './footer';
-import Frontpage from './frontpage';
-import Result from './result'
+import Header from '../components/header';
+import Footer from '../components/footer';
 
 let App = React.createClass({
+
+  propTypes: {
+    children: React.PropTypes.object
+  },
 
   getInitialState: function () {
     return {
@@ -24,7 +26,7 @@ let App = React.createClass({
           <div className='small-12 columns'>
             <Header />
             <br />
-            {this.props.children || <Frontpage />}
+            {this.props.children}
           </div>
         </div>
         <Footer />

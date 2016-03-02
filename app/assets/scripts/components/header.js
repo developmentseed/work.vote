@@ -1,33 +1,29 @@
-import React from 'react';
-import { connect } from 'react-redux';
+'use stict';
 
+import React from 'react';
+import { Link } from 'react-router';
 
 let Header = React.createClass({
   render: function () {
-    console.log(this.props);
     return (
       <header>
-        <div className='row header-padding'>
-          <div className='small-12 small-centered columns text-center white'><h1>Work the Election</h1></div>
+        <div className='header-block'></div>
+        <div className='header-tinyblock'></div>
+        <div className='header-title white'>
+          <Link to='/'><img src='./assets/graphics/layout/us.svg'></img> Work Elections</Link>
         </div>
-        <div className='row header-padding'>
-          <div className='small-3 columns text-center white'>Country Finder</div>
-          <div className='small-3 columns text-center white'>Work Summary</div>
-          <div className='small-3 columns text-center white'>Get Involved</div>
-          <div className='small-3 columns text-center white'>About</div>
+        <div className='header-links'>
+          <div className='row header-padding'>
+            <Link to='p/pollworker' className='white'>What is a Poll Worker?</Link>
+            <Link to='/states' className='white'>States</Link>
+            <Link to='p/about' className='white'>About</Link>
+            <Link to='/contact' className='white'>Contact</Link>
+          </div>
         </div>
       </header>
     );
-  },
+  }
 });
 
-function mapStateToProps (state) {
-  return {
-    name: state.frontpage.name
-  };
-}
-
-export default connect(
-  mapStateToProps
-)(Header);
+export default Header;
 
