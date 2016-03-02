@@ -29,6 +29,17 @@ const jurisdiction = function (state = initJurisdiction, action) {
   return state;
 };
 
+const pages = function (page = {}, action) {
+  page = _.cloneDeep(page);
+
+  switch (action.type) {
+  case 'RECEIVE_PAGES':
+    page[action.data.slug] = action.data;
+  }
+
+  return page;
+};
+
 const states = function (state = [], action) {
   state = _.cloneDeep(state);
 
@@ -55,6 +66,7 @@ const state_jurisdictions = function (state = {}, action) {
 export default combineReducers({
   jurisdiction,
   states,
+  pages,
   state_jurisdictions,
   routing: routeReducer
 });
