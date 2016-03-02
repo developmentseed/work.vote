@@ -25,8 +25,8 @@ let Survey = React.createClass({
 
   startSurvey: function (event) {
     this.setState({
-      'showSurveyButton': false,
-      'showModal': true
+      showSurveyButton: false,
+      showModal: true
     });
   },
 
@@ -51,8 +51,8 @@ let Survey = React.createClass({
   loadSurveyButton: function () {
     this.counter++;
     this.setState({
-      'showSurveyButton': true,
-      'showModal': false
+      showSurveyButton: true,
+      showModal: false
     });
   },
 
@@ -65,7 +65,7 @@ let Survey = React.createClass({
     });
 
     setTimeout(function () {
-      let re = new RegExp('(?:(?:^|.*;\\s*)' + this.cookieVariable + '\\s*\\=\\s*([^;]*).*$)|^.*$');
+      let re = new RegExp('(?:(?:^|.*;\\s*)' + self.cookieVariable + '\\s*\\=\\s*([^;]*).*$)|^.*$');
       var cookieValue = document.cookie.replace(re, '$1');
       if (cookieValue !== 'true') {
         self.loadSurveyButton();
@@ -125,10 +125,11 @@ let Survey = React.createClass({
       if (resp.statusCode === 200) {
         self.setState({
           submittingForm: false,
-          formError: false
+          formError: false,
+          showModal: false
         });
 
-        this.noMoreSurvey();
+        self.noMoreSurvey();
       } else {
         self.setState({
           submittingForm: false,
@@ -142,28 +143,28 @@ let Survey = React.createClass({
 
   render: function () {
     let modalClass = classNames({
-      'modal': this.state.showModal,
-      'hide': !this.state.showModal
+      modal: this.state.showModal,
+      hide: !this.state.showModal
     });
 
     let surveyButtonClass = classNames({
-      'hide': this.counter === 0,
+      hide: this.counter === 0,
       'survey-button': true,
-      'animated': true,
-      'slideInRight': this.state.showSurveyButton,
-      'slideOutRight': !this.state.showSurveyButton
+      animated: true,
+      slideInRight: this.state.showSurveyButton,
+      slideOutRight: !this.state.showSurveyButton
     });
 
     let calloutClassError = classNames({
-      'callout': true,
-      'alert': true,
-      'hide': !this.state.formError
+      callout: true,
+      alert: true,
+      hide: !this.state.formError
     });
 
     let submitLabel = classNames({
-      'warning': true,
-      'label': true,
-      'hide': !this.state.submittingForm
+      warning: true,
+      label: true,
+      hide: !this.state.submittingForm
     });
 
     return (<survey>
