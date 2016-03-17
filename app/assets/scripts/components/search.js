@@ -63,7 +63,7 @@ let Search = React.createClass({
       <div>
         <div id='Search-container'>
           <div id='Address-Finder'>
-            <div className='center-text'>Enter your state, county, zip code, or address</div>
+            <div className='search-label'>Enter your state, county, city, zip code or address</div>
             <Autosuggest suggestions={this.getSuggestions} onSuggestionSelected={this.onSuggestionSelected} ref='searchbox'/>
             <p>Work Elections currently covers:</p>
             <p>AZ, CA, FL, NV, NM, OH, VA</p>
