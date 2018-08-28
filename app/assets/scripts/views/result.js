@@ -52,11 +52,10 @@ let Result = React.createClass({
   },
 
   render: function () {
-    let { jurisdiction, notFound, display } = this.props;
+    let { jurisdiction, notFound} = this.props;
     let loaded = false;
     let image = null;
     let secondColumn;
-
     if (!_.isEmpty(jurisdiction)) {
       loaded = true;
     }
@@ -85,8 +84,7 @@ let Result = React.createClass({
           </div>
         );
       }
-
-      if (display == 'Y') {
+      if (jurisdiction.display == 'Y') {
         secondColumn = (
           <div>
             {message}
