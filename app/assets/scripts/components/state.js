@@ -63,6 +63,10 @@ let State = React.createClass({
       list.push(
         <div className='error-text'>While workelections.com does not have information for each jurisdiction in {state.name}, you may refer to the state’s <a href={state.pollworker_website}>online resources.</a> </div>
       );
+    } else if (!state.is_active){
+      list.push(
+        <div className='error-text'>Sorry, Workelections.com does not have information for each jurisdiction in {state.name}.</div>
+      );
     }
 
     if (state.id !== 0 && (list.length > 0)) {
