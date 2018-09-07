@@ -2,7 +2,7 @@
 
 import React from 'react';
 import d3 from 'd3';
-import topojson from 'topojson';
+const topojson = require('topojson');
 
 let MapClass = function (el, states) {
   this.$el = d3.select(el);
@@ -49,7 +49,7 @@ let MapClass = function (el, states) {
       }
     }
 
-    d3.json('/assets/us.json', function (error, us) {
+    d3.json('../../assets/us.json', function (error, us) {
       if (error) throw error;
       g.append('g')
         .attr('id', 'states')

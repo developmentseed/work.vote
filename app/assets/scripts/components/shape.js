@@ -2,7 +2,7 @@
 
 import React from 'react';
 import d3 from 'd3';
-import topojson from 'topojson';
+const topojson = require('topojson');
 import { shape } from '../utils';
 
 let Shape = React.createClass({
