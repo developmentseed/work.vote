@@ -158,7 +158,7 @@ let Result = React.createClass({
             </ul>
 
             <div className='text-header'>Further Notes</div>
-            <p></p>
+            <p>{jurisdiction.further_notes}</p>
           </div>
         );
       }
