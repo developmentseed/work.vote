@@ -27,3 +27,7 @@ The site will automatically refresh since it is bundled with livereload.
 ### Build 
 
      $ yarn build 
+
+### Deployment
+
+`master` branch is automatically deployed to gh-pages.
