@@ -7,9 +7,16 @@ jobs:
     working_directory: ~/project
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - project-{{ checksum "package.json" }}
       - run:
           name: Install 
           command: yarn 
+      - save_cache:
+          key: project-{{ checksum "package.json" }}
+          paths:
+            - ~/project/node_modules
       - run:
           name: Build 
           command: yarn build
@@ -19,7 +26,7 @@ jobs:
       - run:
           name: Build and Deploy to Heroku
           command: |
-            if [[  "$CIRCLE_BRANCH" == 'new_api_changes' ]]; then
+            if [[  "$CIRCLE_BRANCH" == 'master' ]]; then
               echo "Get ready, we're pushing to gh-pages!"
               cd dist
               echo "www.workelections.com" > CNAME
