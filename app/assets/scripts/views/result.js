@@ -61,7 +61,7 @@ let Result = React.createClass({
     }
 
     if (!_.isUndefined(jurisdiction.id)) {
-      image = 'https://voteworker.s3.amazonaws.com/jurisdictions/' + jurisdiction.id + '.png';
+      image = 'https://s3.amazonaws.com/voteworker/jurisdictions/' + jurisdiction.id + '.png';
     }
 
     if (notFound) {

@@ -1,0 +1,32 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.11
+    working_directory: ~/project
+    steps:
+      - checkout
+      - run:
+          name: Install 
+          command: yarn 
+      - run:
+          name: Build 
+          command: yarn build
+      - add_ssh_keys:
+          fingerprints:
+            - "dd:6a:88:53:39:db:cd:5d:49:21:84:09:b1:b8:6b:1e"
+      - run:
+          name: Build and Deploy to Heroku
+          command: |
+            if [[  "$CIRCLE_BRANCH" == 'new_api_changes' ]]; then
+              echo "Get ready, we're pushing to gh-pages!"
+              cd dist
+              echo "www.workelections.com" > CNAME
+              git init
+              git config user.name "circleci"
+              git config user.email "info@developmetnseed.org"
+              git add .
+              git commit -m "CI deploy to gh-pages"
+              git push --force --quiet git@github.com:developmentseed/work.vote.git master:gh-pages
+            fi
