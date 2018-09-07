@@ -1,5 +1,5 @@
 'use strict';
-var defaultsDeep = require('lodash.defaultsdeep');
+var lodash = require('lodash');
 /*
  * App configuration.
  *
@@ -23,9 +23,9 @@ var configurations = require('./config/*.js', {mode: 'hash'});
 var config = configurations.local || {};
 
 if (process.env.DS_ENV === 'staging') {
-  defaultsDeep(config, configurations.staging);
+  lodash.defaultsDeep(config, configurations.staging);
 }
-defaultsDeep(config, configurations.production);
+lodash.defaultsDeep(config, configurations.production);
 
 let i = 1;
 let technologyOptions = [];
