@@ -1,6 +1,6 @@
 # work.vote
 
-[![CircleCI](https://circleci.com/gh/developmentseed/work.vote.svg?style=svg)](https://circleci.com/gh/developmentseed/work.vote)
+[![CircleCI](https://circleci.com/gh/developmentseed/work.vote/tree/master.svg?style=svg)](https://circleci.com/gh/developmentseed/work.vote/tree/master)
 
 The front end for work.vote
 
