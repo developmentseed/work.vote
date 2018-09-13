@@ -7,6 +7,7 @@ import Box from '../components/box';
 import Apply from '../components/results/apply';
 import Application from '../components/application';
 import MoreInfo from '../components/results/info';
+import StudentInfo from '../components/results/student';
 import Empty from './404';
 import Conditional from '../components/results/conditional';
 import { Cond, Clause, eq, Default } from 'react-cond';
@@ -158,7 +159,8 @@ let Result = React.createClass({
 
             <div className='text-header'>Further Notes</div>
             <p>{jurisdiction.further_notes}</p>
-          </div>
+            <Conditional title='Last Updated' value={jurisdiction.updated_at.substring(5, 7) + '/' + jurisdiction.updated_at.substring(8, 10) + '/' + jurisdiction.updated_at.substring(0, 4)}/>
+            </div>
         );
       }
       else {
@@ -180,10 +182,11 @@ let Result = React.createClass({
             <div className='county-image'>
               <img src={image}></img>
             </div>
-              <MoreInfo url={jurisdiction.website} />
+              <MoreInfo url={jurisdiction.website} /> &nbsp;
+              <StudentInfo url={jurisdiction.student_website} />
               <br />
               <Apply url={jurisdiction.application} email={jurisdiction.email} click={this.showApplication} />
-
+              <br/>
             <div className='text-header'>Contact Information</div>
             <Conditional title='Phone' value={jurisdiction.telephone} />
             <Conditional title='Email' value={jurisdiction.email} />
