@@ -145,12 +145,6 @@ let Result = React.createClass({
                 <Default><span></span></Default>
               </Cond>
 
-              <Cond value={jurisdiction.post_training_exam}>
-                <Clause test={eq('Y')}><li><p>There is an exam during training.</p></li></Clause>
-                <Clause test={eq('N')}><li><p>There is no exam during training.</p></li></Clause>
-                <Default><span></span></Default>
-              </Cond>
-
               <Cond value={jurisdiction.must_have_email}>
                 <Clause test={eq('Y')}><li><p>You are required to have an email address and access to a computer and the Internet.</p></li></Clause>
                 <Default><span></span></Default>
@@ -159,7 +153,7 @@ let Result = React.createClass({
 
             <div className='text-header'>Further Notes</div>
             <p>{jurisdiction.further_notes}</p>
-            <Conditional title='Last Updated' value={jurisdiction.updated_at.substring(5, 7) + '/' + jurisdiction.updated_at.substring(8, 10) + '/' + jurisdiction.updated_at.substring(0, 4)}/>
+            <Conditional title='Last Updated' value={jurisdiction.obtained_at}/>
             </div>
         );
       }
