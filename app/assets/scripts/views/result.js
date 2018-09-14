@@ -7,6 +7,7 @@ import Box from '../components/box';
 import Apply from '../components/results/apply';
 import Application from '../components/application';
 import MoreInfo from '../components/results/info';
+import StudentInfo from '../components/results/student';
 import Empty from './404';
 import Conditional from '../components/results/conditional';
 import { Cond, Clause, eq, Default } from 'react-cond';
@@ -144,12 +145,6 @@ let Result = React.createClass({
                 <Default><span></span></Default>
               </Cond>
 
-              <Cond value={jurisdiction.post_training_exam}>
-                <Clause test={eq('Y')}><li><p>There is an exam during training.</p></li></Clause>
-                <Clause test={eq('N')}><li><p>There is no exam during training.</p></li></Clause>
-                <Default><span></span></Default>
-              </Cond>
-
               <Cond value={jurisdiction.must_have_email}>
                 <Clause test={eq('Y')}><li><p>You are required to have an email address and access to a computer and the Internet.</p></li></Clause>
                 <Default><span></span></Default>
@@ -158,7 +153,8 @@ let Result = React.createClass({
 
             <div className='text-header'>Further Notes</div>
             <p>{jurisdiction.further_notes}</p>
-          </div>
+            <Conditional title='Last Updated' value={jurisdiction.obtained_at}/>
+            </div>
         );
       }
       else {
@@ -180,10 +176,11 @@ let Result = React.createClass({
             <div className='county-image'>
               <img src={image}></img>
             </div>
-              <MoreInfo url={jurisdiction.website} />
+              <MoreInfo url={jurisdiction.website} /> &nbsp;
+              <StudentInfo url={jurisdiction.student_website} />
               <br />
               <Apply url={jurisdiction.application} email={jurisdiction.email} click={this.showApplication} />
-
+              <br/>
             <div className='text-header'>Contact Information</div>
             <Conditional title='Phone' value={jurisdiction.telephone} />
             <Conditional title='Email' value={jurisdiction.email} />
