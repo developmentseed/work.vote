@@ -17,10 +17,9 @@ let Search = React.createClass({
   },
   getSuggestions: function (input, callback) {
     let options = new Set();
-    callback(null, ['Searching...']);
     fetch(`${config.apiUrl}/search/?q=${input}`, function (err, resp, body) {
       if (err) {
-        callback(null, ['nothing found!']);
+        return callback(null, ['nothing found!']);
       }
       let results = JSON.parse(body);
       for (let j = 0; j < results.length; j++) {
@@ -43,10 +42,9 @@ let Search = React.createClass({
 
       let response = Array.from(options);
       if (_.isEmpty(response)) {
-        callback(null, ['nothing found!']);
-      } else {
-        callback(null, response);
+        return callback(null, ['nothing found!']);
       }
+      return callback(null, response);
     });
   },
 
@@ -64,7 +62,11 @@ let Search = React.createClass({
         <div id='Search-container'>
           <div id='Address-Finder'>
             <div className='search-label'>Enter your state, county, city, zip code or address</div>
-            <Autosuggest suggestions={this.getSuggestions} onSuggestionSelected={this.onSuggestionSelected} ref='searchbox'/>
+            <Autosuggest
+              suggestions={this.getSuggestions}
+              onSuggestionSelected={this.onSuggestionSelected}
+              ref='searchbox'
+            />
             <p>Work Elections currently covers:</p>
             <p>AZ, CA, FL, NV, NM, OH, VA</p>
           </div>
