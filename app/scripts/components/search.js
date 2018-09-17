@@ -38,7 +38,9 @@ class Search extends React.Component {
   }
 
   onSuggestionSelected (event, context) {
-    this.props.history.push(`/j/${context.suggestion.id}`);
+    if (!context.suggestion.noLink) {
+      this.props.history.push(`/j/${context.suggestion.id}`);
+    }
   }
 
   render () {
@@ -62,6 +64,7 @@ class Search extends React.Component {
               getSuggestionValue={getSuggestionValue}
               renderSuggestion={renderSuggestion}
               inputProps={inputProps}
+              focusInputOnSuggestionClick={false}
               ref='searchbox' />
           </div>
         </div>

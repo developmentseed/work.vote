@@ -123,22 +123,31 @@ const initSearch = {
 
 function search (state = initSearch, { type, next } ) {
   state = cloneDeep(state);
+  const searching = 'Searching ...';
+  const nothing = 'Nothing Found!';
 
   switch (type) {
     case 'UPDATE_INPUT_VALUE':
       state.value = next;
+      if (state.value === searching || state.value === nothing) {
+        state.value = '';
+      }
       break;
     case 'CLEAR_SUGGESTIONS':
       state.suggestions = [];
       break;
     case 'LOAD_SUGGESTIONS_BEGIN':
       state.isLoading = true;
+      state.suggestions = [{ name: searching, noLink: true }];
       break;
     case 'MAYBE_UPDATE_SUGGESTIONS':
       if (state.value !== next.value) {
         state.isLoading = false;
       } else {
         state.suggestions = next.suggestions;
+        if (state.suggestions.length === 0) {
+          state.suggestions = [{ name: nothing, noLink: true }];
+        }
       }
       break;
   }
