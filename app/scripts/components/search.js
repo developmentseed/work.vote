@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Autosuggest from 'react-autosuggest';
 import { updateInputValue, loadSuggestions, cleanSuggestions } from '../actions';
 
@@ -14,7 +15,7 @@ function getSuggestionValue (suggestion) {
 
 function renderSuggestion (suggestion) {
   return (
-    <span>{getSuggestionValue(suggestion)}</span>
+    <span><Link to={`/j/${suggestion.id}`}>{getSuggestionValue(suggestion)}</Link></span>
   );
 }
 
@@ -60,7 +61,7 @@ class Search extends React.Component {
               ref='searchbox' />
           </div>
         </div>
-        <div id='Search-enabler'><img src='/assets/graphics/layout/search.png'></img></div>
+        <div id='Search-enabler'><img src='/graphics/layout/search.png'></img></div>
       </div>
     );
   }
