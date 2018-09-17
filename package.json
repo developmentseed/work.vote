@@ -20,7 +20,7 @@
     "lint": "eslint app/scripts/ --ext .js"
   },
   "engines": {
-    "node": "8.9.x"
+    "node": ">=8.9.x <9.0.0"
   },
   "browserify": {
     "transform": [
@@ -90,7 +90,6 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "@twilson63/react-cond": "^1.0.2",
     "classnames": "^2.2.6",
     "d3": "^3.5.14",
     "email-validator": "^1.0.4",
