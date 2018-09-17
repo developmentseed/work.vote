@@ -1,15 +1,9 @@
-## Dependencies
-node_modules
-bower_components
-.sass-cache
-test/bower_components
-
-## Build
-dist
+.DS_Store
 .tmp
-npm-debug.log
+dist
+node_modules
+yarn-error.log
+*.swp
 
-## Locals
-app/assets/scripts/config/local.js
-.resources/
-package-lock.json
+bin/data/*
+!bin/data/us-districts-shapefile-cd115-2016
