@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Autosuggest from 'react-autosuggest';
 import { updateInputValue, loadSuggestions, cleanSuggestions } from '../actions';
 
@@ -15,7 +14,7 @@ function getSuggestionValue (suggestion) {
 
 function renderSuggestion (suggestion) {
   return (
-    <span><Link to={`/j/${suggestion.id}`}>{getSuggestionValue(suggestion)}</Link></span>
+    <span>{getSuggestionValue(suggestion)}</span>
   );
 }
 
@@ -38,6 +37,10 @@ class Search extends React.Component {
     this.props.clearSuggestions();
   }
 
+  onSuggestionSelected (event, context) {
+    this.props.history.push(`/j/${context.suggestion.id}`);
+  }
+
   render () {
     const { value, suggestions } = this.props.search;
     const inputProps = {
@@ -53,6 +56,7 @@ class Search extends React.Component {
             <div className='search-label'>Enter your state, county, city, zip code or address</div>
             <Autosuggest
               suggestions={suggestions}
+              onSuggestionSelected={(event, context) => this.onSuggestionSelected(event, context)}
               onSuggestionsFetchRequested={(value) => this.onSuggestionsFetchRequested(value)}
               onSuggestionsClearRequested={() => this.onSuggestionsClearRequested}
               getSuggestionValue={getSuggestionValue}
