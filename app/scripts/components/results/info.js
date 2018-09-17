@@ -5,9 +5,14 @@ import { checkUrl } from '../../utils';
 
 class Info extends React.Component {
   render () {
-    if (this.props.url) {
+    let { url, value } = this.props;
+    if (!value) {
+      value = 'Poll Worker Information';
+    }
+
+    if (url) {
       return (
-        <a href={ checkUrl(this.props.url) }><div className='btn info'>{this.props.value}</div></a>
+        <a href={ checkUrl(url) }><div className='btn info'>{value}</div></a>
       );
     } else {
       return false;
