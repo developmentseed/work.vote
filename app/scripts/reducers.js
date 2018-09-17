@@ -135,6 +135,7 @@ function search (state = initSearch, { type, next } ) {
       break;
     case 'CLEAR_SUGGESTIONS':
       state.suggestions = [];
+      state.value = '';
       break;
     case 'LOAD_SUGGESTIONS_BEGIN':
       state.isLoading = true;
