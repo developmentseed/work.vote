@@ -5,8 +5,7 @@ var logo = require('./logo');
  */
 module.exports = {
   environment: 'production',
-  apiUrl: 'https://api.workelections.com/',
-  // apiUrl: 'http://localhost:8000',
+  apiUrl: 'https://api.workelections.com',
   consoleMessage: logo,
   accessToken: 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q'
 };

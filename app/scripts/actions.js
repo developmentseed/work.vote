@@ -135,7 +135,7 @@ export function loadSuggestions (value) {
   return dispatch => {
     dispatch(loadSuggestionsBegin());
 
-    const url = `${config.apiUrl}/search`;
+    const url = `${config.apiUrl}/search/`;
     ky.get(`${url}?q=${value}`).json()
       .then((resp) => dispatch(maybeUpdateSuggestions(resp, value)))
       .catch(console.log);
