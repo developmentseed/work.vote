@@ -94,7 +94,7 @@ function MapClass (el, states) {
 
   this.click = (d) => {
     if (d.id in this.states) {
-      window.location.href = `#/states/${this.states[d.id].id}`;
+      window.location.href = `/states/${this.states[d.id].id}`;
     }
   };
 

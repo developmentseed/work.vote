@@ -207,12 +207,17 @@ class Jurisdiction extends React.Component {
       }
     }
 
+    let pageTitle = '';
+    if (jurisdiction.name) {
+      pageTitle = `${jurisdiction.name}, ${jurisdiction.state.alpha}`; 
+    }
+
     // Results HTML
     return (
       <Box>
         <Loader loaded={loaded}>
           <div className='results-split-container medium-5 columns'>
-            <div className='juris-header'>{jurisdiction.name}, {jurisdiction.state.alpha}</div>
+            <div className='juris-header'>{pageTitle}</div>
             <div className='county-image'>
               <div id={this.shapeId} className='state-shape'></div>
             </div>

@@ -25,7 +25,7 @@ import Empty from './views/404';
 
 const Root = () => (
   <Provider store={store}>
-    <HashRouter>
+    <BrowserRouter>
       <div className='main'>
         <div className='row'>
           <div className='small-12 columns'>
@@ -44,7 +44,7 @@ const Root = () => (
         </div>
         <Footer />
       </div>
-    </HashRouter>
+    </BrowserRouter>
   </Provider>
 );
 

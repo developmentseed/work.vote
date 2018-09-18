@@ -53,6 +53,7 @@
     "browser-sync": "^2.18.8",
     "browserify": "^15.1.0",
     "browserify-data": "^0.2.0",
+    "connect-history-api-fallback": "^1.5.0",
     "csv": "^3.1.0",
     "del": "^3.0.0",
     "envify": "^4.0.0",
