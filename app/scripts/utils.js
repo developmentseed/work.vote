@@ -13,6 +13,7 @@ export function checkUrl (url) {
 
 export function shape (el, geojson) {
   var map = d3.select(el);
+  map.selectAll('*').remove();
 
   var width = parseInt(map.style('width'), 10);
   var height = parseInt(map.style('height'), 10);
