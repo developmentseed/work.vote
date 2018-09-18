@@ -66,7 +66,7 @@ class State extends React.Component {
 
     if (stateObj.id) {
       loaded = true;
-    } 
+    }
 
     if (!stateObj.id && states.length > 0) {
       return (<NotFound />);

@@ -1,10 +1,10 @@
 'use strict';
 
 import isEmpty from 'lodash.isempty';
-import isUndefined from 'lodash.isundefined';
+import { connect } from 'react-redux';
 import React from 'react';
 import Loader from 'react-loader';
-import { Choose, When, Otherwise } from 'react-conditioner'
+import { Choose, When, Otherwise } from 'react-conditioner';
 import Box from '../components/box';
 import Apply from '../components/results/apply';
 import Application from '../components/application';
@@ -12,9 +12,8 @@ import MoreInfo from '../components/results/info';
 import StudentInfo from '../components/results/student';
 import Empty from './404';
 import Conditional from '../components/results/conditional';
-import { connect } from 'react-redux';
-
 import { fetchJurisdiction } from '../actions';
+import { shape } from '../utils';
 
 class Jurisdiction extends React.Component {
   constructor (props) {
@@ -23,6 +22,8 @@ class Jurisdiction extends React.Component {
       applicationIsShown: false,
       applicaitonIsSubmitted: false
     };
+
+    this.shapeId = 'jurisdictionShape';
   }
 
   getJurisdictionId () {
@@ -46,24 +47,25 @@ class Jurisdiction extends React.Component {
 
   componentDidUpdate (prevProps) {
     const oldId = prevProps.match.params.jurisdictionId;
-    const newId = this.getJurisdictionId()
+    const newId = this.getJurisdictionId();
     if (oldId !== newId) {
       this.props.fetchJurisdiction(newId);
+    }
+
+    const { jurisdiction } = this.props;
+
+    if (jurisdiction.geometry) {
+      shape(document.getElementById(this.shapeId), jurisdiction.geometry);
     }
   }
 
   render () {
     const { jurisdiction, notFound } = this.props;
     let loaded = false;
-    let image = null;
     let secondColumn;
-  
+
     if (!isEmpty(jurisdiction)) {
       loaded = true;
-    }
-
-    if (!isUndefined(jurisdiction.id)) {
-      image = 'https://s3.amazonaws.com/voteworker/jurisdictions/' + jurisdiction.id + '.png';
     }
 
     if (notFound) {
@@ -78,7 +80,7 @@ class Jurisdiction extends React.Component {
       );
     } else {
       let message;
-      if (this.state.applicaitonIsSubmitted) {
+      if (this.state.applicationIsSubmitted) {
         message = (
           <div className='callout success' >
             <p>Your application was submitted. Thank you!</p>
@@ -102,7 +104,7 @@ class Jurisdiction extends React.Component {
                   <span></span>
                 </Otherwise>
               </Choose>
-              
+
               <Choose>
                 <When condition={ jurisdiction.pre_registration === 'Y' }>
                   <li><p>You must be pre-registered to vote.</p></li>
@@ -195,8 +197,7 @@ class Jurisdiction extends React.Component {
             <Conditional title='Last Updated' value={jurisdiction.obtained_at}/>
           </div>
         );
-      }
-      else {
+      } else {
         secondColumn = (
           <div>
             {message}
@@ -213,7 +214,7 @@ class Jurisdiction extends React.Component {
           <div className='results-split-container medium-5 columns'>
             <div className='juris-header'>{jurisdiction.name}, {jurisdiction.state.alpha}</div>
             <div className='county-image'>
-              <img src={image}></img>
+              <div id={this.shapeId} className='state-shape'></div>
             </div>
             <MoreInfo url={jurisdiction.website} /> &nbsp;
             <StudentInfo url={jurisdiction.student_website} />

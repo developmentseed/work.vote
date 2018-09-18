@@ -2,12 +2,12 @@
 
 import cloneDeep from 'lodash.clonedeep';
 import isUndefined from 'lodash.isundefined';
-import merge from 'lodash.merge';
 import { combineReducers } from 'redux';
 
 const initJurisdiction = {
   data: {
-    state: {}
+    state: {},
+    geometry: null
   },
   notFound: false
 };
@@ -79,7 +79,7 @@ const initSurvey = {
   formError: false,
   submittingForm: false,
   errorMessage: null
-}
+};
 
 function survey (state = initSurvey, { type, next }) {
   state = cloneDeep(state);
@@ -121,7 +121,7 @@ const initSearch = {
   isLoading: false
 };
 
-function search (state = initSearch, { type, next } ) {
+function search (state = initSearch, { type, next }) {
   state = cloneDeep(state);
   const searching = 'Searching ...';
   const nothing = 'Nothing Found!';
