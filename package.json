@@ -17,6 +17,7 @@
   "scripts": {
     "serve": "gulp serve",
     "build": "gulp",
+    "surge": "surge --project ./dist --domain www.workelections.com",
     "lint": "eslint app/scripts/ --ext .js"
   },
   "engines": {
@@ -85,6 +86,7 @@
     "node-notifier": "^5.1.2",
     "node-sass": "^4.5.1",
     "require-globify": "^1.4.1",
+    "surge": "^0.20.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^3.9.0"
