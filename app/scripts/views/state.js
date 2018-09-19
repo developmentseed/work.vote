@@ -3,6 +3,7 @@
 import isUndefined from 'lodash.isundefined';
 import find from 'lodash.find';
 import React from 'react';
+import ReactGA from 'react-ga';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader';
@@ -35,6 +36,7 @@ class State extends React.Component {
   }
 
   render () {
+    ReactGA.pageview(window.location.pathname + window.location.search);
     const { stateJurisdictions, states } = this.props;
     const list = [];
     let loaded = false;

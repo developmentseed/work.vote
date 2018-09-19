@@ -1,10 +1,12 @@
 'use strict';
 
 import React from 'react';
+import ReactGA from 'react-ga';
 import Box from '../components/box';
 
 class Empty extends React.Component {
   render () {
+    ReactGA.pageview('/404');
     return (
       <Box>
         <div className='error-text'>

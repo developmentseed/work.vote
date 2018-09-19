@@ -6,11 +6,12 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import {
   BrowserRouter,
-  HashRouter,
   Route,
-  Switch,
+  Switch
 } from 'react-router-dom';
+import ReactGA from 'react-ga';
 import store from './get-store';
+import config from './config';
 
 // Views
 import State from './views/state';
@@ -22,6 +23,8 @@ import Frontpage from './views/frontpage';
 import Page from './views/page';
 import Contact from './views/contact';
 import Empty from './views/404';
+
+ReactGA.initialize(config.ga);
 
 const Root = () => (
   <Provider store={store}>

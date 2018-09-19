@@ -1,11 +1,13 @@
 'use strict';
 
 import React from 'react';
+import ReactGA from 'react-ga';
 import { withRouter } from 'react-router-dom';
 import Search from '../components/search';
 
 class Frontpage extends React.Component {
   render () {
+    ReactGA.pageview(window.location.pathname + window.location.search);
     const SearchWithHistory = withRouter(Search);
     return (
       <div className='row column'>
