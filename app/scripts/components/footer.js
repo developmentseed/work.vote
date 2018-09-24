@@ -27,13 +27,13 @@ const Footer = () => (
           <h5>This project is led by the following partners:</h5>
           <a href="https://www.fairelectionscenter.org/">
             <img
-              src=".//graphics/meta/FairElectionsCenterLogo.png"
+              src="/graphics/meta/FairElectionsCenterLogo.png"
               width="200px"
             />
           </a>
           <a href="http://developmentseed.com/">
             <img
-              src="./graphics/meta/logo_horizontal_white.png"
+              src="/graphics/meta/logo_horizontal_white.png"
               width="200px"
             />
           </a>

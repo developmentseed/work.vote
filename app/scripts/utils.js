@@ -13,6 +13,7 @@ export function checkUrl (url) {
 
 export function shape (el, geojson) {
   var map = d3.select(el);
+  map.selectAll('*').remove();
 
   var width = parseInt(map.style('width'), 10);
   var height = parseInt(map.style('height'), 10);
@@ -40,7 +41,7 @@ export function shape (el, geojson) {
   var vscale = scale * height / (bounds[1][1] - bounds[0][1]);
   scale = (hscale < vscale) ? hscale : vscale;
   offset = [width - (bounds[0][0] + bounds[1][0]) / 2,
-                    height - (bounds[0][1] + bounds[1][1]) / 2];
+    height - (bounds[0][1] + bounds[1][1]) / 2];
 
   // new projection
   projection = d3.geo.mercator().center(center)
@@ -55,4 +56,4 @@ export function shape (el, geojson) {
     .attr('d', path)
     .style('fill', '#ccc')
     .style('stroke-width', '1');
-};
+}

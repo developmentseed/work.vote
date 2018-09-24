@@ -30,4 +30,9 @@ The site will automatically refresh since it is bundled with livereload.
 
 ### Deployment
 
-`master` branch is automatically deployed to gh-pages.
+`master` branch is automatically deployed to [surge.sh](https://surge.sh).
+
+For manual deployment run:
+
+     $ yarn build
+     $ yarn surge

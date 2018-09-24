@@ -78,9 +78,16 @@ export function maybeUpdateSuggestions (suggestions, value) {
 export function fetchJurisdiction (id) {
   return (dispatch) => {
     dispatch(resetJurisdiction());
+    let jurisdiction;
+    const geometryUrl = `${config.apiUrl}/jurisdictions/${id}/geojson`;
     ky.get(`${config.apiUrl}/jurisdictions/${id}/`).json()
       .then((resp) => {
-        dispatch(receiveJurisdiction(resp));
+        jurisdiction = resp;
+        return ky.get(geometryUrl).json();
+      })
+      .then((resp) => {
+        jurisdiction.geometry = resp;
+        dispatch(receiveJurisdiction(jurisdiction));
       })
       .catch((e) => {
         console.log(e);

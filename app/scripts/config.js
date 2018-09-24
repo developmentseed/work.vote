@@ -64,6 +64,7 @@ config.languageOptions = [
   { value: 'Zuni', label: 'Zuni' }
 ];
 
+config.ga = 'UA-65976828-4';
 config.cookieName = 'workelections_com_seen_survey';
 
 config.technologyOptions = technologyOptions;

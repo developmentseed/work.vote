@@ -34,13 +34,17 @@ class Search extends React.Component {
   }
 
   onSuggestionsClearRequested () {
-    this.props.clearSuggestions();
+    this.props.cleanSuggestions();
   }
 
   onSuggestionSelected (event, context) {
     if (!context.suggestion.noLink) {
       this.props.history.push(`/j/${context.suggestion.id}`);
     }
+  }
+
+  componentDidMount () {
+    this.props.cleanSuggestions();
   }
 
   render () {
