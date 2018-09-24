@@ -3502,6 +3502,10 @@ gulp-plumber@^1.1.0:
     plugin-error "^0.1.2"
     through2 "^2.0.3"
 
+gulp-rename@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.4.0.tgz#de1c718e7c4095ae861f7296ef4f3248648240bd"
+
 gulp-rev-replace@^0.4.3:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/gulp-rev-replace/-/gulp-rev-replace-0.4.4.tgz#9696854131024baf264010b1f51ff8a1382ab94a"

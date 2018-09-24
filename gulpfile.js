@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var gulp = require('gulp');
+var rename = require('gulp-rename');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
 var browserSync = require('browser-sync');
@@ -143,7 +144,7 @@ gulp.task('vendorScripts', function() {
 // --------------------------- Helper tasks -----------------------------------//
 // ----------------------------------------------------------------------------//
 
-gulp.task('build', ['vendorScripts', 'javascript'], function() {
+gulp.task('build', ['vendorScripts', 'javascript', 'copy-index'], function() {
   gulp.start(['html', 'extras'], function() {
     return gulp
       .src('dist/**/*')
@@ -216,4 +217,13 @@ gulp.task('extras', function() {
       }
     )
     .pipe(gulp.dest('dist'));
+});
+
+gulp.task('copy-index', () => {
+  return (
+    gulp
+      .src('app/index.html')
+      .pipe(rename('200.html'))
+      .pipe(gulp.dest('dist'))
+  );
 });
