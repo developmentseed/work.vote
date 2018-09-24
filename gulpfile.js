@@ -144,8 +144,12 @@ gulp.task('vendorScripts', function() {
 // --------------------------- Helper tasks -----------------------------------//
 // ----------------------------------------------------------------------------//
 
-gulp.task('build', ['vendorScripts', 'javascript', 'copy-index'], function() {
+gulp.task('build', ['vendorScripts', 'javascript'], function() {
   gulp.start(['html', 'extras'], function() {
+    gulp
+      .src('dist/index.html')
+      .pipe(rename('200.html'))
+      .pipe(gulp.dest('dist'));
     return gulp
       .src('dist/**/*')
       .pipe($.size({ title: 'build', gzip: true }))
@@ -217,13 +221,4 @@ gulp.task('extras', function() {
       }
     )
     .pipe(gulp.dest('dist'));
-});
-
-gulp.task('copy-index', () => {
-  return (
-    gulp
-      .src('app/index.html')
-      .pipe(rename('200.html'))
-      .pipe(gulp.dest('dist'))
-  );
 });
