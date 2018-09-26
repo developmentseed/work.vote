@@ -59,7 +59,7 @@ class Search extends React.Component {
       <div>
         <div id='Search-container'>
           <div id='Address-Finder'>
-            <div className='search-label'>Enter your state, county, city, zip code or address</div>
+            <div className='search-label'>Enter your county, city, zip code or address</div>
             <Autosuggest
               suggestions={suggestions}
               onSuggestionSelected={(event, context) => this.onSuggestionSelected(event, context)}
