@@ -52,7 +52,7 @@ class State extends React.Component {
           }
         }
       } else {
-        list.push(<div>Nothing found</div>);
+        list.push(<div className = 'text-center'>We do not yet have information for these jurisdictions.</div>);
       }
     } else if (!stateObj.is_active && stateObj.pollworker_website) {
       list.push(
