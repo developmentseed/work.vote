@@ -1,25 +1,26 @@
 'use strict';
 
-import _ from 'lodash';
 import isEmpty from 'lodash.isempty';
 import React from 'react';
-import validator from 'email-validator';
+import { connect } from 'react-redux';
 import config from '../config';
 import classNames from 'classnames';
 import Select from 'react-select';
+import {
+  formHasMissingFields,
+  submitFormStarted,
+  postForm
+} from '../actions';
 
 class Application extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {
-      formError: false,
-      submittingForm: false,
-      errorMessage: null
-    };
+    this.submitForm = this.submitForm.bind(this);
   }
 
   submitForm (event) {
     window.scrollTo(0, 0);
+    this.props.submitFormStarted();
 
     const missingFields = [];
 
@@ -47,75 +48,32 @@ class Application extends React.Component {
     }
 
     if (missingFields.length > 0) {
-      this.setState({
-        submittingForm: false,
-        formError: true,
-        errorMessage: 'These required fields are missing: ' + missingFields.join(', ')
-      });
-      return;
+      return this.props.formHasMissingFields(missingFields);
     }
 
-    if (!validator.validate(values['email'])) {
-      this.setState({
-        submittingForm: false,
-        formError: true,
-        errorMessage: 'Inavlid email provided. Please provided a valid email address.'
-      });
-      return;
-    }
-
-    this.setState({ submittingForm: true });
-
-    let self = this;
-
-    // nets({
-    //   method: 'post',
-    //   body: JSON.stringify(values),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json'
-    //   },
-    //   url: `${config.apiUrl}/contacts/application/`
-    // }, function (err, resp, body) {
-    //   if (err) console.log(err);
-
-    //   if (resp.statusCode === 200) {
-    //     self.setState({
-    //       submittingForm: false,
-    //       formError: false
-    //     });
-
-    //     self.props.onSubmit();
-    //   } else {
-    //     self.setState({
-    //       submittingForm: false,
-    //       formError: true,
-    //       errorMessage: 'An unexpected error occurred while submitting the form. Please try again!'
-    //     });
-    //     return;
-    //   }
-    // });
+    return this.props.postForm('/contacts/application/', values);
   }
 
   render () {
+    const { formError, errorMessage, submittingForm } = this.props.form;
     const calloutClassError = classNames({
       'callout': true,
       'alert': true,
-      'hide': !this.state.formError
+      'hide': !formError
     });
 
     const submitLabel = classNames({
       'warning': true,
       'label': true,
-      'hide': !this.state.submittingForm
+      'hide': !submittingForm
     });
 
     return (
-      <application>
+      <vote-application>
         <div className='text-header'>Application</div>
 
         <div className={calloutClassError} name='error'>
-          <p>{this.state.errorMessage}</p>
+          <p>{errorMessage}</p>
         </div>
 
         <p><em>This application generates an email that is sent to the local election official for your city or county. Workelections.com does not retain your personal information.</em></p>
@@ -152,24 +110,24 @@ class Application extends React.Component {
 
         <label>What is your age?
           <Select
-              name='age'
-              options={config.ageOptions}
+            name='age'
+            options={config.ageOptions}
           />
         </label>
 
         <label>What languages do you speak other than English?
           <Select
-              name='languages'
-              options={config.languageOptions}
-              multi
+            name='languages'
+            options={config.languageOptions}
+            multi
           />
         </label>
 
         <label>
           How familiar are you with working with computer technology on a scale of 1 to 5?
           <Select
-              name='technology'
-              options={config.technologyOptions}
+            name='technology'
+            options={config.technologyOptions}
           />
         </label>
 
@@ -177,9 +135,21 @@ class Application extends React.Component {
 
         <p><span className='red'>* are required</span></p>
 
-      </application>
+      </vote-application>
     );
   }
 }
 
-module.exports = Application;
+const mapStateToProps = function (state) {
+  return {
+    form: state.form
+  };
+};
+
+const dispatches = {
+  submitFormStarted,
+  formHasMissingFields,
+  postForm
+};
+
+export default connect(mapStateToProps, dispatches)(Application);

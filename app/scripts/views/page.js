@@ -1,7 +1,6 @@
 'use strict';
 
 import isUndefined from 'lodash.isundefined';
-import ReactGA from 'react-ga';
 import React from 'react';
 import Empty from './404';
 import Loader from 'react-loader';
@@ -32,7 +31,6 @@ class Page extends React.Component {
   }
 
   render () {
-    ReactGA.pageview(window.location.pathname + window.location.search);
     const { pages } = this.props;
     const { slug } = this.props.match.params;
     let loaded = false;
@@ -68,7 +66,6 @@ class Page extends React.Component {
       </Box>
     );
   }
-
 }
 
 function mapStateToProps (state) {

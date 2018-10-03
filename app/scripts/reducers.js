@@ -115,6 +115,45 @@ function survey (state = initSurvey, { type, next }) {
   return state;
 }
 
+const initForm = {
+  errorMessage: '',
+  formError: false,
+  submittingForm: false,
+  formSubmitted: false
+};
+
+function form (state = initForm, { type, next }) {
+  state = cloneDeep(state);
+
+  switch (type) {
+    case 'SUBMIT_FORM_STARTED':
+      state.submittingForm = true;
+      state.formSubmitted = false;
+      state.formError = false;
+      state.errorMessage = '';
+      break;
+    case 'SUBMIT_FORM_SUCCEEDED':
+      state.submittingForm = false;
+      state.formSubmitted = true;
+      state.formError = false;
+      break;
+    case 'SUBMIT_FORM_FAILED':
+      state.submittingForm = false;
+      state.formSubmitted = false;
+      state.formError = true;
+      state.errorMessage = 'An unexpected error occurred while submitting the form. Please try again!';
+      break;
+    case 'FORM_MISSING_FIELDS':
+      state.submittingForm = false;
+      state.formSubmitted = false;
+      state.formError = true;
+      state.errorMessage = `These required fields are missing: ${next}`;
+      break;
+  }
+
+  return state;
+}
+
 const initSearch = {
   value: '',
   suggestions: [],
@@ -161,5 +200,6 @@ export default combineReducers({
   pages,
   stateJurisdictions,
   survey,
+  form,
   search
 });

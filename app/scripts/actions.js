@@ -1,6 +1,7 @@
 'use strict';
 
 import ky from 'ky';
+import url from 'url';
 import config from './config.js';
 
 export function receiveJurisdiction (next) {
@@ -75,6 +76,22 @@ export function maybeUpdateSuggestions (suggestions, value) {
   return { type: 'MAYBE_UPDATE_SUGGESTIONS', next: { suggestions, value } };
 }
 
+export function submitFormStarted () {
+  return { type: 'SUBMIT_FORM_STARTED' };
+}
+
+export function submitFormSucceeded () {
+  return { type: 'SUBMIT_FORM_SUCCEEDED' };
+}
+
+export function submitFormFailed () {
+  return { type: 'SUBMIT_FORM_FAILED' };
+}
+
+export function formHasMissingFields (fields) {
+  return { type: 'FORM_MISSING_FIELDS', next: fields };
+}
+
 export function fetchJurisdiction (id) {
   return (dispatch) => {
     dispatch(resetJurisdiction());
@@ -117,8 +134,8 @@ export function fetchPage (slug) {
 
 export function fetchStateJurisdictions (stateId) {
   return dispatch => {
-    const url = `${config.apiUrl}/jurisdictions/?summary=true&state_id=${stateId}`;
-    ky.get(url).json()
+    const uri = `${config.apiUrl}/jurisdictions/?summary=true&state_id=${stateId}`;
+    ky.get(uri).json()
       .then((resp) => {
         resp.stateId = stateId;
         dispatch(receiveStateJurisdictions(resp));
@@ -129,8 +146,8 @@ export function fetchStateJurisdictions (stateId) {
 
 export function postSurveyResults (values) {
   return (dispatch) => {
-    const url = `${config.apiUrl}/contacts/survey/`;
-    ky.post(url, { json: values }).json()
+    const uri = `${config.apiUrl}/contacts/survey/`;
+    ky.post(uri, { json: values }).json()
       .then(() => {
         dispatch(submitSuveySucceeded());
       })
@@ -138,12 +155,24 @@ export function postSurveyResults (values) {
   };
 }
 
+export function postForm (path, values) {
+  return (dispatch) => {
+    const uri = url.resolve(config.apiUrl, path);
+    console.log(uri)
+    ky.post(uri, { json: values }).json()
+      .then(() => {
+        dispatch(submitFormSucceeded());
+      })
+      .catch((e) => dispatch(submitFormFailed()));
+  };
+}
+
 export function loadSuggestions (value) {
   return dispatch => {
     dispatch(loadSuggestionsBegin());
 
-    const url = `${config.apiUrl}/search/`;
-    ky.get(`${url}?q=${value}`).json()
+    const uri = `${config.apiUrl}/search/`;
+    ky.get(`${uri}?q=${value}`).json()
       .then((resp) => dispatch(maybeUpdateSuggestions(resp, value)))
       .catch(console.log);
   };
