@@ -9,7 +9,6 @@ import Box from '../components/box';
 import Apply from '../components/results/apply';
 import Application from '../components/application';
 import MoreInfo from '../components/results/info';
-import StudentInfo from '../components/results/student';
 import Empty from './404';
 import Conditional from '../components/results/conditional';
 import { fetchJurisdiction } from '../actions';
@@ -221,9 +220,8 @@ class Jurisdiction extends React.Component {
             <div className='county-image'>
               <div id={this.shapeId} className='state-shape'></div>
             </div>
-            <MoreInfo url={jurisdiction.website} /> &nbsp;
-            <StudentInfo url={jurisdiction.student_website} />
-            <br />
+            <MoreInfo url={jurisdiction.website} />
+            <MoreInfo url={jurisdiction.student_website} value="Student Poll Worker Information" />
             <Apply url={jurisdiction.application} email={jurisdiction.email} click={this.showApplication} />
             <br/>
             <div className='text-header'>Contact Information</div>

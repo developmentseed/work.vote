@@ -12,7 +12,10 @@ class Info extends React.Component {
 
     if (url) {
       return (
-        <a href={ checkUrl(url) }><div className='btn info'>{value}</div></a>
+        <a href={ checkUrl(url) }>
+            <div className='btn info'>{value}</div>
+            <br />
+        </a>
       );
     } else {
       return false;

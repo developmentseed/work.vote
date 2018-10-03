@@ -13,8 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - replaced jurisdiction rasters with d3 generated shapes
-- update contact email  
 - switch to browser history from hash history
+
+### Fixed
+- update contact email
+- fixed student poll worker info link
+- fixed contact form submit
+- fixed application form submit
 
 ## [v2.0.0] - 2018-09-17
 
