@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import ReactGA from 'react-ga';
 import Box from '../components/box';
 import classNames from 'classnames';
 
@@ -33,7 +32,7 @@ class Contact extends React.Component {
       return;
     }
 
-    let self = this;
+    // let self = this;
 
     // nets({
     //   method: 'post',
@@ -72,7 +71,6 @@ class Contact extends React.Component {
       'hide': !this.state.submittingForm
     });
 
-    ReactGA.pageview(window.location.pathname + window.location.search);
     return (
       <Box>
         <div className='results-split-container'>
