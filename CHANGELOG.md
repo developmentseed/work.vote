@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Facebook pixel tracking code
 - New changelog
 
-## [v2.0.0] - 2018-08-13
+## [v2.0.0] - 2018-09-17
 
 - The frontend was rewritten with React v16
 
