@@ -3,6 +3,7 @@
 import isEmpty from 'lodash.isempty';
 import { connect } from 'react-redux';
 import React from 'react';
+import ReactGA from 'react-ga';
 import Loader from 'react-loader';
 import { Choose, When, Otherwise } from 'react-conditioner';
 import Box from '../components/box';
@@ -33,6 +34,10 @@ class Jurisdiction extends React.Component {
 
   showApplication (event) {
     event.preventDefault();
+    ReactGA.event({
+      category: 'Application',
+      action: 'Application link is clicked'
+    });
     this.setState({ applicationIsShown: true });
   }
 
@@ -211,7 +216,7 @@ class Jurisdiction extends React.Component {
 
     let pageTitle = '';
     if (jurisdiction.name) {
-      pageTitle = `${jurisdiction.name}, ${jurisdiction.state.alpha}`; 
+      pageTitle = `${jurisdiction.name}, ${jurisdiction.state.alpha}`;
     }
 
     // Results HTML
