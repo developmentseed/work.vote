@@ -23,14 +23,17 @@ class Jurisdiction extends React.Component {
     };
 
     this.shapeId = 'jurisdictionShape';
+    this.showApplication = this.showApplication.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   getJurisdictionId () {
     return this.props.match.params.jurisdictionId;
   }
+
   showApplication (event) {
     event.preventDefault();
-    this.setState({applicationIsShown: true});
+    this.setState({ applicationIsShown: true });
   }
 
   onSubmit () {

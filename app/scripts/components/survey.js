@@ -144,7 +144,7 @@ class Survey extends React.Component {
     });
 
     return (
-      <survey>
+      <vote-survey>
         <div className={surveyButtonClass} ref='surveyButton'>
           <div className='close' onClick={this.closeSurveyButton}>x</div>
           <span onClick={this.openModal}>Help us build a better website by responding to a quick survey &rarr;</span>
@@ -196,7 +196,7 @@ class Survey extends React.Component {
             </div>
           </div>
         </div>
-      </survey>
+      </vote-survey>
     );
   }
 }
