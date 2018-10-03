@@ -65,6 +65,7 @@ config.languageOptions = [
 ];
 
 config.ga = 'UA-65976828-4';
+config.pixel = '267782117400714';
 config.cookieName = 'workelections_com_seen_survey';
 
 config.technologyOptions = technologyOptions;

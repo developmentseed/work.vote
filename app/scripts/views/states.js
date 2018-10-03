@@ -1,7 +1,6 @@
 'use strict';
 
 import isNan from 'lodash.isnan';
-import ReactGA from 'react-ga';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -26,7 +25,6 @@ class States extends React.Component {
   }
 
   render () {
-    ReactGA.pageview(window.location.pathname + window.location.search);
     const { states } = this.props;
     const list = [];
     let map = '';
@@ -71,6 +69,6 @@ function mapStateToProps (state) {
 
 const dispatches = {
   fetchStates
-}
+};
 
 export default connect(mapStateToProps, dispatches)(States);

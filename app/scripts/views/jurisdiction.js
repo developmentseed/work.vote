@@ -3,13 +3,13 @@
 import isEmpty from 'lodash.isempty';
 import { connect } from 'react-redux';
 import React from 'react';
+import ReactGA from 'react-ga';
 import Loader from 'react-loader';
 import { Choose, When, Otherwise } from 'react-conditioner';
 import Box from '../components/box';
 import Apply from '../components/results/apply';
 import Application from '../components/application';
 import MoreInfo from '../components/results/info';
-import StudentInfo from '../components/results/student';
 import Empty from './404';
 import Conditional from '../components/results/conditional';
 import { fetchJurisdiction } from '../actions';
@@ -24,14 +24,21 @@ class Jurisdiction extends React.Component {
     };
 
     this.shapeId = 'jurisdictionShape';
+    this.showApplication = this.showApplication.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   getJurisdictionId () {
     return this.props.match.params.jurisdictionId;
   }
+
   showApplication (event) {
     event.preventDefault();
-    this.setState({applicationIsShown: true});
+    ReactGA.event({
+      category: 'Application',
+      action: 'Application link is clicked'
+    });
+    this.setState({ applicationIsShown: true });
   }
 
   onSubmit () {
@@ -209,7 +216,7 @@ class Jurisdiction extends React.Component {
 
     let pageTitle = '';
     if (jurisdiction.name) {
-      pageTitle = `${jurisdiction.name}, ${jurisdiction.state.alpha}`; 
+      pageTitle = `${jurisdiction.name}, ${jurisdiction.state.alpha}`;
     }
 
     // Results HTML
@@ -221,9 +228,8 @@ class Jurisdiction extends React.Component {
             <div className='county-image'>
               <div id={this.shapeId} className='state-shape'></div>
             </div>
-            <MoreInfo url={jurisdiction.website} /> &nbsp;
-            <StudentInfo url={jurisdiction.student_website} />
-            <br />
+            <MoreInfo url={jurisdiction.website} />
+            <MoreInfo url={jurisdiction.student_website} value="Student Poll Worker Information" />
             <Apply url={jurisdiction.application} email={jurisdiction.email} click={this.showApplication} />
             <br/>
             <div className='text-header'>Contact Information</div>
