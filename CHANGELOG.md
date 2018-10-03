@@ -8,7 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Facebook pixel tracking code
+- Google Analytics tracking code
 - New changelog
+
+### Changed
+- replaced jurisdiction rasters with d3 generated shapes
+- update contact email  
+- switch to browser history from hash history
 
 ## [v2.0.0] - 2018-09-17
 
