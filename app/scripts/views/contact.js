@@ -1,74 +1,56 @@
 'use strict';
 
 import React from 'react';
-import Box from '../components/box';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
+import Box from '../components/box';
+import {
+  formHasMissingFields,
+  submitFormStarted,
+  postForm
+} from '../actions';
 
 class Contact extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {
-      formSubmittedSuccess: false,
-      formError: false,
-      submittingForm: false
-    };
+
+    this.submitForm = this.submitForm.bind(this);
   }
 
   submitForm (event) {
+    this.props.submitFormStarted();
+
     const contact = {
-      name: this.refs.name.value,
-      email: this.refs.email.value,
-      comment: this.refs.comment.value
+      name: document.getElementsByName('name')[0].value,
+      email: document.getElementsByName('email')[0].value,
+      comment: document.getElementsByName('comment')[0].value
     };
 
-    this.setState({submittingForm: true});
-
     if (contact.email === '') {
-      this.setState({
-        submittingForm: false,
-        formSubmittedSuccess: false,
-        formError: true
-      });
-      return;
+      return this.props.formHasMissingFields(['email']);
     }
 
-    // let self = this;
-
-    // nets({
-    //   method: 'post',
-    //   body: JSON.stringify(contact),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json'
-    //   },
-    //   url: `${config.apiUrl}/contacts/us/`
-    // }, function (err, resp, body) {
-    //   if (err) console.log(err);
-    //   self.setState({
-    //     submittingForm: false,
-    //     formSubmittedSuccess: true,
-    //     formError: false
-    //   });
-    // });
+    return this.props.postForm('/contacts/us/', contact);
   }
 
   render () {
+    const { formError, errorMessage, submittingForm, formSubmitted } = this.props.form;
     const calloutClassSuccess = classNames({
       'callout': true,
       'success': true,
-      'hide': !this.state.formSubmittedSuccess
+      'hide': !formSubmitted
     });
 
     const calloutClassError = classNames({
       'callout': true,
       'alert': true,
-      'hide': !this.state.formError
+      'hide': !formError
     });
 
     const submitLabel = classNames({
       'warning': true,
       'label': true,
-      'hide': !this.state.submittingForm
+      'hide': !submittingForm
     });
 
     return (
@@ -82,17 +64,17 @@ class Contact extends React.Component {
           </div>
 
           <div className={calloutClassError} ref='error'>
-            <p>You must provide either your email address!</p>
+            <p>{ errorMessage }</p>
           </div>
 
           <div className='large-6 medium-6 columns'>
             <div id='contact-form'>
               <div className='contact-questions'>Name </div>
-              <input className='form__control' type='text' placeholder='First and Last Name' ref='name' />
+              <input className='form__control' type='text' placeholder='First and Last Name' name='name' />
               <div className='large-12 columns contact-questions'>Email <span className='red'>*</span></div>
-              <input className='form__control' type='text' placeholder='Email' ref='email' />
+              <input className='form__control' type='text' placeholder='Email' name='email' />
               <div className='large-12 columns contact-questions'>Comment or Questions</div>
-              <textarea className='form__control' type='text' placeholder='Type Here' ref='comment' />
+              <textarea className='form__control' type='text' placeholder='Type Here' name='comment' />
               <div className='btn' onClick={this.submitForm}>Submit</div>   <span className={submitLabel} ref='label'>Sending... Please wait!</span>
             </div>
           </div>
@@ -112,4 +94,16 @@ class Contact extends React.Component {
   }
 }
 
-module.exports = Contact;
+const mapStateToProps = function (state) {
+  return {
+    form: state.form
+  };
+};
+
+const dispatches = {
+  submitFormStarted,
+  formHasMissingFields,
+  postForm
+};
+
+export default connect(mapStateToProps, dispatches)(Contact);
