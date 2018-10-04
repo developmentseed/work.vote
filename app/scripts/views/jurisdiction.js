@@ -34,7 +34,7 @@ class Jurisdiction extends React.Component {
 
   showApplication (event) {
     const { jurisdiction } = this.props;
-    const category = `${jurisdiction.state.alpha}-${jurisdiction.name}-application`;
+    const category = `${jurisdiction.state.alpha} - ${jurisdiction.name} - application`;
     event.preventDefault();
     ReactGA.event({
       category,
@@ -217,8 +217,10 @@ class Jurisdiction extends React.Component {
     }
 
     let pageTitle = '';
+    let category = '';
     if (jurisdiction.name) {
       pageTitle = `${jurisdiction.name}, ${jurisdiction.state.alpha}`;
+      category = `${jurisdiction.state.alpha} - ${jurisdiction.name}`;
     }
 
     // Results HTML
@@ -230,8 +232,8 @@ class Jurisdiction extends React.Component {
             <div className='county-image'>
               <div id={this.shapeId} className='state-shape'></div>
             </div>
-            <MoreInfo url={jurisdiction.website} />
-            <MoreInfo url={jurisdiction.student_website} value="Student Poll Worker Information" />
+            <MoreInfo url={jurisdiction.website} category={`${category} - moreinfo`} />
+            <MoreInfo url={jurisdiction.student_website} value="Student Poll Worker Information" category={`${category}-studentinfo`} />
             <Apply url={jurisdiction.application} email={jurisdiction.email} click={this.showApplication} />
             <br/>
             <div className='text-header'>Contact Information</div>
