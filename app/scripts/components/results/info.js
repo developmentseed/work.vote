@@ -16,7 +16,7 @@ class Info extends React.Component {
   clicked (event) {
     event.preventDefault();
     ReactGA.event({
-      category: 'More Info',
+      category: this.props.category,
       action: this.value
     });
     window.location = checkUrl(this.props.url);
