@@ -33,9 +33,11 @@ class Jurisdiction extends React.Component {
   }
 
   showApplication (event) {
+    const { jurisdiction } = this.props;
+    const category = `${jurisdiction.state.alpha}-${jurisdiction.name}-application`;
     event.preventDefault();
     ReactGA.event({
-      category: 'Application',
+      category,
       action: 'Application link is clicked'
     });
     this.setState({ applicationIsShown: true });
