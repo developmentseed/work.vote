@@ -3,7 +3,7 @@
 import isEmpty from 'lodash.isempty';
 import { connect } from 'react-redux';
 import React from 'react';
-import ReactGA from 'react-ga';
+import { Helmet } from 'react-helmet';
 import Loader from 'react-loader';
 import { Choose, When, Otherwise } from 'react-conditioner';
 import Box from '../components/box';
@@ -32,14 +32,7 @@ class Jurisdiction extends React.Component {
     return this.props.match.params.jurisdictionId;
   }
 
-  showApplication (event) {
-    const { jurisdiction } = this.props;
-    const category = `${jurisdiction.state.alpha} - ${jurisdiction.name} - application`;
-    event.preventDefault();
-    ReactGA.event({
-      category,
-      action: 'Application link is clicked'
-    });
+  showApplication () {
     this.setState({ applicationIsShown: true });
   }
 
@@ -227,14 +220,17 @@ class Jurisdiction extends React.Component {
     return (
       <Box>
         <Loader loaded={loaded}>
+          <Helmet>
+            <title>{pageTitle}</title>
+          </Helmet>
           <div className='results-split-container medium-5 columns'>
             <div className='juris-header'>{pageTitle}</div>
             <div className='county-image'>
               <div id={this.shapeId} className='state-shape'></div>
             </div>
             <MoreInfo url={jurisdiction.website} category={`${category} - moreinfo`} />
-            <MoreInfo url={jurisdiction.student_website} value="Student Poll Worker Information" category={`${category}-studentinfo`} />
-            <Apply url={jurisdiction.application} email={jurisdiction.email} click={this.showApplication} />
+            <MoreInfo url={jurisdiction.student_website} value="Student Poll Worker Information" category={`${category} - studentinfo`} />
+            <Apply url={jurisdiction.application} email={jurisdiction.email} click={this.showApplication} category={`${category} - application`} />
             <br/>
             <div className='text-header'>Contact Information</div>
             <Conditional title='Phone' value={jurisdiction.telephone} />
