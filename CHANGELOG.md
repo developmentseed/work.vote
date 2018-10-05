@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [v2.1.0] - 2018-10-05
 ### Added
 - Facebook pixel tracking code
 - Google Analytics tracking code
@@ -16,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - switch to browser history from hash history
 
 ### Fixed
+- update page title
 - update contact email
 - fixed student poll worker info link
 - fixed contact form submit
@@ -29,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - The first release
 
-[Unreleased]: https://github.com/developmentseed/work.vote/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/developmentseed/work.vote/compare/v2.1.0...HEAD
+[v2.1.0]: https://github.com/developmentseed/work.vote/compare/v2.0.0...v2.1.0
 [v2.0.0]: https://github.com/developmentseed/work.vote/compare/cc30c73...v2.0.0
 [v1.0.0]: https://github.com/developmentseed/work.vote/compare/05118f16...cc30c73
