@@ -3,6 +3,7 @@
 import isUndefined from 'lodash.isundefined';
 import find from 'lodash.find';
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader';
@@ -76,6 +77,9 @@ class State extends React.Component {
     return (
       <Box>
         <Loader loaded={loaded}>
+          <Helmet>
+            <title>Work Elections | {stateObj.name}</title>
+          </Helmet>
           <div className='results-split-container medium-4 columns text-center'>
             <div className='juris-header'>{stateObj.name}</div>
             <div className='county-image'>

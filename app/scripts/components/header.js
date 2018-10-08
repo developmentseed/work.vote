@@ -1,11 +1,14 @@
 'use stict';
 
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-
 
 const Header = () => (
   <header>
+    <Helmet>
+      <title>Work Elections</title>
+    </Helmet>
     <div className='header-block'></div>
     <div className='header-tinyblock'></div>
     <div className='header-title white'>
