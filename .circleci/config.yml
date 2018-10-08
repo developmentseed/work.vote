@@ -19,6 +19,8 @@ jobs:
             - ~/project/node_modules
       - run:
           name: Build 
+          environment:
+            DS_ENV: production
           command: yarn build
       - run:
           name: Build and Deploy to Heroku
