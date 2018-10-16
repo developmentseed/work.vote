@@ -46,6 +46,7 @@ config.ageOptions = [
 ];
 
 config.languageOptions = [
+  { value: 'None', label: 'None' },
   { value: 'Arabic', label: 'Arabic' },
   { value: 'Bengali', label: 'Bengali' },
   { value: 'Cantonese', label: 'Cantonese' },
