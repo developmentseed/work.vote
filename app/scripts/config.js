@@ -1,31 +1,29 @@
 'use strict';
-var defaultsDeep = require('lodash.defaultsdeep');
+const merge = require('lodash.merge');
 /*
  * App configuration.
  *
- * Uses settings in config/production.js, with any properties set by
- * config/staging.js or config/local.js overriding them depending upon the
- * environment.
+ * Any properties from config/production.js or config/local.js overrides
+ * properties set in this file.
  *
  * This file should not be modified.  Instead, modify one of:
  *
  *  - config/production.js
  *      Production settings (base).
- *  - config/staging.js
- *      Overrides to production if ENV is staging.
  *  - config/local.js
  *      Overrides if local.js exists.
  *      This last file is git ignored, so you can safely change it without
  *      polluting the repo.
  */
 
-var configurations = require('./config/*.js', {mode: 'hash'});
-var config = configurations.local || {};
+let config = {};
+let configOverrides;
 
-if (process.env.DS_ENV === 'staging') {
-  defaultsDeep(config, configurations.staging);
+if (process.env.DS_ENV === 'production') {
+  configOverrides = require(`./config/production.js`);
+} else {
+  configOverrides = require('./config/local.js') || {};
 }
-defaultsDeep(config, configurations.production);
 
 let i = 1;
 let technologyOptions = [];
@@ -36,6 +34,8 @@ while (i < 6) {
   i++;
 }
 
+config.apiUrl = 'https://api.workelections.com';
+config.accessToken = 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q'; 
 config.ageOptions = [
   { value: 0, label: '16 to 18' },
   { value: 1, label: '19 to 25' },
@@ -69,5 +69,7 @@ config.pixel = '267782117400714';
 config.cookieName = 'workelections_com_seen_survey';
 
 config.technologyOptions = technologyOptions;
+
+config = merge(config, configOverrides);
 
 module.exports = config;
