@@ -10,3 +10,4 @@ bin/data/*
 
 # ignore local config
 app/scripts/config/local.js
+Icon
