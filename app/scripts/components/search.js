@@ -39,7 +39,8 @@ class Search extends React.Component {
 
   onSuggestionSelected (event, context) {
     if (!context.suggestion.noLink) {
-      this.props.history.push(`/j/${context.suggestion.id}`);
+      const prefix = context.suggestion.type == 'state' ? 'states' : 'j';
+      this.props.history.push(`/${prefix}/${context.suggestion.id}`);
     }
   }
 
