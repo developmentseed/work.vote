@@ -50,7 +50,6 @@ class Root extends React.Component {
             <div className='row'>
               <div className='small-12 columns'>
                 <Header />
-                <br />
                 <Switch>
                   <Route path='/states/:stateId' component={State} />
                   <Route exact path='/states' component={States} />

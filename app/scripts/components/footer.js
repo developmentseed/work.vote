@@ -23,6 +23,10 @@ const Footer = () => (
             </p>
           </h5>
         </div>
+      </div>
+    </div>
+    <div className="callout large tertiary">
+      <div class="row">
         <div className="large-6 columns footer-items footer-partners">
           <h5>This project is led by the following partners:</h5>
           <a href="https://www.fairelectionscenter.org/">

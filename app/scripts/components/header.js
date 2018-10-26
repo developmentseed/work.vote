@@ -9,10 +9,8 @@ const Header = () => (
     <Helmet>
       <title>Work Elections</title>
     </Helmet>
-    <div className='header-block'></div>
-    <div className='header-tinyblock'></div>
     <div className='header-title white'>
-      <Link to='/'><img src='/graphics/layout/us.svg'></img> Work Elections</Link>
+      <Link to='/'><img src='/graphics/layout/workelections.png' alt="Work Elections"></img></Link>
     </div>
     <div className='header-links'>
       <div className='row header-padding'>

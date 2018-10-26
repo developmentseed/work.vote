@@ -20,19 +20,24 @@
 body {
   margin:0;
   padding:0;
-  background-image: url("/graphics/layout/bg2.jpg");
+  //background-image: url("/graphics/layout/bg2.jpg");
   background-repeat: repeat;
   font-family: 'Open Sans', sans-serif;
 }
 
 header {
-  background-color: $dred;
-  position: fixed;
+  background-color: $lgrey2;
+  
   font-family: Montserrat;
   top: 0px;
   width: 100%;
+  height: auto;
   z-index: 20;
   box-shadow: 2px 1px 10px rgba(0,0,0,0.7);
+    @media screen and (min-width: 500px){
+      position: fixed;
+      height: 100px;
+  }
 }
 
 ::-moz-selection { /* Code for Firefox */
@@ -92,40 +97,52 @@ a:focus{
 }
 
 .header-title{
+  font-family: $roboto;
   position: absolute;
   z-index:21;
-  top:2px;
+  top:16px;
   font-size: 1.7em;
   font-weight: 100;
   letter-spacing: 0.05em;
   text-align: center;
-  width: 100%;
+  left: 50%;
+  margin-left: -53px;
+  
+  // background-image: url('/graphics/layout/workelections.png');
+  @media screen and (min-width: 500px){
+    padding-top: 0;
+    left: 48px;
+    margin-left: 0;
+  }
   @media screen and (min-width: 920px){
-    left:60px;
-    padding-left:30px;
+    padding-top:0;
+    left:62px;
+    top: 16px;
+    // padding-left:30px;
     text-align: left;
     width: auto;
+     margin-left: 0;
   }
   img{
-    height: 25px;
+    height: 72px;
     padding-bottom:4px;
   }
 }
 
-.header-block{
-  background: $dblue;
-  height:46px;
-  left:0px;
-  width: 100%;
-  @media screen and (min-width: 920px) {
-  position:absolute;
-  left: 40px;
-  width: 360px;
-  -webkit-transform: skew(45deg);
-     -moz-transform: skew(45deg);
-       -o-transform: skew(45deg);
-  }
-}
+// .header-block{
+//   background: $dblue;
+//   height:46px;
+//   left:0px;
+//   width: 100%;
+//   @media screen and (min-width: 920px) {
+//   position:absolute;
+//   left: 40px;
+//   width: 360px;
+//   -webkit-transform: skew(45deg);
+//      -moz-transform: skew(45deg);
+//        -o-transform: skew(45deg);
+//   }
+// }
 
 .header-tinyblock{
   @media screen and (min-width: 920px) {
@@ -142,27 +159,48 @@ a:focus{
 
 .header-links{
   width: 100%;
-  font-size: 0.9em;
-  padding-top: 2px;
-  height:26px;
-  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  // padding-top: 42px;
+  // height:26px;
+  text-align: center;  
   float: none;
-  @media screen and (min-width: 920px) {
-    float: right;
-    width: 550px;
-   }
-  @media screen and (max-width: 500px){
+  font-family: $roboto;
+  line-height: 26px;
+  padding-top: 100px;
+  @media screen and (min-width: 500px){
     height: 26px;
+    float: right;
+    text-align: right;
+    padding-top:0;
+
     a{
-      padding: 2px 0px;
+      // padding: 2px 0px;
+      line-height: 100px;
     }
   }
+  @media screen and (min-width: 920px) {
+    width: 550px;
+    margin-right: 62px;
+    text-align: right;
+    float: right;
+    padding-top: 0;
+    a{
+      line-height: 100px;
+    }
+   }  
   a{
     display: inline-block;
     padding-top: 0px;
     height: auto;
     padding-left: 10px;
     padding-right: 10px;
+    text-transform: uppercase;
+    color: $bgrey;
+    
+    &:hover{
+      background-color: $highlight;
+    }
   }
 }
 
@@ -170,19 +208,34 @@ a:focus{
   background-color: $lblue;
   position: relative;
   min-height: 340px;
+  // margin-top: 30px;
+  @media screen and (min-width: 500px){
+    margin-top: 30px;
+  }
 }
 
 .banner-image{
   background-image: url(/graphics/layout/main.jpg);
   background-size: cover;
-  opacity: 0.6;
+  // opacity: 0.6;
   pointer-events: none;
   min-height: 600px;
   transition-property: background-position;
   transition-duration: 0.4s;
   transition-timing-function: linear;
+  position: relative;
   @media screen and (max-width: 600px){
     background-position: -420px;
+  }
+  &::before{
+    position: absolute;
+    content: '';
+    background-color: rgba(34,34,34,0.10);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
   }
 }
 
@@ -192,25 +245,60 @@ a:focus{
 
 .banner-box{
   position: absolute;
-  top:22%;
-  margin-left: 50px;
-  max-width:500px;
+  top:12%;
+  margin-left: 20px;
+  margin-right: 20px;
+  max-width: 100%;
+  br {
+    display: none; 
+  }
+
+  @media screen and (min-width: 500px){
+    top: 24%;
+    margin-left: 50px;
+    margin-right: 0;
+    max-width:500px;
+    br{
+      display: block;
+    }
+  }
 }
 
 .banner-text{
   font-weight: 400;
-  font-size:1.4em;
   max-height:100%;
-  color: white;
-  padding: 14px;
+  color: $dblue;
+  font-family: $robotoCon;
+  p{
+    background: rgba(250,250,250,0.90);
+  }
 /*  background-color: rgba(255,255,255,0.25);
   border: 2px solid rgba(0,84,166,0.4);
   border-radius: 25px;
   height: 350px;*/
-  text-shadow: 2px 1px 2px rgba(0,0,0,0.7);
+  // text-shadow: 2px 1px 2px rgba(0,0,0,0.7);
   .text-header{
-    font-size:1.6em;
+    font-size:48px;
+    display: inline-block;
+    background: rgba(250,250,250,0.90);
+    padding: 10px 12px 12px;
+    line-height: 48px;
   }
+  span{
+    font-family: $roboto;
+    background-color: transparent;
+    font-size: 27px;
+    line-height: 43px;
+    padding: 4px;
+  }
+  @media screen and (min-width: 500px){
+    p{
+      background: transparent;
+    }
+    span{
+      background-color: rgba(250,250,250,0.90);
+    }
+  }  
 }
 
 
@@ -224,6 +312,11 @@ a:focus{
 
 .row{
   max-width: 100%;
+  
+  br{ 
+    
+  }
+
 }
 
 .bold{
@@ -251,13 +344,20 @@ a:focus{
   input[type="text"]{
     // border-radius: 10px;
     margin: 10px auto 8px 0px;
-    height: 35px;
-    background: url(/graphics/layout/search.png) no-repeat scroll 8px 10px;
-    padding-left: 30px;
-    width: 290px;
+    height: 44px;
+    box-sizing: border-box;
+    background: url(/graphics/layout/search.png) no-repeat scroll 10px 13px;
+    padding-left: 34px;
+    width: 100%;
     background-color: white;
     color: black;
-    box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+
+    &::placeholder{
+      color: $dgrey;
+    }
   }
 }
 
@@ -266,16 +366,19 @@ a:focus{
   border-radius: 10px;
 /*  box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
   background-color: $lblue;*/
-  max-width: 340px;
+  max-width: 500px;
   height: 116px;
   padding-top: 16px;
   margin-left: auto;
   margin-right: auto;
-  right: 40px;
+  // right: 40px;
   p{
   padding-left: 7px;
   margin:0;
   clear: both;
+  }
+  input{
+    width: 470px;
   }
 }
 
@@ -377,7 +480,7 @@ a:focus{
 /*----------------------------------------------*/
 .map-break{
   width:100%;
-  height: 10px;
+  height: 6px;
 }
 
 #map {
@@ -398,7 +501,7 @@ a:focus{
 }
 
 .map-break-below-2{
-  height: 40px;
+  height: 22px;
   background-color: $dblue;
   width: 100%;
 }
@@ -419,6 +522,10 @@ a:focus{
   max-width: 860px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0;
+  @media screen and (min-width: 500px){
+    margin-top: 100px;
+  }
 }
 
 .results-split-container{
@@ -454,12 +561,12 @@ a:focus{
   word-wrap: break-word;
   position: relative;
   min-height: 250px;
-  margin-top: 44px;
+  // margin-top: 44px;
   @media screen and (min-width: 920px) {
     margin-top: 6px;
    }
   @media screen and (max-width: 500px){
-    margin-top: 68px
+    // margin-top: 68px
   }
 }
 
@@ -483,18 +590,32 @@ a:focus{
 /* Footer */
 /*----------------------------------------------*/
 .footer-container{
+  // background-color: $lgrey2;
 }
 
 .callout.secondary{
   background-color: $dred;
-  margin-bottom: 0px;
+  margin-bottom: 12px;
   padding: 20px 30px 30px 30px;
 }
 
+.callout.tertiary{
+  padding: 0;
+  border: 0;
+  margin: 0;
+  h5{
+    // background-color: $dred;
+    font-family: $roboto;
+    padding: 6px;
+    color: $dred;
+  }
+}
+
 .footer-bottom{
+  border-top: 20px solid $dred;
   width: 100%;
-  color: white;
-  background-color: $dgrey;
+  color: $dgrey;
+  background-color: white;
   padding: 14px;
   padding-top: 20px;
   padding-bottom: 4px;
@@ -504,16 +625,32 @@ a:focus{
   padding-left: 24px;
   padding-right: 24px;
   font-size: 0.8em;
-  color: #BBB;
+  color: $bgrey;
   margin-left: auto;
   margin-right: auto;
+  max-width: 800px;
+  text-align: center;
+  font-size: 12px;
 }
 
 .footer-msg {
   max-width: 750px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  h5{
+    font-family: $roboto;
+    font-size: 20px;
+    p{
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+  }
 }
 
 .footer-items{
+
   img{
     margin:10px;
   }
@@ -524,6 +661,9 @@ a:focus{
   a{
     color: #CCC;
     transition: all 0.2s;
+    margin-right: 24px;
+    margin-left: 24px;
+    margin-bottom: 24px;
     &:hover{
       color: white;
       border-bottom-color: white;
@@ -542,7 +682,7 @@ h5{
   padding-bottom: 20px;
   text-align: center;
   img{
-    margin: 25px 10px 10px 10px;
+    margin: 30px 10px 25px 10px;
   }
 }
 
