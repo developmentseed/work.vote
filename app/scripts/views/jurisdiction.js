@@ -203,7 +203,7 @@ class Jurisdiction extends React.Component {
         secondColumn = (
           <div>
             {message}
-            <p>Workelections.com does not yet have information for this jurisdiction.</p>
+            <p>Workelections.com does not yet have information for this jurisdiction. Please contact your local election official for more information about being a poll worker in this area.</p>
           </div>
         );
       }
