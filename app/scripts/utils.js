@@ -57,3 +57,10 @@ export function shape (el, geojson) {
     .style('fill', '#ccc')
     .style('stroke-width', '1');
 }
+
+export function getUrlName (name) {
+  if (!name) {
+    return '';
+  }
+  return name.replace(/[^a-zA-Z0-9]+/g, '-');
+}

@@ -12,6 +12,7 @@ import Shape from '../components/shape';
 import NotFound from './404';
 import MoreInfo from '../components/results/info';
 import { fetchStateJurisdictions, fetchStates } from '../actions';
+import { getUrlName } from '../utils';
 
 class State extends React.Component {
   getStateId () {
@@ -48,12 +49,13 @@ class State extends React.Component {
         const jurs = stateJurisdictions[stateObj.id];
         for (const i in jurs) {
           const obj = jurs[i];
+          const urlName = getUrlName(obj.name);
           if (obj.name) {
-            list.push(<div className = 'select-link' key={obj.id}><p><Link to={`/j/${obj.id}`}>{obj.name}</Link></p></div>);
+            list.push(<div className = 'select-link' key={obj.id}><p><Link to={`/j/${obj.id}/${urlName}`}>{obj.name}</Link></p></div>);
           }
         }
       } else {
-        list.push(<div className = 'text-center'>We do not yet have information for these jurisdictions.</div>);
+        list.push(<div className = 'text-center'>We do not yet have information for these jurisdictions. Please contact your local election official for more information about being a poll worker in this area.</div>);
       }
     } else if (!stateObj.is_active && stateObj.pollworker_website) {
       list.push(
@@ -61,7 +63,7 @@ class State extends React.Component {
       );
     } else if (!stateObj.is_active) {
       list.push(
-        <div className='error-text'>Sorry, Workelections.com does not have information for each jurisdiction in {stateObj.name}.</div>
+        <div className='error-text'>Sorry, Workelections.com does not have information for each jurisdiction in {stateObj.name}. Please contact your local election official for more information about being a poll worker in this area.</div>
       );
     }
 

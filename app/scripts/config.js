@@ -21,6 +21,8 @@ let configOverrides;
 
 if (process.env.DS_ENV === 'production') {
   configOverrides = require(`./config/production.js`);
+} else if (process.env.DS_ENV === 'staging') {
+  configOverrides = require(`./config/staging.js`);
 } else {
   configOverrides = require('./config/local.js') || {};
 }
@@ -35,7 +37,7 @@ while (i < 6) {
 }
 
 config.apiUrl = 'https://api.workelections.com';
-config.accessToken = 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q'; 
+config.accessToken = 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q';
 config.ageOptions = [
   { value: 0, label: '16 to 18' },
   { value: 1, label: '19 to 25' },
