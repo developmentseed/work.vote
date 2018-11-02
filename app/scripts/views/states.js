@@ -8,6 +8,7 @@ import Loader from 'react-loader';
 import Box from '../components/box';
 import Map from '../components/map';
 import { fetchStates } from '../actions';
+import { getUrlName } from '../utils';
 
 class States extends React.Component {
   getId (id) {
@@ -18,6 +19,10 @@ class States extends React.Component {
     } else {
       return 0;
     }
+  }
+
+  getUrlStateName (name) {
+    return name.replace(/[^a-zA-Z0-9]+/g, '-');
   }
 
   componentDidMount () {
@@ -34,7 +39,8 @@ class States extends React.Component {
 
     for (const i in states) {
       const obj = states[i];
-      list.push(<Link to={`/states/${obj.id}`}><div className = 'select-link' key={obj.id}><p key={obj.id}>{obj.name}</p></div></Link>);
+      const urlName = getUrlName(states[i].name);
+      list.push(<Link to={`/states/${obj.id}/${urlName}`}><div className = 'select-link' key={obj.id}><p key={obj.id}>{obj.name}</p></div></Link>);
     }
     map = <Map data={states} />;
 

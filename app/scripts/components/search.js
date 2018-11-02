@@ -4,6 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Autosuggest from 'react-autosuggest';
 import { updateInputValue, loadSuggestions, cleanSuggestions } from '../actions';
+import { getUrlName } from '../utils';
 
 function getSuggestionValue (suggestion) {
   if (suggestion.type === 'jurisdiction') {
@@ -39,7 +40,8 @@ class Search extends React.Component {
 
   onSuggestionSelected (event, context) {
     if (!context.suggestion.noLink) {
-      this.props.history.push(`/j/${context.suggestion.id}`);
+      const urlName = getUrlName(context.suggestion.name);
+      this.props.history.push(`/j/${context.suggestion.id}/${urlName}`);
     }
   }
 

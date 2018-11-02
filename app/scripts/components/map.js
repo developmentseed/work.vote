@@ -3,6 +3,7 @@
 import React from 'react';
 import d3 from 'd3';
 const topojson = require('topojson');
+import { getUrlName } from '../utils';
 
 function MapClass (el, states) {
   this.$el = d3.select(el);
@@ -36,7 +37,8 @@ function MapClass (el, states) {
 
       if (_id) {
         this.states[_id] = {
-          'id': states[i].id
+          'id': states[i].id,
+          'name': states[i].name
         };
         if (states[i].is_active) {
           this.states[_id].fill = '#a55873';
@@ -94,7 +96,8 @@ function MapClass (el, states) {
 
   this.click = (d) => {
     if (d.id in this.states) {
-      window.location.href = `/states/${this.states[d.id].id}`;
+      const urlName = getUrlName(this.states[d.id].name);
+      window.location.href = `/states/${this.states[d.id].id}/${urlName}`;
     }
   };
 
