@@ -55,7 +55,7 @@ class State extends React.Component {
           }
         }
       } else {
-        list.push(<div className = 'text-center'>We do not yet have information for these jurisdictions.</div>);
+        list.push(<div className = 'text-center'>We do not yet have information for these jurisdictions. Please contact your local election official for more information about being a poll worker in this area.</div>);
       }
     } else if (!stateObj.is_active && stateObj.pollworker_website) {
       list.push(
@@ -63,7 +63,7 @@ class State extends React.Component {
       );
     } else if (!stateObj.is_active) {
       list.push(
-        <div className='error-text'>Sorry, Workelections.com does not have information for each jurisdiction in {stateObj.name}.</div>
+        <div className='error-text'>Sorry, Workelections.com does not have information for each jurisdiction in {stateObj.name}. Please contact your local election official for more information about being a poll worker in this area.</div>
       );
     }
 
