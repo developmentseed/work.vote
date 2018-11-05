@@ -14,7 +14,7 @@ class Frontpage extends React.Component {
           <div className='banner-box'>
             <div className='banner-text'>
               <div className='text-header'>Be a Part of Democracy</div>
-              <p>Look up information on how to work at the polls on Election Day.</p>
+              <p><span>Look up information on how to work </span> <br /> <span>at the polls on Election Day.</span></p>
             </div>
             <SearchWithHistory />
           </div>
