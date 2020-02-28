@@ -106,18 +106,6 @@ class Jurisdiction extends React.Component {
                   <span></span>
                 </Otherwise>
               </Choose>
-
-              <Choose>
-                <When condition={ jurisdiction.pre_registration === 'Y' }>
-                  <li><p>You must be pre-registered to vote.</p></li>
-                </When>
-                <When condition={ jurisdiction.pre_registration === 'N' }>
-                  <li><p>You do not need to be pre-registered to vote.</p></li>
-                </When>
-                <Otherwise>
-                  <span></span>
-                </Otherwise>
-              </Choose>
             </ul>
 
             <div className='text-header'>Hours and Compensation</div>
@@ -131,18 +119,6 @@ class Jurisdiction extends React.Component {
               <li>
                 <Conditional title='Compensation Range' value={jurisdiction.compensation} else='N/A' />
               </li>
-
-              <Choose>
-                <When condition={ jurisdiction.full_day_req === 'Y' }>
-                  <li><p>You must work the full day.</p></li>
-                </When>
-                <When condition={ jurisdiction.full_day_req === 'N' }>
-                  <li><p>You can split the day with another election worker</p></li>
-                </When>
-                <Otherwise>
-                  <span></span>
-                </Otherwise>
-              </Choose>
             </ul>
 
             <div className='text-header'>Work Requirements</div>
@@ -150,18 +126,6 @@ class Jurisdiction extends React.Component {
               <li>
                 <Conditional title='Minimum Age' value={jurisdiction.minimum_age} else='N/A' />
               </li>
-
-              <Choose>
-                <When condition={ jurisdiction.interview === 'Y' }>
-                  <li><p>People who sign up to work on Election Day are interviewed.</p></li>
-                </When>
-                <When condition={ jurisdiction.pre_registration === 'N' }>
-                  <li><p>There is no interview.</p></li>
-                </When>
-                <Otherwise>
-                  <Conditional title='Interview:' value={jurisdiction.interview} />
-                </Otherwise>
-              </Choose>
 
               <Choose>
                 <When condition={ jurisdiction.training === 'Y' }>
