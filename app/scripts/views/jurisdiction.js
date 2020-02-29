@@ -119,6 +119,17 @@ class Jurisdiction extends React.Component {
               <li>
                 <Conditional title='Compensation Range' value={jurisdiction.compensation} else='N/A' />
               </li>
+              <Choose>
+                <When condition={ jurisdiction.full_day_req === 'Y' }>
+                  <li><p>You must work the full day.</p></li>
+                </When>
+                <When condition={ jurisdiction.full_day_req === 'N' }>
+                  <li><p>You can split the day with another election worker</p></li>
+                </When>
+                <Otherwise>
+                  <span></span>
+                </Otherwise>
+              </Choose>
             </ul>
 
             <div className='text-header'>Work Requirements</div>
