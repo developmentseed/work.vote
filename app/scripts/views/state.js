@@ -89,11 +89,8 @@ class State extends React.Component {
             </div>
             <MoreInfo url={stateObj.pollworker_website} value='State Poll Workers website' />
           </div>
-
-          <div className='results-split-container medium-8 columns'>
-            {list}
-          </div>
-
+          <div className='results-split-container'>{stateObj.notes}</div>
+          <div className='results-split-container medium-8 columns'>{list}</div>
         </Loader>
       </Box>
     );
