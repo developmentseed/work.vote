@@ -51,7 +51,8 @@ class Application extends React.Component {
       return this.props.formHasMissingFields(missingFields);
     }
 
-    return this.props.postForm('/contacts/application/', values);
+    this.props.postForm('/contacts/application/', values);
+    this.props.onSubmit();
   }
 
   render () {
