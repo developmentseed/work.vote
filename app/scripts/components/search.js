@@ -52,7 +52,7 @@ class Search extends React.Component {
   render () {
     const { value, suggestions } = this.props.search;
     const inputProps = {
-      placeholder: 'Enter your county, city, zip code or address',
+      placeholder: 'Enter your county, city, or town',
       value,
       onChange: this.onChange
     };
@@ -61,7 +61,7 @@ class Search extends React.Component {
       <div>
         <div id='Search-container'>
           <div id='Address-Finder'>
-            
+
             <Autosuggest
               suggestions={suggestions}
               onSuggestionSelected={(event, context) => this.onSuggestionSelected(event, context)}
