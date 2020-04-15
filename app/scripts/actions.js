@@ -158,7 +158,6 @@ export function postSurveyResults (values) {
 export function postForm (path, values) {
   return (dispatch) => {
     const uri = url.resolve(config.apiUrl, path);
-    console.log(uri)
     ky.post(uri, { json: values }).json()
       .then(() => {
         dispatch(submitFormSucceeded());
@@ -171,8 +170,15 @@ export function loadSuggestions (value) {
   return dispatch => {
     dispatch(loadSuggestionsBegin());
 
+    // If the value contains city, county or town strip it
+    // from the search
+    const normalizedValue = value.toLowerCase()
+      .replace('city', '')
+      .replace('county', '')
+      .replace('town', '');
+
     const uri = `${config.apiUrl}/search/`;
-    ky.get(`${uri}?q=${value}`).json()
+    ky.get(`${uri}?q=${normalizedValue}`).json()
       .then((resp) => dispatch(maybeUpdateSuggestions(resp, value)))
       .catch(console.log);
   };
