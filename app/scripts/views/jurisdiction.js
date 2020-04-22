@@ -4,6 +4,7 @@ import isEmpty from 'lodash.isempty';
 import { connect } from 'react-redux';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import Loader from 'react-loader';
 import { Choose, When, Otherwise } from 'react-conditioner';
 import Box from '../components/box';
@@ -13,7 +14,7 @@ import MoreInfo from '../components/results/info';
 import Empty from './404';
 import Conditional from '../components/results/conditional';
 import { fetchJurisdiction } from '../actions';
-import { shape } from '../utils';
+import { shape, getUrlName} from '../utils';
 
 class Jurisdiction extends React.Component {
   constructor (props) {
@@ -200,6 +201,9 @@ class Jurisdiction extends React.Component {
           </Helmet>
           <div className='results-split-container medium-5 columns'>
             <div className='juris-header'>{pageTitle}</div>
+            {jurisdiction.city_model
+              ? <sub> {jurisdiction.city_sub} <Link to={`/j/${jurisdiction.city_model.id}/${getUrlName(jurisdiction.city_model.name)}`}>click to go to {jurisdiction.city_model.name}</Link></sub>
+              : null}
             <div className='county-image'>
               <div id={this.shapeId} className='state-shape'></div>
             </div>
