@@ -57,6 +57,7 @@ class States extends React.Component {
             {header}
             <hr />
             {map}
+            <p>Gray states conduct elections via mail and have less of a demand for poll workers. WorkElections.com currently does not have information for jurisdictions in these states.</p>
             <div className = 'state-select'>
               {list}
             </div>
