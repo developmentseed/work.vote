@@ -201,8 +201,8 @@ class Jurisdiction extends React.Component {
           </Helmet>
           <div className='results-split-container medium-5 columns'>
             <div className='juris-header'>{pageTitle}</div>
-            {jurisdiction.city_model
-              ? <sub> {jurisdiction.city_sub} <Link to={`/j/${jurisdiction.city_model.id}/${getUrlName(jurisdiction.city_model.name)}`}>click to go to {jurisdiction.city_model.name}</Link></sub>
+            {jurisdiction.jurisdiction_link
+              ? <sub> {jurisdiction.jurisdiction_link_text} <Link to={`/j/${jurisdiction.jurisdiction_link.id}/${getUrlName(jurisdiction.jurisdiction_link.name)}`}>click to go to {jurisdiction.jurisdiction_link.name}</Link></sub>
               : null}
             <div className='county-image'>
               <div id={this.shapeId} className='state-shape'></div>
