@@ -2,8 +2,9 @@
 
 import React from 'react';
 import d3 from 'd3';
-const topojson = require('topojson');
 import { getUrlName } from '../utils';
+
+const topojson = require('topojson');
 
 function MapClass (el, states) {
   this.$el = d3.select(el);
@@ -41,11 +42,11 @@ function MapClass (el, states) {
           'name': states[i].name
         };
         if (states[i].is_active) {
-          this.states[_id].fill = '#a55873';
-          this.states[_id].hover = '#d85a7a';
+          this.states[_id].fill = '#495891';
+          this.states[_id].hover = '#707fb7';
         } else if (states[i].pollworker_website !== '') {
-          this.states[_id].fill = '#d6a6b7';
-          this.states[_id].hover = '#efacc4';
+          this.states[_id].fill = '#818ebf';
+          this.states[_id].hover = '#a3acd1';
         }
       }
     }
