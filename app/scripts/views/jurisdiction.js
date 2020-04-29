@@ -159,20 +159,10 @@ class Jurisdiction extends React.Component {
                   <span></span>
                 </Otherwise>
               </Choose>
-
-              <Choose>
-                <When condition={ jurisdiction.must_have_email === 'Y' }>
-                  <li><p>You are required to have an email address and access to a computer and the Internet.</p></li>
-                </When>
-                <Otherwise>
-                  <span></span>
-                </Otherwise>
-              </Choose>
             </ul>
 
             <div className='text-header'>Further Notes</div>
             <p>{jurisdiction.further_notes}</p>
-            <Conditional title='Last Updated' value={jurisdiction.obtained_at}/>
           </div>
         );
       } else {
