@@ -147,7 +147,6 @@ class Jurisdiction extends React.Component {
                   <span></span>
                 </Otherwise>
               </Choose>
-
               <Choose>
                 <When condition={ jurisdiction.complete_training === 'Y' }>
                   <li><p>You must complete training for each election.</p></li>
@@ -158,6 +157,12 @@ class Jurisdiction extends React.Component {
                 <Otherwise>
                   <span></span>
                 </Otherwise>
+              </Choose>
+              <Choose>
+                <When condition={ jurisdiction.training_note }>
+                  <li><p>{`Training Details: ${jurisdiction.training_note}`}</p></li>
+                </When>
+                <Otherwise><span /></Otherwise>
               </Choose>
             </ul>
 
