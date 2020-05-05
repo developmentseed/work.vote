@@ -86,7 +86,7 @@ class Jurisdiction extends React.Component {
       if (this.state.applicationIsSubmitted) {
         message = (
           <div className='callout success' >
-            <p>Your application was submitted. Thank you!</p>
+            <p>Your email was submitted. Please direct any follow-up messages to your jurisdiction's election officials. Thank you!</p>
           </div>
         );
       }
