@@ -86,7 +86,7 @@ class Jurisdiction extends React.Component {
       if (this.state.applicationIsSubmitted) {
         message = (
           <div className='callout success' >
-            <p>Your application was submitted. Thank you!</p>
+            <p>Your email was submitted. Please direct any follow-up messages to your jurisdiction's election officials. Thank you!</p>
           </div>
         );
       }
@@ -94,7 +94,7 @@ class Jurisdiction extends React.Component {
         secondColumn = (
           <div>
             {message}
-            <div className='text-header'>Registration Requirements</div>
+            <div className='text-header'>Voter Registration Requirements</div>
             <ul>
               <Choose>
                 <When condition={ jurisdiction.registration_status === 'S' }>
@@ -118,7 +118,7 @@ class Jurisdiction extends React.Component {
                 <Conditional title='End Time' value={jurisdiction.hours_end} else='N/A' />
               </li>
               <li>
-                <Conditional title='Compensation Range' value={jurisdiction.compensation} else='N/A' />
+                <Conditional title='Compensation' value={jurisdiction.compensation} else='N/A' />
               </li>
               <Choose>
                 <When condition={ jurisdiction.full_day_req === 'Y' }>
@@ -192,7 +192,7 @@ class Jurisdiction extends React.Component {
           <div className='results-split-container medium-5 columns'>
             <div className='juris-header'>{pageTitle}</div>
             {jurisdiction.jurisdiction_link
-              ? <sub> {jurisdiction.jurisdiction_link_text} <Link to={`/j/${jurisdiction.jurisdiction_link.id}/${getUrlName(jurisdiction.jurisdiction_link.name)}`}>Click here to go to {jurisdiction.jurisdiction_link.name}</Link></sub>
+              ? <sub> {jurisdiction.jurisdiction_link_text} <Link to={`/j/${jurisdiction.jurisdiction_link.id}/${getUrlName(jurisdiction.jurisdiction_link.name)}`}>click here.</Link></sub>
               : null}
             <div className='county-image'>
               <div id={this.shapeId} className='state-shape'></div>
