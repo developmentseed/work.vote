@@ -160,7 +160,7 @@ class Jurisdiction extends React.Component {
               </Choose>
               <Choose>
                 <When condition={ jurisdiction.training_note }>
-                  <li><p>{`Training Details: ${jurisdiction.training_note}`}</p></li>
+                  <li><p><b>Training Details: </b>{jurisdiction.training_note}</p></li>
                 </When>
                 <Otherwise><span /></Otherwise>
               </Choose>
