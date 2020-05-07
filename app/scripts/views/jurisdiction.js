@@ -98,10 +98,10 @@ class Jurisdiction extends React.Component {
             <ul>
               <Choose>
                 <When condition={ jurisdiction.registration_status === 'S' }>
-                  <li><p>You can be registered anywhere in the state to work on Election Day in {jurisdiction.name}.</p></li>
+                  <li><p>You can be registered to vote anywhere in the state to work on Election Day in {jurisdiction.name}.</p></li>
                 </When>
                 <When condition={ jurisdiction.registration_status === 'J' }>
-                  <li><p>You must be registered in {jurisdiction.name} to work on Election Day</p></li>
+                  <li><p>You must be registered to vote in {jurisdiction.name} to work on Election Day</p></li>
                 </When>
                 <Otherwise>
                   <span></span>
@@ -160,7 +160,7 @@ class Jurisdiction extends React.Component {
               </Choose>
               <Choose>
                 <When condition={ jurisdiction.training_note }>
-                  <li><p>{`Training Details: ${jurisdiction.training_note}`}</p></li>
+                  <li><p><b>Training Details: </b>{jurisdiction.training_note}</p></li>
                 </When>
                 <Otherwise><span /></Otherwise>
               </Choose>
