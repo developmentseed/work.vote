@@ -15,6 +15,7 @@ const Header = () => (
     <div className='header-links'>
       <div className='row header-padding'>
         <Link to='/p/pollworker' className='white'>What is a Poll Worker?</Link>
+        <Link to='/p/covid19' className='white'>COVID-19</Link>
         <Link to='/states' className='white'>States</Link>
         <Link to='/p/about' className='white'>About</Link>
         <Link to='/p/qa' className='white'>Q&A</Link>
