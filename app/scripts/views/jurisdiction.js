@@ -168,6 +168,10 @@ class Jurisdiction extends React.Component {
 
             <div className='text-header'>Further Notes</div>
             <p>{jurisdiction.further_notes}</p>
+            <p dangerouslySetInnerHTML={{
+              __html: jurisdiction.trusted_notes
+            }}></p>
+
           </div>
         );
       } else {
