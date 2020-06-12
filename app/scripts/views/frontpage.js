@@ -1,12 +1,71 @@
 'use strict';
 
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchStates } from '../actions';
+import Select from 'react-select';
 import Search from '../components/search';
 
+const selectStyles = {
+  control: ({ isFocused, ...base }) => ({
+    ...base,
+    backgroundClip: 'padding-box',
+    borderColor: 'rgba(0,0,0,0.1)',
+    height: '44px',
+    boxShadow: '0 2px 5px 0px rgba(0,0,0,0.75)',
+
+    ':hover': {
+      borderColor: 'rgba(0,0,0,0.2)'
+    }
+  }),
+  option: base => ({
+    ...base,
+    padding: '4px 12px'
+  }),
+  menu: base => ({
+    ...base,
+    zIndex: 99
+  }),
+  placeholder: base => ({
+    ...base,
+    color: '#666'
+  })
+};
+
 class Frontpage extends React.Component {
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      selectedState: null,
+      previousSelection: null
+    };
+
+    this.onSelectedState = this.onSelectedState.bind(this);
+  }
+
+  componentDidMount () {
+    this.props.fetchStates();
+  }
+
+  onSelectedState (option) {
+    const { states } = this.props;
+    const stateValue = states.find(state => state.alpha === option.value);
+    this.setState({
+      selectedState: stateValue,
+      previousSelection: stateValue
+    });
+  }
+
   render () {
-    const SearchWithHistory = withRouter(Search);
+    let options = [];
+
+    if (this.props.states && this.props.states.length > 0) {
+      options = this.props.states.map(state => {
+        return { value: state.alpha, label: state.name };
+      });
+    }
+
     return (
       <div className='row column'>
         <div className='welcome-mat'>
@@ -16,7 +75,20 @@ class Frontpage extends React.Component {
               <div className='text-header'>Be a Part of Democracy</div>
               <p><span>Look up information on how to work </span> <br /> <span>at the polls on Election Day.</span></p>
             </div>
-            <SearchWithHistory />
+            <Select
+              placeholder="Select a state"
+              options={options}
+              name = 'state-selector'
+              isSearchable={false}
+              onChange={this.onSelectedState}
+              styles={selectStyles}
+            />
+            {
+              this.state.selectedState
+                ? <Search />
+                : <div/>
+            }
+
           </div>
         </div>
         <div id='User-Locate-container'>
@@ -27,4 +99,14 @@ class Frontpage extends React.Component {
   }
 }
 
-export default Frontpage;
+function mapStateToProps (state) {
+  return {
+    states: state.states
+  };
+}
+
+const dispatches = {
+  fetchStates
+};
+
+export default connect(mapStateToProps, dispatches)(Frontpage);
