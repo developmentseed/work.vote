@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import Autosuggest from 'react-autosuggest';
 import { updateInputValue, loadSuggestions, cleanSuggestions } from '../actions';
 import { getUrlName } from '../utils';
@@ -31,7 +32,7 @@ class Search extends React.Component {
   }
 
   onSuggestionsFetchRequested ({ value }) {
-    this.props.loadSuggestions(value);
+    this.props.loadSuggestions(value, this.props.state.alpha);
   }
 
   onSuggestionsClearRequested () {
@@ -51,6 +52,7 @@ class Search extends React.Component {
 
   render () {
     const { value, suggestions } = this.props.search;
+    const { state } = this.props;
     const inputProps = {
       placeholder: 'Enter your county, city, or town',
       value,
@@ -61,7 +63,11 @@ class Search extends React.Component {
       <div>
         <div id='Search-container'>
           <div id='Address-Finder'>
-
+            {
+              state.notes && state.notes.length > 0
+                ? <p>{state.notes}</p>
+                : <div />
+            }
             <Autosuggest
               suggestions={suggestions}
               onSuggestionSelected={(event, context) => this.onSuggestionSelected(event, context)}
@@ -92,4 +98,4 @@ const dispatches = {
   cleanSuggestions
 };
 
-export default connect(mapStateToProps, dispatches)(Search);
+export default connect(mapStateToProps, dispatches)(withRouter(Search));
