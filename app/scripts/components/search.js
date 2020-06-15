@@ -31,7 +31,7 @@ class Search extends React.Component {
   }
 
   onSuggestionsFetchRequested ({ value }) {
-    this.props.loadSuggestions(value);
+    this.props.loadSuggestions(value, this.props.state.alpha);
   }
 
   onSuggestionsClearRequested () {

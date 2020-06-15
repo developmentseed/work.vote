@@ -166,19 +166,25 @@ export function postForm (path, values) {
   };
 }
 
-export function loadSuggestions (value) {
+export function loadSuggestions (value, stateAlpha) {
   return dispatch => {
     dispatch(loadSuggestionsBegin());
+
+    let stateQuery = ''
+    if (stateAlpha) {
+      stateQuery = `&state=${stateAlpha}`
+    }
 
     // If the value contains city, county or town strip it
     // from the search
     const normalizedValue = value.toLowerCase()
+      .trim()
       .replace('city', '')
       .replace('county', '')
       .replace('town', '');
 
     const uri = `${config.apiUrl}/search/`;
-    ky.get(`${uri}?q=${normalizedValue}`).json()
+    ky.get(`${uri}?q=${normalizedValue}${stateQuery}`).json()
       .then((resp) => dispatch(maybeUpdateSuggestions(resp, value)))
       .catch(console.log);
   };
