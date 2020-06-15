@@ -383,10 +383,17 @@ a:focus{
   margin-left: auto;
   margin-right: auto;
   // right: 40px;
-  p{
-  padding-left: 7px;
-  margin:0;
-  clear: both;
+  p {
+    background-color: #FCF7F0;
+    border-radius: 4px;
+    border: #F2D7B4 1px solid; 
+    padding: 15px;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+    font-size: 14px;
+    color: #333;
+    clear: both;
   }
   input{
     width: 470px;

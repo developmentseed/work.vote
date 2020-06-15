@@ -85,7 +85,7 @@ class Frontpage extends React.Component {
             />
             {
               this.state.selectedState
-                ? <Search />
+                ? <Search state={this.state.selectedState}/>
                 : <div/>
             }
 
