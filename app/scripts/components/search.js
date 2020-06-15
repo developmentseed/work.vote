@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import Autosuggest from 'react-autosuggest';
 import { updateInputValue, loadSuggestions, cleanSuggestions } from '../actions';
 import { getUrlName } from '../utils';
@@ -97,4 +98,4 @@ const dispatches = {
   cleanSuggestions
 };
 
-export default connect(mapStateToProps, dispatches)(Search);
+export default connect(mapStateToProps, dispatches)(withRouter(Search));
