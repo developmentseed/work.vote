@@ -132,12 +132,12 @@ class Jurisdiction extends React.Component {
                   <li><p>You must work the full day.</p></li>
                 </When>
                 <When condition={ jurisdiction.full_day_req === 'N' }>
-                  <li><p>You can split the day with another election worker</p></li>
+                  <li><p>Part-day poll worker shifts are available.</p></li>
                 </When>
                 <Otherwise>
-                    <If condition={ jurisdiction.full_day_req.length > 0 }>
-                      <li><p>{ jurisdiction.full_day_req }</p></li>
-                    </If>
+                  <If condition={ jurisdiction.full_day_req.length > 0 }>
+                    <li><p>{ jurisdiction.full_day_req }</p></li>
+                  </If>
                 </Otherwise>
               </Choose>
             </ul>
