@@ -6,7 +6,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader';
-import { Choose, When, Otherwise } from 'react-conditioner';
+import { Choose, When, Otherwise, If } from 'react-conditioner';
 import Box from '../components/box';
 import Apply from '../components/results/apply';
 import Application from '../components/application';
@@ -15,6 +15,8 @@ import Empty from './404';
 import Conditional from '../components/results/conditional';
 import { fetchJurisdiction } from '../actions';
 import { shape, getUrlName} from '../utils';
+
+const NoValue = 'Please contact your local election official for more information';
 
 class Jurisdiction extends React.Component {
   constructor (props) {
@@ -94,41 +96,48 @@ class Jurisdiction extends React.Component {
         secondColumn = (
           <div>
             {message}
-            <div className='text-header'>Voter Registration Requirements</div>
-            <ul>
-              <Choose>
-                <When condition={ jurisdiction.registration_status === 'S' }>
-                  <li><p>You can be registered to vote anywhere in the state to work on Election Day in {jurisdiction.name}.</p></li>
-                </When>
-                <When condition={ jurisdiction.registration_status === 'J' }>
-                  <li><p>You must be registered to vote in {jurisdiction.name} to work on Election Day</p></li>
-                </When>
-                <Otherwise>
-                  <span></span>
-                </Otherwise>
-              </Choose>
-            </ul>
+
+            <If condition={ jurisdiction.registration_status.length > 0}>
+              <div className='text-header'>Voter Registration Requirements</div>
+              <ul>
+                <Choose>
+                  <When condition={ jurisdiction.registration_status === 'S' }>
+                    <li><p>You can be registered to vote anywhere in the state to work on Election Day in {jurisdiction.name}.</p></li>
+                  </When>
+                  <When condition={ jurisdiction.registration_status === 'J' }>
+                    <li><p>You must be registered to vote in {jurisdiction.name} to work on Election Day</p></li>
+                  </When>
+                  <Otherwise>
+                    <If condition={ jurisdiction.registration_status.length > 0}>
+                      <li><p>{jurisdiction.registration_status}</p></li>
+                    </If>
+                  </Otherwise>
+                </Choose>
+              </ul>
+            </If>
 
             <div className='text-header'>Hours and Compensation</div>
             <ul>
               <li>
-                <Conditional title='Start Time' value={jurisdiction.hours_start} else='N/A' />
+                <Conditional title='Start Time' value={jurisdiction.hours_start} else={NoValue}/>
               </li>
               <li>
-                <Conditional title='End Time' value={jurisdiction.hours_end} else='N/A' />
+                <Conditional title='End Time' value={jurisdiction.hours_end} else={NoValue} />
               </li>
               <li>
-                <Conditional title='Compensation' value={jurisdiction.compensation} else='N/A' />
+                <Conditional title='Compensation' value={jurisdiction.compensation} else={NoValue} />
               </li>
               <Choose>
                 <When condition={ jurisdiction.full_day_req === 'Y' }>
                   <li><p>You must work the full day.</p></li>
                 </When>
                 <When condition={ jurisdiction.full_day_req === 'N' }>
-                  <li><p>You can split the day with another election worker</p></li>
+                  <li><p>Part-day poll worker shifts are available.</p></li>
                 </When>
                 <Otherwise>
-                  <span></span>
+                  <If condition={ jurisdiction.full_day_req.length > 0 }>
+                    <li><p>{ jurisdiction.full_day_req }</p></li>
+                  </If>
                 </Otherwise>
               </Choose>
             </ul>
@@ -136,7 +145,7 @@ class Jurisdiction extends React.Component {
             <div className='text-header'>Work Requirements</div>
             <ul>
               <li>
-                <Conditional title='Minimum Age' value={jurisdiction.minimum_age} else='N/A' />
+                <Conditional title='Minimum Age' value={jurisdiction.minimum_age} else={NoValue} />
               </li>
 
               <Choose>
@@ -144,7 +153,9 @@ class Jurisdiction extends React.Component {
                   <li><p>You must attend a training session.</p></li>
                 </When>
                 <Otherwise>
-                  <span></span>
+                  <If condition={ jurisdiction.training.length > 0 }>
+                    <li><p>{jurisdiction.training}</p></li>
+                  </If>
                 </Otherwise>
               </Choose>
               <Choose>
@@ -155,7 +166,9 @@ class Jurisdiction extends React.Component {
                   <li><p>Once you are trained, you do not need to attend training for each election. The local election official will let you know when new training is required.</p></li>
                 </When>
                 <Otherwise>
-                  <span></span>
+                  <If condition={ jurisdiction.complete_training.length > 0}>
+                    <li><p>{jurisdiction.complete_training}</p></li>
+                  </If>
                 </Otherwise>
               </Choose>
               <Choose>
@@ -166,11 +179,13 @@ class Jurisdiction extends React.Component {
               </Choose>
             </ul>
 
-            <div className='text-header'>Further Notes</div>
-            <p>{jurisdiction.further_notes}</p>
-            <p dangerouslySetInnerHTML={{
-              __html: jurisdiction.trusted_notes
-            }}></p>
+            <If condition={jurisdiction.further_notes || jurisdiction.trusted_notes}>
+              <div className='text-header'>Further Notes</div>
+              <p>{jurisdiction.further_notes}</p>
+              <p dangerouslySetInnerHTML={{
+                __html: jurisdiction.trusted_notes
+              }}></p>
+            </If>
 
           </div>
         );
@@ -213,7 +228,7 @@ class Jurisdiction extends React.Component {
             <div className='text-header'>Contact Information</div>
             <Conditional title='Phone' value={jurisdiction.telephone} />
             <Conditional title='Email' value={jurisdiction.email} />
-            <Conditional title='Office Address' value={jurisdiction.office_address} else='N/A' />
+            <Conditional title='Office Address' value={jurisdiction.office_address} else={NoValue} />
             <Conditional title='Mailing Address' value={jurisdiction.mailing_address} />
           </div>
           <div className='results-split-container medium-6 columns'>
