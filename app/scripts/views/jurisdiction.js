@@ -228,7 +228,7 @@ class Jurisdiction extends React.Component {
             <div className='text-header'>Contact Information</div>
             <Conditional title='Phone' value={jurisdiction.telephone} />
             <Conditional title='Email' value={jurisdiction.email} />
-            <Conditional title='Office Address' value={jurisdiction.office_address} else={NoValue} />
+            <Conditional title='Office Address' value={jurisdiction.office_address} />
             <Conditional title='Mailing Address' value={jurisdiction.mailing_address} />
           </div>
           <div className='results-split-container medium-6 columns'>
