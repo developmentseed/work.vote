@@ -219,7 +219,7 @@ class Jurisdiction extends React.Component {
               ? <sub> {jurisdiction.jurisdiction_link_text} <Link to={`/j/${jurisdiction.jurisdiction_link.id}/${getUrlName(jurisdiction.jurisdiction_link.name)}`}>click here.</Link></sub>
               : null}
             <div className='county-image'>
-              <div id={this.shapeId} className='state-shape'></div>
+              <div id={this.shapeId}></div>
             </div>
             <MoreInfo url={jurisdiction.website} category={`${category} - moreinfo`} />
             <MoreInfo url={jurisdiction.student_website} value="Student Poll Worker Information" category={`${category} - studentinfo`} />

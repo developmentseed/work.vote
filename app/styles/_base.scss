@@ -257,11 +257,10 @@ a:focus{
     display: none; 
   }
 
-  @media screen and (min-width: 500px){
+  @media screen and (min-width: 700px){
     top: 24%;
     margin-left: 50px;
-    margin-right: 0;
-    max-width:500px;
+    width: 600px;
     br{
       display: block;
     }
@@ -375,14 +374,11 @@ a:focus{
 #Address-Finder{
   position: relative;
   border-radius: 10px;
-/*  box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-  background-color: $lblue;*/
-  max-width: 500px;
   height: 116px;
   margin-left: auto;
   margin-right: auto;
-  // right: 40px;
   p {
+    font-size: 15px;
     background-color: white;
     margin-top: 10px;
     margin-bottom: 10px;
