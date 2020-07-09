@@ -28,16 +28,10 @@ const Footer = () => (
     <div className="callout large tertiary">
       <div className="row">
         <div className="large-6 columns footer-items footer-partners">
-          <h5>This project is led by the following partners:</h5>
+          <h5>This is a project of
           <a href="https://www.fairelectionscenter.org/">
             <img
               src="/graphics/meta/FairElectionsCenterLogo.png"
-              width="200px"
-            />
-          </a>
-          <a href="http://developmentseed.com/">
-            <img
-              src="/graphics/meta/logo_horizontal_white.png"
               width="200px"
             />
           </a>
