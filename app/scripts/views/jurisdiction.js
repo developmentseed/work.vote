@@ -1,6 +1,9 @@
 'use strict';
 
 import isEmpty from 'lodash.isempty';
+import defaultsDeep from 'lodash.defaultsdeep';
+import isNull from 'lodash.isnull';
+import omitBy from 'lodash.omitby';
 import { connect } from 'react-redux';
 import React from 'react';
 import { Helmet } from 'react-helmet';
@@ -65,13 +68,24 @@ class Jurisdiction extends React.Component {
   }
 
   render () {
-    const { jurisdiction, notFound } = this.props;
+    let { jurisdiction, notFound } = this.props;
     let loaded = false;
     let secondColumn;
 
     if (!isEmpty(jurisdiction)) {
       loaded = true;
     }
+
+    // omit nulls
+    jurisdiction = omitBy(jurisdiction, isNull);
+
+    // Set defaults for strings that we're checking
+    defaultsDeep(jurisdiction, {
+      registration_status: '',
+      full_day_req: '',
+      training: '',
+      complete_training: ''
+    });
 
     if (notFound) {
       return (
