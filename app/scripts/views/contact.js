@@ -78,15 +78,6 @@ class Contact extends React.Component {
               <div className='btn' onClick={this.submitForm}>Submit</div>   <span className={submitLabel} ref='label'>Sending... Please wait!</span>
             </div>
           </div>
-
-          <div className='large-6 medium-6 columns'>
-            <div className='contact-address'>
-              <p>1825 K St. NW Suite 450</p>
-              <p>Washington, DC 20006</p>
-              <p>(202) 331-0114</p>
-            </div>
-          </div>
-
         </div>
       </Box>
     );
