@@ -39,11 +39,11 @@ while (i < 6) {
 config.apiUrl = 'https://api.workelections.com';
 config.accessToken = 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q';
 config.ageOptions = [
-  { value: 0, label: '16 to 18' },
+  { value: 0, label: '18 and under' },
   { value: 1, label: '19 to 25' },
   { value: 2, label: '26 to 35' },
   { value: 3, label: '36 to 50' },
-  { value: 4, label: '51 to 50' },
+  { value: 4, label: '51 to 64' },
   { value: 5, label: '65 and older' }
 ];
 
