@@ -18,6 +18,8 @@ import Empty from './404';
 import Conditional from '../components/results/conditional';
 import { fetchJurisdiction } from '../actions';
 import { shape, getUrlName} from '../utils';
+import stateJson from '../../states_hash.json';
+
 
 const NoValue = 'Please contact your local election official for more information';
 
@@ -93,6 +95,8 @@ class Jurisdiction extends React.Component {
       );
     }
 
+    const fullStateName = stateJson[jurisdiction.state.alpha];
+
     if (this.state.applicationIsShown) {
       secondColumn = (
         <Application jurisdiction_id={jurisdiction.id} onSubmit={this.onSubmit} />
@@ -116,7 +120,7 @@ class Jurisdiction extends React.Component {
               <ul>
                 <Choose>
                   <When condition={ jurisdiction.registration_status === 'S' }>
-                    <li><p>You can be registered to vote anywhere in the state to work on Election Day in {jurisdiction.name}.</p></li>
+                    <li><p>You must be registered to vote in {fullStateName} to work on Election Day in {jurisdiction.name}.</p></li>
                   </When>
                   <When condition={ jurisdiction.registration_status === 'J' }>
                     <li><p>You must be registered to vote in {jurisdiction.name} to work on Election Day</p></li>
@@ -216,6 +220,7 @@ class Jurisdiction extends React.Component {
     let pageTitle = '';
     let category = '';
     if (jurisdiction.name) {
+      console.log(jurisdiction)
       pageTitle = `${jurisdiction.name}, ${jurisdiction.state.alpha}`;
       category = `${jurisdiction.state.alpha} - ${jurisdiction.name}`;
     }
