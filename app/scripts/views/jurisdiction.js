@@ -220,7 +220,6 @@ class Jurisdiction extends React.Component {
     let pageTitle = '';
     let category = '';
     if (jurisdiction.name) {
-      console.log(jurisdiction)
       pageTitle = `${jurisdiction.name}, ${jurisdiction.state.alpha}`;
       category = `${jurisdiction.state.alpha} - ${jurisdiction.name}`;
     }
