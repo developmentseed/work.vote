@@ -257,6 +257,11 @@ a:focus{
     display: none; 
   }
 
+  input {
+    margin: 0;
+    box-shadow: none !important;
+  }
+
   @media screen and (min-width: 700px){
     top: 24%;
     margin-left: 50px;
