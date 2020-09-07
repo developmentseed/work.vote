@@ -257,6 +257,11 @@ a:focus{
     display: none; 
   }
 
+  input {
+    margin: 0;
+    box-shadow: none !important;
+  }
+
   @media screen and (min-width: 700px){
     top: 24%;
     margin-left: 50px;
@@ -961,6 +966,11 @@ h5{
     width: 500px; /* Could be more or less, depending on screen size */
     position: relative;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+
+    input {
+      margin: 0;
+      box-shadow: none !important;
+    }
 }
 
 @media only screen and (max-width: 800px) {
@@ -989,7 +999,7 @@ h5{
 }
 
 .Survey-Q{
-  margin-bottom: 0.75em;
+  margin: 1.5em 0 0.75em 0;
   line-height: 1.5em;
 }
 
