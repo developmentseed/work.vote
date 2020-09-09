@@ -41,7 +41,7 @@ class Apply extends React.Component {
       );
     } else {
       return (
-        <a href='#' onClick={this.clicked}><div className='btn'>Apply Now!</div></a>
+        <a id="apply-btn" href='#' onClick={this.clicked}><div className='btn'>Apply Now!</div></a>
       );
     }
   }
