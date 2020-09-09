@@ -37,7 +37,7 @@ class Apply extends React.Component {
       return false;
     } else if (this.external) {
       return (
-        <a href={ checkUrl(this.props.url) } onClick={this.clicked}><div className='btn'>Apply Now!</div></a>
+        <a href={ checkUrl(this.props.url) } onClick={this.clicked}><div id="apply-btn" className='btn'>Apply Now!</div></a>
       );
     } else {
       return (
