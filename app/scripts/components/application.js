@@ -71,13 +71,13 @@ class Application extends React.Component {
 
     return (
       <vote-application>
-        <div className='text-header'>Application</div>
+        <div className='text-header'>Statement of Interest</div>
 
         <div className={calloutClassError} name='error'>
           <p>{errorMessage}</p>
         </div>
 
-        <p><em>This application generates an email that is sent to the local election official for your city or county. Workelections.com does not retain your personal information.</em></p>
+        <p><em>This form generates an email that is sent to the local election official for your city or county. Workelections.com does not retain your personal information.</em></p>
 
         <label>
           First Name:<span className='red'>*</span>
@@ -132,7 +132,7 @@ class Application extends React.Component {
           />
         </label>
 
-        <div className='btn' onClick={this.submitForm}>Submit</div><span className={submitLabel} name='label'>Sending... Please wait!</span>
+        <div className='btn' onClick={this.submitForm}>Send</div><span className={submitLabel} name='label'>Sending... Please wait!</span>
 
         <p><span className='red'>* are required</span></p>
 
