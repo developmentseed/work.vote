@@ -61,7 +61,7 @@ class Frontpage extends React.Component {
 
     if (this.props.states && this.props.states.length > 0) {
       options = this.props.states.map(state => {
-        return { value: state.alpha, label: state.name };
+        return { value: state.alpha, label: `${state.name} ${state.all_mail_elections ? "(All Mail Elections)" : ""}`, isDisabled: state.all_mail_elections };
       });
     }
 
