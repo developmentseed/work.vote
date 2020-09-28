@@ -125,15 +125,13 @@ class Jurisdiction extends React.Component {
                   <When condition={ jurisdiction.registration_status === 'J' }>
                     <li><p>You must be registered to vote in {jurisdiction.name} to work on Election Day</p></li>
                   </When>
-                  <When condition={ jurisdiction.student_website }>
-                    <li><p>NOTE: Registration requirements do not apply if your state allows 16 and 17 year old student poll workers.</p></li>
-                  </When>
                   <Otherwise>
                     <If condition={ jurisdiction.registration_status.length > 0}>
                       <li><p>{jurisdiction.registration_status}</p></li>
                     </If>
                   </Otherwise>
                 </Choose>
+                <li><p>NOTE: Registration requirements do not apply if your state allows 16 and 17 year old student poll workers.</p></li>
               </ul>
             </If>
 
