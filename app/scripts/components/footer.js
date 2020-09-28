@@ -16,10 +16,10 @@ const Footer = () => (
           </h5>
           <h5>
             <p>
-              This nonpartisan project has collected poll worker information
-              and applications for hundreds of counties and other
-              jurisdictions, making it easy for local election officials and
-              potential workers to connect.
+            This nonpartisan project has collected poll worker 
+            information and applications for thousands of 
+            local jurisdictions across the U.S., making it 
+            easy for local election officials and potential workers to connect.
             </p>
           </h5>
         </div>
