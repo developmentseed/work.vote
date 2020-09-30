@@ -171,11 +171,6 @@ class Jurisdiction extends React.Component {
                 <When condition={ jurisdiction.training === 'Y' }>
                   <li><p>You must attend a training session.</p></li>
                 </When>
-                <Otherwise>
-                  <If condition={ jurisdiction.training.length > 0 }>
-                    <li><p>{jurisdiction.training}</p></li>
-                  </If>
-                </Otherwise>
               </Choose>
               <Choose>
                 <When condition={ jurisdiction.complete_training === 'Y' }>
@@ -201,9 +196,9 @@ class Jurisdiction extends React.Component {
             <If condition={jurisdiction.further_notes || jurisdiction.trusted_notes}>
               <div className='text-header'>Further Notes</div>
               <p>{jurisdiction.further_notes}</p>
-              <p dangerouslySetInnerHTML={{
+              <div dangerouslySetInnerHTML={{
                 __html: jurisdiction.trusted_notes
-              }}></p>
+              }}></div>
             </If>
 
           </div>
