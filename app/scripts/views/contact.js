@@ -78,16 +78,9 @@ class Contact extends React.Component {
               <div className='btn' onClick={this.submitForm}>Submit</div>   <span className={submitLabel} ref='label'>Sending... Please wait!</span>
             </div>
           </div>
-
-          <div className='large-6 medium-6 columns'>
-            <div className='contact-address'>
-              <p>1825 K St. NW Suite 450</p>
-              <p>Washington, DC 20006</p>
-              <p>(202) 331-0114</p>
-              <p>info@fairelectionscenter.org</p>
-            </div>
-          </div>
-
+          <hr />	
+          <strong><p>Press inquiries:</p></strong>	
+          <p>Please email Rich Robinson, Fair Election Center's Communications Director, at <a href="mailto:rrobinson@fairelectionscenter.org">rrobinson@fairelectionscenter.org</a> .</p>
         </div>
       </Box>
     );

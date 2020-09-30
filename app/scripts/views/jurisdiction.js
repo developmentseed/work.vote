@@ -18,6 +18,8 @@ import Empty from './404';
 import Conditional from '../components/results/conditional';
 import { fetchJurisdiction } from '../actions';
 import { shape, getUrlName} from '../utils';
+import stateJson from '../../states_hash.json';
+
 
 const NoValue = 'Please contact your local election official for more information';
 
@@ -93,6 +95,17 @@ class Jurisdiction extends React.Component {
       );
     }
 
+    let studentPollWorkerInstructions;
+    if (jurisdiction.state.alpha === 'FL') {
+      studentPollWorkerInstructions = <li><p>Note: 16 and 17 year old poll workers must be pre-registered to vote.</p></li>;
+    } else if (jurisdiction.minimum_age !== "18") {
+      studentPollWorkerInstructions = <li><p>Note: This voter registration requirement does not apply to poll workers under the age of 18.</p></li>;
+    } else if (jurisdiction.under_eighteen_req) {
+      studentPollWorkerInstructions = <li><p>{jurisdiction.under_eighteen_req}</p></li>;
+    }
+
+    const fullStateName = stateJson[jurisdiction.state.alpha];
+
     if (this.state.applicationIsShown) {
       secondColumn = (
         <Application jurisdiction_id={jurisdiction.id} onSubmit={this.onSubmit} />
@@ -116,7 +129,7 @@ class Jurisdiction extends React.Component {
               <ul>
                 <Choose>
                   <When condition={ jurisdiction.registration_status === 'S' }>
-                    <li><p>You can be registered to vote anywhere in the state to work on Election Day in {jurisdiction.name}.</p></li>
+                    <li><p>You must be registered to vote in {fullStateName} to work on Election Day in {jurisdiction.name}.</p></li>
                   </When>
                   <When condition={ jurisdiction.registration_status === 'J' }>
                     <li><p>You must be registered to vote in {jurisdiction.name} to work on Election Day</p></li>
@@ -127,6 +140,7 @@ class Jurisdiction extends React.Component {
                     </If>
                   </Otherwise>
                 </Choose>
+                {studentPollWorkerInstructions}
               </ul>
             </If>
 
@@ -166,11 +180,6 @@ class Jurisdiction extends React.Component {
                 <When condition={ jurisdiction.training === 'Y' }>
                   <li><p>You must attend a training session.</p></li>
                 </When>
-                <Otherwise>
-                  <If condition={ jurisdiction.training.length > 0 }>
-                    <li><p>{jurisdiction.training}</p></li>
-                  </If>
-                </Otherwise>
               </Choose>
               <Choose>
                 <When condition={ jurisdiction.complete_training === 'Y' }>
@@ -196,9 +205,9 @@ class Jurisdiction extends React.Component {
             <If condition={jurisdiction.further_notes || jurisdiction.trusted_notes}>
               <div className='text-header'>Further Notes</div>
               <p>{jurisdiction.further_notes}</p>
-              <p dangerouslySetInnerHTML={{
+              <div dangerouslySetInnerHTML={{
                 __html: jurisdiction.trusted_notes
-              }}></p>
+              }}></div>
             </If>
 
           </div>

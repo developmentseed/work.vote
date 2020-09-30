@@ -183,7 +183,7 @@ class Survey extends React.Component {
 
               <label>
                 <div className='Survey-Q'>
-                  How familiar are you with working with computer technology on a scale of 1 to 5?<span className='red'>*</span>
+                  How familiar are you with working with computer technology on a scale of 1 to 5? (1 = Novice/Beginner and 5 = Expert)<span className='red'>*</span>
                 </div>
                 <Select
                   name='survey-technology'
