@@ -78,8 +78,6 @@ class Jurisdiction extends React.Component {
       loaded = true;
     }
 
-    console.log(jurisdiction)
-
     // omit nulls
     jurisdiction = omitBy(jurisdiction, isNull);
 
@@ -100,7 +98,7 @@ class Jurisdiction extends React.Component {
     let studentPollWorkerInstructions;
     if (jurisdiction.state.alpha === 'FL') {
       studentPollWorkerInstructions = <li><p>Note: 16 and 17 year old poll workers must be pre-registered to vote.</p></li>;
-    } else if (jurisdiction.state.alpha !== 'FL' && jurisdiction.state.alpha !== 'MT' && jurisdiction.state.alpha !== 'OK' && jurisdiction.state.alpha !== 'SD' && jurisdiction.state.alpha !== 'AR' && jurisdiction.state.alpha !== 'MO' && jurisdiction.state.alpha !== 'VA') {
+    } else if (jurisdiction.minimum_age !== "18") {
       studentPollWorkerInstructions = <li><p>Note: This voter registration requirement does not apply to poll workers under the age of 18.</p></li>;
     } else if (jurisdiction.under_eighteen_req) {
       studentPollWorkerInstructions = <li><p>{jurisdiction.under_eighteen_req}</p></li>;
