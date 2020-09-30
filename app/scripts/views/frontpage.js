@@ -11,7 +11,6 @@ const selectStyles = {
     ...base,
     backgroundClip: 'padding-box',
     borderColor: 'rgba(0,0,0,0.1)',
-    height: '44px',
     boxShadow: '0 2px 5px 0px rgba(0,0,0,0.75)',
 
     ':hover': {
@@ -62,7 +61,7 @@ class Frontpage extends React.Component {
 
     if (this.props.states && this.props.states.length > 0) {
       options = this.props.states.map(state => {
-        return { value: state.alpha, label: state.name };
+        return { value: state.alpha, label: `${state.name} ${state.all_mail_elections ? "(All Mail Elections)" : ""}`, isDisabled: state.all_mail_elections };
       });
     }
 
@@ -76,12 +75,12 @@ class Frontpage extends React.Component {
               <p><span>Look up information on how to work </span> <br /> <span>at the polls on Election Day.</span></p>
             </div>
             <Select
-              placeholder="Select a state"
-              options={options}
-              name = 'state-selector'
-              isSearchable={false}
-              onChange={this.onSelectedState}
               styles={selectStyles}
+              onChange={this.onSelectedState}
+              isSearchable={true}
+              name="state-selector"
+              options={options}
+              placeholder="Select a state"
             />
             {
               this.state.selectedState
