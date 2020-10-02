@@ -34,6 +34,7 @@ function MapClass (el, states) {
     this.states = {};
     this.states_incomplete = [];
     for (const i in states) {
+      console.log(states)
       const _id = states[i].topojson_id;
 
       if (_id) {
@@ -44,10 +45,12 @@ function MapClass (el, states) {
         if (states[i].is_active) {
           this.states[_id].fill = '#495891';
           this.states[_id].hover = '#707fb7';
-        } else if (states[i].pollworker_website !== '') {
-          this.states[_id].fill = '#818ebf';
-          this.states[_id].hover = '#a3acd1';
-        }
+        } 
+        // TODO: Get clairifcation from Ryan on what this styling is for.
+        // else if (states[i].pollworker_website !== '') {
+        //   this.states[_id].fill = '#818ebf';
+        //   this.states[_id].hover = '#a3acd1';
+        // }
       }
     }
 
