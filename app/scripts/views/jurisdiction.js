@@ -96,7 +96,7 @@ class Jurisdiction extends React.Component {
     }
 
     let studentPollWorkerInstructions;
-    if (jurisdiction.state.alpha === 'FL') {
+    if (jurisdiction.state.alpha === 'FL' || jurisdiction.state.alpha === 'RI') {
       studentPollWorkerInstructions = <li><p>Note: 16 and 17 year old poll workers must be pre-registered to vote.</p></li>;
     } else if (jurisdiction.minimum_age !== "18") {
       studentPollWorkerInstructions = <li><p>Note: This voter registration requirement does not apply to poll workers under the age of 18.</p></li>;
