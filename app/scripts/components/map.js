@@ -34,7 +34,6 @@ function MapClass (el, states) {
     this.states = {};
     this.states_incomplete = [];
     for (const i in states) {
-      console.log(states)
       const _id = states[i].topojson_id;
 
       if (_id) {
