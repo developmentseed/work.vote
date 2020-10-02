@@ -19,6 +19,7 @@ class Contact extends React.Component {
 
   submitForm (event) {
     this.props.submitFormStarted();
+    document.getElementById('submitbutton').disabled = true
 
     const contact = {
       name: document.getElementsByName('name')[0].value,
@@ -75,7 +76,9 @@ class Contact extends React.Component {
               <input className='form__control' type='text' placeholder='Email' name='email' />
               <div className='large-12 columns contact-questions'>Comment or Questions</div>
               <textarea className='form__control' type='text' placeholder='Type Here' name='comment' />
-              <div className='btn' onClick={this.submitForm}>Submit</div>   <span className={submitLabel} ref='label'>Sending... Please wait!</span>
+              <button id="submitbutton" className='btn' type="button" onClick={this.submitForm}>Submit</button>
+              <br />
+              <span className={submitLabel} ref='label'>Sending... Please wait!</span>
             </div>
           </div>
           <hr />	

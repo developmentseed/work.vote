@@ -720,6 +720,17 @@ h5{
   transition-duration: 0.2s;
   transition-timing-function: linear;
   margin: 10px 0px 12px 0px;
+  &:disabled{
+    color: black;
+    background-color: gray;
+    border-color: gray;
+    &:hover {
+      color: black;
+      background-color: gray;
+      border-color: gray;
+      cursor: not-allowed;
+    }
+  }
 }
 
 .btn.info {
