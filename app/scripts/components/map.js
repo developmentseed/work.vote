@@ -44,6 +44,7 @@ function MapClass (el, states) {
         if (states[i].is_active) {
           this.states[_id].fill = '#495891';
           this.states[_id].hover = '#707fb7';
+          this.states[_id].is_active = true;
         } 
         // TODO: Get clairifcation from Ryan on what this styling is for.
         // else if (states[i].pollworker_website !== '') {
@@ -67,7 +68,7 @@ function MapClass (el, states) {
           }
         })
         .style('cursor', (d) => {
-          if (d.id in this.states) {
+          if (d.id in this.states && this.states[d.id].is_active) {
             return 'pointer';
           }
         })
@@ -98,7 +99,7 @@ function MapClass (el, states) {
   };
 
   this.click = (d) => {
-    if (d.id in this.states) {
+    if (d.id in this.states && this.states[d.id].is_active) {
       const urlName = getUrlName(this.states[d.id].name);
       window.location.href = `/states/${this.states[d.id].id}/${urlName}`;
     }
