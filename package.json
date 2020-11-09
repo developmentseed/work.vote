@@ -114,6 +114,7 @@
     "react": "^16.3.2",
     "react-autosuggest": "^9.4.1",
     "react-conditioner": "^1.1.0",
+    "react-cookie-consent": "^5.2.0",
     "react-dom": "^16.5.1",
     "react-facebook-pixel": "^0.1.1",
     "react-ga": "^2.5.3",
