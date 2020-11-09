@@ -63,6 +63,20 @@
   <script src="/scripts/bundle.js"></script>
   <!-- endbuild -->
 
+  <!-- DeBounce Real-Time Validation Widget -->
+
+  <!-- The widget will search for all fields with the attribute type="email" and name="email", plus any other attribute that contains the word ‘email’.  -->
+
+  <!-- In order to disable the email validation on an input, add debounce-disable="true" attribute to that field. -->
+
+  <!-- Note that each IP can validate 20 emails per day using your widget. This is a security measure to protect your credits from an abuser. In this case, the widget shows "You preformed many validations" error message. -->
+
+  <script type="text/javascript">
+    DeBounce_APIKEY = 'public_TlBodVhxeVRxQzhZNHFEc1VWSWUwZz09';
+    DeBounce_BlockFreeEmails = 'false'; //Set this value true to block free emails like Gmail.
+  </script>
+  <script async type="text/javascript" src="https://cdn.debounce.io/widget/DeBounce.js"></script>
+
 </body>
 
 </html>
